@@ -1,0 +1,10 @@
+org.springframework.boot.SpringApplicationRunListener=\
+com.binance.platform.apollo.ApolloApplicationRunListener
+
+org.springframework.context.ApplicationContextInitializer=\
+com.binance.platform.apollo.SecretsManagerContextInitializer
+
+
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.binance.platform.apollo.SecretsManagerContextInitializer
+

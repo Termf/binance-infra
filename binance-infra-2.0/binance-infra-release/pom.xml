@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>binance-infra-starter-build</artifactId>
+	<packaging>pom</packaging>
+	<name>binance-infra Starter Build</name>
+	<description>binance-infra Starter Build</description>
+	<version>2.0.1-SNAPSHOT</version>
+	<parent>
+		<groupId>com.binance.infra.avengers</groupId>
+		<artifactId>binance-infra-build</artifactId>
+		<version>2.0.1-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<bintray.package>starters</bintray.package>
+	</properties>
+	<modules>
+		<module>binance-infra-dependencies</module>
+		<module>binance-infra-starter-parent</module>
+		<module>binance-thirdparty-dependencies</module>
+		<module>binance-api-dependencies</module>
+	</modules>
+	<profiles>
+		<profile>
+			<!-- 生产Nexus: mvn deploy -Pserver -->
+			<id>server</id>
+			<properties>
+				<deploy.snapshot.url>http://nexus.toolsfdg.net:8081/repository/maven-snapshots/</deploy.snapshot.url>
+				<deploy.release.url>http://nexus.toolsfdg.net:8081/repository/maven-releases/</deploy.release.url>
+			</properties>
+		</profile>
+		<profile>
+			<!-- dev Nexus: mvn deploy -Pdev -->
+			<id>dev</id>
+			<properties>
+				<deploy.snapshot.url>http://nexus.k8s.qa1fdg.net/repository/maven-snapshots/</deploy.snapshot.url>
+				<deploy.release.url>http://nexus.k8s.qa1fdg.net/repository/maven-releases/</deploy.release.url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>bijie-snapshots</id>
+			<name>Bijie Project SNAPSHOTS</name>
+			<url>${deploy.snapshot.url}</url>
+		</snapshotRepository>
+		<repository>
+			<id>bijie-releases</id>
+			<name>Bijie Project Release</name>
+			<url>${deploy.release.url}</url>
+		</repository>
+	</distributionManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-rules</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<bannedDependencies>
+									<excludes>
+										<exclude>commons-logging:*:*</exclude>
+									</excludes>
+									<searchTransitive>true</searchTransitive>
+								</bannedDependencies>
+							</rules>
+							<fail>true</fail>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

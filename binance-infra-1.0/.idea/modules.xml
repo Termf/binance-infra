@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/binance-infra-sample/binance-infra-sample.iml" filepath="$PROJECT_DIR$/binance-infra-sample/binance-infra-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-api/binance-infra-sample-api.iml" filepath="$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-api/binance-infra-sample-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-consumer/binance-infra-sample-consumer.iml" filepath="$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-consumer/binance-infra-sample-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-provider/binance-infra-sample-provider.iml" filepath="$PROJECT_DIR$/binance-infra-sample/binance-infra-sample-provider/binance-infra-sample-provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra1.0.iml" filepath="$PROJECT_DIR$/binance-infra1.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo-core/platform-apollo-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo-core/platform-apollo-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo-dependencies/platform-apollo-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo-dependencies/platform-apollo-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common.iml" filepath="$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common (1).iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common-core/platform-common-core.iml" filepath="$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common-core/platform-common-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common-core/platform-common-core (1).iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common-core/platform-common-core (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common-dependencies/platform-common-dependencies.iml" filepath="$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common-dependencies/platform-common-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common-dependencies/platform-common-dependencies (1).iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common-dependencies/platform-common-dependencies (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/platform-eureka-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/platform-eureka-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-dependencies/platform-eureka-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-dependencies/platform-eureka-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor-core/platform-monitor-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor-core/platform-monitor-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor-dependencies/platform-monitor-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor-dependencies/platform-monitor-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis-core/platform-mybatis-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis-core/platform-mybatis-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis-dependencies/platform-mybatis-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis-dependencies/platform-mybatis-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign-core/platform-openfeign-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign-core/platform-openfeign-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign-dependencies/platform-openfeign-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign-dependencies/platform-openfeign-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis-core/platform-redis-core.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis-core/platform-redis-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis-dependencies/platform-redis-dependencies.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis-dependencies/platform-redis-dependencies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-starter-apollo/platform-starter-apollo.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-starter-apollo/platform-starter-apollo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-starter-eureka/platform-starter-eureka.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-starter-eureka/platform-starter-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-starter-monitor/platform-starter-monitor.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-starter-monitor/platform-starter-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-starter-mybatis/platform-starter-mybatis.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-starter-mybatis/platform-starter-mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-starter-openfeign/platform-starter-openfeign.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-starter-openfeign/platform-starter-openfeign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-starter-redis/platform-starter-redis.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-starter-redis/platform-starter-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-web/platform-starter-web/platform-starter-web.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-web/platform-starter-web/platform-starter-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binance-infra/binance-infra-web/platform-web.iml" filepath="$PROJECT_DIR$/binance-infra/binance-infra-web/platform-web.iml" />
+    </modules>
+  </component>
+</project>

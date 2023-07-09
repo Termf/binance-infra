@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e74bc087-b154-4f53-81dd-f5c340bd6858" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/src/main/java/com/binance/platform/ribbon/MyRibbonClientConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/src/main/java/com/binance/platform/ribbon/MyRibbonClientConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1ZhjTYdwqjHtTPJDVgIl9todlIv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager">
+    <configuration name="ProviderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="binance-infra-sample-provider" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.binance.feign.sample.provider.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.binance.feign.sample.provider.ProviderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.ProviderApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e74bc087-b154-4f53-81dd-f5c340bd6858" name="Default Changelist" comment="" />
+      <created>1585298227458</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585298227458</updated>
+      <workItem from="1585298232592" duration="1004000" />
+      <workItem from="1585301689554" duration="3398000" />
+      <workItem from="1585315538811" duration="23222000" />
+      <workItem from="1585535755121" duration="5796000" />
+      <workItem from="1585549074078" duration="1926000" />
+      <workItem from="1585640983615" duration="4723000" />
+      <workItem from="1585806437633" duration="4957000" />
+      <workItem from="1586180017835" duration="2540000" />
+      <workItem from="1586226777649" duration="1157000" />
+      <workItem from="1586228074512" duration="2155000" />
+      <workItem from="1586242720273" duration="7099000" />
+      <workItem from="1586257460410" duration="207000" />
+      <workItem from="1587369698618" duration="10600000" />
+      <workItem from="1587518606930" duration="798000" />
+      <workItem from="1587519515256" duration="2602000" />
+      <workItem from="1587607658497" duration="1467000" />
+      <workItem from="1587867491005" duration="159000" />
+      <workItem from="1587982963039" duration="624000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="280" y="261" key="#Project_Structure" timestamp="1587376846674">
+      <screen x="0" y="23" width="1761" height="1097" />
+    </state>
+    <state x="280" y="261" key="#Project_Structure/0.23.1761.1097@0.23.1761.1097" timestamp="1587376846674" />
+    <state x="285" y="247" key="#Project_Structure/0.23.1792.1032@0.23.1792.1032" timestamp="1585323590308" />
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom" timestamp="1585307559918">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.bottom/0.23.1792.1032@0.23.1792.1032" timestamp="1585307559918" />
+    <state width="1750" height="281" key="GridCell.Tab.0.center" timestamp="1585307559917">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.center/0.23.1792.1032@0.23.1792.1032" timestamp="1585307559917" />
+    <state width="1750" height="281" key="GridCell.Tab.0.left" timestamp="1585307559917">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.left/0.23.1792.1032@0.23.1792.1032" timestamp="1585307559917" />
+    <state width="1750" height="281" key="GridCell.Tab.0.right" timestamp="1585307559917">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state width="1750" height="281" key="GridCell.Tab.0.right/0.23.1792.1032@0.23.1792.1032" timestamp="1585307559917" />
+    <state x="297" y="284" key="NewModule_or_Project.wizard" timestamp="1585323543933">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state x="297" y="284" key="NewModule_or_Project.wizard/0.23.1792.1032@0.23.1792.1032" timestamp="1585323543933" />
+    <state x="398" y="188" key="SettingsEditor" timestamp="1585883514815">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="398" y="177" key="SettingsEditor/0.23.1792.1024@0.23.1792.1024" timestamp="1585711369400" />
+    <state x="398" y="178" key="SettingsEditor/0.23.1792.1032@0.23.1792.1032" timestamp="1585391011801" />
+    <state x="398" y="188" key="SettingsEditor/0.23.1792.1097@0.23.1792.1097" timestamp="1585883514815" />
+    <state x="627" y="278" width="540" height="524" key="StructurePopup" timestamp="1585325822662">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state x="627" y="278" width="540" height="524" key="StructurePopup/0.23.1792.1032@0.23.1792.1032" timestamp="1585325822662" />
+    <state width="631" height="474" key="SwitcherDM" timestamp="1587372977863">
+      <screen x="0" y="23" width="1761" height="1097" />
+    </state>
+    <state width="631" height="474" key="SwitcherDM/0.23.1761.1097@0.23.1761.1097" timestamp="1587372977863" />
+    <state width="642" height="445" key="SwitcherDM/0.23.1792.1032@0.23.1792.1032" timestamp="1585395333955" />
+    <state width="642" height="474" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586227282536" />
+    <state x="307" y="252" key="VCS.ChangeListViewerDialog" timestamp="1585396924917">
+      <screen x="0" y="23" width="1792" height="1032" />
+    </state>
+    <state x="307" y="252" key="VCS.ChangeListViewerDialog/0.23.1792.1032@0.23.1792.1032" timestamp="1585396924917" />
+    <state x="706" y="279" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog" timestamp="1585478867455">
+      <screen x="0" y="23" width="1792" height="1028" />
+    </state>
+    <state x="706" y="279" key="com.intellij.openapi.vcs.changes.SpecificFilesViewDialog/0.23.1792.1028@0.23.1792.1028" timestamp="1585478867455" />
+    <state x="701" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587372006431">
+      <screen x="0" y="23" width="1761" height="1097" />
+    </state>
+    <state x="701" y="456" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1761.1097@0.23.1761.1097" timestamp="1587372006431" />
+    <state x="542" y="194" width="1100" height="755" key="find.popup" timestamp="1587522687458">
+      <screen x="0" y="23" width="1761" height="1097" />
+    </state>
+    <state x="542" y="194" width="1100" height="755" key="find.popup/0.23.1761.1097@0.23.1761.1097" timestamp="1587522687458" />
+    <state x="552" y="183" width="1119" height="704" key="find.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1585643701749" />
+    <state x="552" y="184" width="978" height="706" key="find.popup/0.23.1792.1028@0.23.1792.1028" timestamp="1585538833818" />
+    <state x="552" y="185" width="978" height="708" key="find.popup/0.23.1792.1032@0.23.1792.1032" timestamp="1585398630866" />
+    <state x="552" y="194" width="1119" height="755" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586242822929" />
+    <state x="552" y="266" width="670" height="719" key="search.everywhere.popup" timestamp="1587522669637">
+      <screen x="0" y="23" width="1761" height="1097" />
+    </state>
+    <state x="552" y="266" width="670" height="719" key="search.everywhere.popup/0.23.1761.1097@0.23.1761.1097" timestamp="1587522669637" />
+    <state x="562" y="250" width="670" height="671" key="search.everywhere.popup/0.23.1792.1024@0.23.1792.1024" timestamp="1585641549497" />
+    <state x="562" y="252" width="670" height="676" key="search.everywhere.popup/0.23.1792.1032@0.23.1792.1032" timestamp="1585394006256" />
+    <state x="562" y="266" width="670" height="719" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586242916418" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/src/main/java/com/binance/platform/ribbon/MyRibbonClientConfiguration.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-netflix-core/1.4.5.RELEASE/spring-cloud-netflix-core-1.4.5.RELEASE-sources.jar!/org/springframework/cloud/netflix/ribbon/RibbonAutoConfiguration.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/src/main/java/com/binance/platform/ribbon/MyRibbonAutoConfiguration.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/netflix/ribbon/ribbon-loadbalancer/2.2.5/ribbon-loadbalancer-2.2.5.jar!/com/netflix/loadbalancer/LoadBalancerStats.class</url>
+          <line>48</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

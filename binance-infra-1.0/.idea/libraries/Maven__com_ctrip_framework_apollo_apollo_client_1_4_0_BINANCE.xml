@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.ctrip.framework.apollo:apollo-client:1.4.0-BINANCE">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ctrip/framework/apollo/apollo-client/1.4.0-BINANCE/apollo-client-1.4.0-BINANCE.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ctrip/framework/apollo/apollo-client/1.4.0-BINANCE/apollo-client-1.4.0-BINANCE-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/ctrip/framework/apollo/apollo-client/1.4.0-BINANCE/apollo-client-1.4.0-BINANCE-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

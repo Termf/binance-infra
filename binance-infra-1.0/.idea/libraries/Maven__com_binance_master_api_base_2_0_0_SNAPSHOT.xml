@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.binance.master:api-base:2.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/binance/master/api-base/2.0.0-SNAPSHOT/api-base-2.0.0-20200415.163829-116.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/binance/master/api-base/2.0.0-SNAPSHOT/api-base-2.0.0-20200415.163829-116-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/binance/master/api-base/2.0.0-SNAPSHOT/api-base-2.0.0-20200415.163829-116-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: rabbit-test-app
+  redis: 
+    host: 127.0.0.1
+    port: 6379
+server:
+  port: 8080
+websocket:
+  server:
+    port: 18081
+  client:
+    url:  wss://stream.binance.com:9443/ws/btcusdt@miniTicker

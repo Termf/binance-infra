@@ -1,0 +1,7 @@
+[
+    {
+        "serviceId": "sample-provider", 
+        "envflag": "lsm"
+    }
+    
+]

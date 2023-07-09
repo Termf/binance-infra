@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-apollo/platform-apollo-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-common/platform-common-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-eureka/platform-eureka-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-monitor/platform-monitor-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-mybatis/platform-mybatis-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-openfeign/platform-openfeign-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/binance-infra/binance-infra-redis/platform-redis-core/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/platform-common-core/src/main/java" charset="UTF-8" />
+  </component>
+</project>

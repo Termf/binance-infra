@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="binance-infra-sample-consumer" />
+        <module name="platform-redis-core" />
+        <module name="platform-starter-openfeign" />
+        <module name="platform-eureka-core" />
+        <module name="platform-starter-redis" />
+        <module name="platform-common-core" />
+        <module name="platform-common-core (1)" />
+        <module name="binance-infra-sample-api" />
+        <module name="platform-starter-monitor" />
+        <module name="platform-starter-apollo" />
+        <module name="platform-openfeign-core" />
+        <module name="platform-starter-mybatis" />
+        <module name="platform-starter-eureka" />
+        <module name="platform-mybatis-core" />
+        <module name="platform-monitor-core" />
+        <module name="binance-infra-sample-provider" />
+        <module name="platform-apollo-core" />
+        <module name="platform-starter-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="binance-infra-sample" target="1.8" />
+      <module name="binance-infra-sample-api" target="1.8" />
+      <module name="binance-infra-sample-consumer" target="1.8" />
+      <module name="binance-infra-sample-provider" target="1.8" />
+      <module name="binance-infra1.0" target="1.5" />
+      <module name="platform-apollo" target="1.8" />
+      <module name="platform-apollo-core" target="1.8" />
+      <module name="platform-apollo-dependencies" target="1.5" />
+      <module name="platform-common" target="1.8" />
+      <module name="platform-common (1)" target="1.8" />
+      <module name="platform-common-core" target="1.8" />
+      <module name="platform-common-core (1)" target="1.8" />
+      <module name="platform-common-dependencies" target="1.5" />
+      <module name="platform-common-dependencies (1)" target="1.5" />
+      <module name="platform-eureka" target="1.8" />
+      <module name="platform-eureka-core" target="1.8" />
+      <module name="platform-eureka-dependencies" target="1.5" />
+      <module name="platform-monitor" target="1.8" />
+      <module name="platform-monitor-core" target="1.8" />
+      <module name="platform-monitor-dependencies" target="1.5" />
+      <module name="platform-mybatis" target="1.8" />
+      <module name="platform-mybatis-core" target="1.8" />
+      <module name="platform-mybatis-dependencies" target="1.5" />
+      <module name="platform-openfeign" target="1.8" />
+      <module name="platform-openfeign-core" target="1.8" />
+      <module name="platform-openfeign-dependencies" target="1.5" />
+      <module name="platform-redis" target="1.8" />
+      <module name="platform-redis-core" target="1.8" />
+      <module name="platform-redis-dependencies" target="1.5" />
+      <module name="platform-starter-apollo" target="1.8" />
+      <module name="platform-starter-eureka" target="1.8" />
+      <module name="platform-starter-monitor" target="1.8" />
+      <module name="platform-starter-mybatis" target="1.8" />
+      <module name="platform-starter-openfeign" target="1.8" />
+      <module name="platform-starter-redis" target="1.8" />
+      <module name="platform-starter-web" target="1.8" />
+      <module name="platform-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="platform-apollo-core" options="-parameters" />
+      <module name="platform-common-core" options="-parameters" />
+      <module name="platform-common-core (1)" options="-parameters" />
+      <module name="platform-eureka-core" options="-parameters" />
+      <module name="platform-monitor-core" options="-parameters" />
+      <module name="platform-mybatis-core" options="-parameters" />
+      <module name="platform-openfeign-core" options="-parameters" />
+      <module name="platform-redis-core" options="-parameters" />
+      <module name="platform-starter-apollo" options="-parameters" />
+      <module name="platform-starter-eureka" options="-parameters" />
+      <module name="platform-starter-monitor" options="-parameters" />
+      <module name="platform-starter-mybatis" options="-parameters" />
+      <module name="platform-starter-openfeign" options="-parameters" />
+      <module name="platform-starter-redis" options="-parameters" />
+      <module name="platform-starter-web" options="-parameters" />
+    </option>
+  </component>
+</project>

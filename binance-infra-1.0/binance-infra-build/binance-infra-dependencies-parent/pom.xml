@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.binance.infra.avengers</groupId>
+	<version>1.0.0-SNAPSHOT</version>
+	<artifactId>binance-infra-dependencies-parent</artifactId>
+	<packaging>pom</packaging>
+	<name>binance-infra-dependencies-parent</name>
+	<description>binance-infraBuild Dependencies</description>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-dependencies</artifactId>
+		<version>1.5.17.RELEASE</version>
+		<relativePath />
+	</parent>
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<comments>
+Copyright 2014-2015 the original author or authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied.
+
+See the License for the specific language governing permissions and
+limitations under the License.
+			</comments>
+		</license>
+	</licenses>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<profiles>
+		<profile>
+			<!-- 生产Nexus: mvn deploy -Pserver -->
+			<id>server</id>
+			<properties>
+				<deploy.snapshot.url>http://nexus.toolsfdg.net:8081/repository/maven-snapshots/</deploy.snapshot.url>
+				<deploy.release.url>http://nexus.toolsfdg.net:8081/repository/maven-releases/</deploy.release.url>
+			</properties>
+		</profile>
+		<profile>
+			<!-- dev Nexus: mvn deploy -Pdev -->
+			<id>dev</id>
+			<properties>
+				<deploy.snapshot.url>http://nexus.k8s.qa1fdg.net/repository/maven-snapshots/</deploy.snapshot.url>
+				<deploy.release.url>http://nexus.k8s.qa1fdg.net/repository/maven-releases/</deploy.release.url>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+	</profiles>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>bijie-snapshots</id>
+			<name>Bijie Project SNAPSHOTS</name>
+			<url>${deploy.snapshot.url}</url>
+		</snapshotRepository>
+		<repository>
+			<id>bijie-releases</id>
+			<name>Bijie Project Release</name>
+			<url>${deploy.release.url}</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>1.4.1</version>
+					<executions>
+						<execution>
+							<id>enforce-versions</id>
+							<goals>
+								<goal>enforce</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<fail>false</fail>
+						<rules>
+							<dependencyConvergence />
+						</rules>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

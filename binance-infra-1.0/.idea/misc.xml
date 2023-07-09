@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../binance-infra-2.0/binance-infra/binance-infra-common/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-apollo/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-monitor/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-common/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-openfeign/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra/binance-infra-web/pom.xml" />
+        <option value="$PROJECT_DIR$/binance-infra-sample/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>
