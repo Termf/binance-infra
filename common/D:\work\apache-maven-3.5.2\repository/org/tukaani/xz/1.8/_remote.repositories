@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 16:58:04 CST 2020
+xz-1.8.jar>nexus-aws=
+xz-1.8.pom>nexus-aws=

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.binance.platform.mbx.config.MbxClientAutoConfiguration,\
+  com.binance.platform.mbx.matchbox.config.MatchBoxClientAutoConfiguration,\
+  com.binance.platform.mbx.cloud.config.CloudApiConsumerAutoConfiguration

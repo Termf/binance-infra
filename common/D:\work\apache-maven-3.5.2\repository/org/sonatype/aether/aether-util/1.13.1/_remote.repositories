@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 16:59:18 CST 2020
+aether-util-1.13.1.jar>nexus-aws=
+aether-util-1.13.1.pom>nexus-aws=

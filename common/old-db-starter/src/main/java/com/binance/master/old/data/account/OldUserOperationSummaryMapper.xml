@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.account.OldUserOperationSummaryMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.account.OldUserOperationSummary">
+		<result column="date" jdbcType="DATE" property="date" />
+		<result column="operation" jdbcType="VARCHAR" property="operation" />
+		<result column="client_type" jdbcType="VARCHAR" property="clientType" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="operate_system" jdbcType="VARCHAR" property="operateSystem" />
+		<result column="request_count" jdbcType="BIGINT" property="requestCount" />
+		<result column="people_count" jdbcType="BIGINT" property="peopleCount" />
+	</resultMap>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.account.OldUserOperationSummary">
+		insert into user_operation_summary (date, operation, client_type,
+		country, operate_system, request_count,
+		people_count)
+		values (#{date,jdbcType=DATE}, #{operation,jdbcType=VARCHAR},
+		#{clientType,jdbcType=VARCHAR},
+		#{country,jdbcType=VARCHAR}, #{operateSystem,jdbcType=VARCHAR}, #{requestCount,jdbcType=BIGINT},
+		#{peopleCount,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.account.OldUserOperationSummary">
+		insert into user_operation_summary
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				date,
+			</if>
+			<if test="operation != null">
+				operation,
+			</if>
+			<if test="clientType != null">
+				client_type,
+			</if>
+			<if test="country != null">
+				country,
+			</if>
+			<if test="operateSystem != null">
+				operate_system,
+			</if>
+			<if test="requestCount != null">
+				request_count,
+			</if>
+			<if test="peopleCount != null">
+				people_count,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				#{date,jdbcType=DATE},
+			</if>
+			<if test="operation != null">
+				#{operation,jdbcType=VARCHAR},
+			</if>
+			<if test="clientType != null">
+				#{clientType,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				#{country,jdbcType=VARCHAR},
+			</if>
+			<if test="operateSystem != null">
+				#{operateSystem,jdbcType=VARCHAR},
+			</if>
+			<if test="requestCount != null">
+				#{requestCount,jdbcType=BIGINT},
+			</if>
+			<if test="peopleCount != null">
+				#{peopleCount,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+</mapper>

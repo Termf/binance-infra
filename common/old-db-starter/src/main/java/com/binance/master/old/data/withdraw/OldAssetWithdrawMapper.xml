@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.withdraw.OldAssetWithdrawMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.withdraw.OldAssetWithdraw">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="tran_id" jdbcType="VARCHAR" property="tranId" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="asset" jdbcType="VARCHAR" property="asset" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="transfer_btc_amount" jdbcType="DECIMAL" property="transferBtcAmount" />
+		<result column="transaction_fee" jdbcType="DECIMAL" property="transactionFee" />
+		<result column="commission_fee" jdbcType="DECIMAL" property="commissionFee" />
+		<result column="paid_fee" jdbcType="DECIMAL" property="paidFee" />
+		<result column="source_address" jdbcType="VARCHAR" property="sourceAddress" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="address_tag" jdbcType="VARCHAR" property="addressTag" />
+		<result column="tx_id" jdbcType="VARCHAR" property="txId" />
+		<result column="tx_key" jdbcType="VARCHAR" property="txKey" />
+		<result column="block_hash" jdbcType="VARCHAR" property="blockHash" />
+		<result column="height" jdbcType="BIGINT" property="height" />
+		<result column="confirmation_no" jdbcType="INTEGER" property="confirmationNo" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="auto_status" jdbcType="VARCHAR" property="autoStatus" />
+		<result column="check_sum" jdbcType="VARCHAR" property="checkSum" />
+		<result column="info" jdbcType="VARCHAR" property="info" />
+		<result column="apply_time" jdbcType="TIMESTAMP" property="applyTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="success_time" jdbcType="TIMESTAMP" property="successTime" />
+		<result column="resend_time" jdbcType="TIMESTAMP" property="resendTime" />
+		<result column="batch_id" jdbcType="INTEGER" property="batchId" />
+		<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+		<result column="client_name" jdbcType="VARCHAR" property="clientName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, tran_id, user_id, asset, amount, transfer_btc_amount,
+		transaction_fee, commission_fee,
+		paid_fee, source_address, address, address_tag, tx_id,
+		tx_key, block_hash,
+		height,
+		confirmation_no, type, status, auto_status, check_sum, info, apply_time,
+		update_time, success_time, resend_time, batch_id,
+		uuid, client_name
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from asset_withdraw
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="queryMaxBatchId" resultType="java.lang.Long">
+		select ifnull(max(batch_id),0) from asset_withdraw where apply_time > ADDDATE(CURDATE(),INTERVAL - 7 DAY)
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from asset_withdraw
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdraw">
+		insert into asset_withdraw (id, tran_id, user_id,
+		asset, amount, transfer_btc_amount,
+		transaction_fee, commission_fee,
+		paid_fee,
+		source_address, address, address_tag,
+		tx_id, tx_key, block_hash,
+		height, confirmation_no, 
+		type, status, auto_status,
+		check_sum, info,
+		apply_time,
+		update_time, success_time, resend_time,
+		batch_id, uuid, client_name
+		)
+		values (#{id,jdbcType=VARCHAR}, #{tranId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{asset,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL}, #{transferBtcAmount,jdbcType=DECIMAL},
+		#{transactionFee,jdbcType=DECIMAL},
+		#{commissionFee,jdbcType=DECIMAL},
+		#{paidFee,jdbcType=DECIMAL},
+		#{sourceAddress,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{addressTag,jdbcType=VARCHAR},
+		#{txId,jdbcType=VARCHAR}, #{txKey,jdbcType=VARCHAR},
+		#{blockHash,jdbcType=VARCHAR},
+		#{height,jdbcType=BIGINT}, #{confirmationNo,jdbcType=INTEGER},
+		#{type,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+		#{autoStatus,jdbcType=VARCHAR},
+		#{checkSum,jdbcType=VARCHAR},
+		#{info,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}, #{successTime,jdbcType=TIMESTAMP},
+		#{resendTime,jdbcType=TIMESTAMP},
+		#{batchId,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdraw">
+		insert into asset_withdraw
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tranId != null">
+				tran_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="asset != null">
+				asset,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="transferBtcAmount != null">
+				transfer_btc_amount,
+			</if>
+			<if test="transactionFee != null">
+				transaction_fee,
+			</if>
+			<if test="commissionFee != null">
+				commission_fee,
+			</if>
+			<if test="paidFee != null">
+				paid_fee,
+			</if>
+			<if test="sourceAddress != null">
+				source_address,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="addressTag != null">
+				address_tag,
+			</if>
+			<if test="txId != null">
+				tx_id,
+			</if>
+			<if test="txKey != null">
+				tx_key,
+			</if>
+			<if test="blockHash != null">
+				block_hash,
+			</if>
+			<if test="height != null">
+				height,
+			</if>
+			<if test="confirmationNo != null">
+				confirmation_no,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="autoStatus != null">
+				auto_status,
+			</if>
+			<if test="checkSum != null">
+				check_sum,
+			</if>
+			<if test="info != null">
+				info,
+			</if>
+			<if test="applyTime != null">
+				apply_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="successTime != null">
+				success_time,
+			</if>
+			<if test="resendTime != null">
+				resend_time,
+			</if>
+			<if test="batchId != null">
+				batch_id,
+			</if>
+			<if test="uuid != null">
+				uuid,
+			</if>
+			<if test="clientName != null">
+				client_name,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="tranId != null">
+				#{tranId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="asset != null">
+				#{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="transferBtcAmount != null">
+				#{transferBtcAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="transactionFee != null">
+				#{transactionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="commissionFee != null">
+				#{commissionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="paidFee != null">
+				#{paidFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sourceAddress != null">
+				#{sourceAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="addressTag != null">
+				#{addressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="txId != null">
+				#{txId,jdbcType=VARCHAR},
+			</if>
+			<if test="txKey != null">
+				#{txKey,jdbcType=VARCHAR},
+			</if>
+			<if test="blockHash != null">
+				#{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				#{height,jdbcType=BIGINT},
+			</if>
+			<if test="confirmationNo != null">
+				#{confirmationNo,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="autoStatus != null">
+				#{autoStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="checkSum != null">
+				#{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				#{info,jdbcType=VARCHAR},
+			</if>
+			<if test="applyTime != null">
+				#{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="successTime != null">
+				#{successTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resendTime != null">
+				#{resendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="batchId != null">
+				#{batchId,jdbcType=INTEGER},
+			</if>
+			<if test="uuid != null">
+				#{uuid,jdbcType=VARCHAR},
+			</if>
+			<if test="clientName != null">
+				#{clientName,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdraw">
+		update asset_withdraw
+		<set>
+			<if test="tranId != null">
+				tran_id = #{tranId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="asset != null">
+				asset = #{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="transferBtcAmount != null">
+				transfer_btc_amount = #{transferBtcAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="transactionFee != null">
+				transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="commissionFee != null">
+				commission_fee = #{commissionFee,jdbcType=DECIMAL},
+			</if>
+			<if test="paidFee != null">
+				paid_fee = #{paidFee,jdbcType=DECIMAL},
+			</if>
+			<if test="sourceAddress != null">
+				source_address = #{sourceAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="addressTag != null">
+				address_tag = #{addressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="txId != null">
+				tx_id = #{txId,jdbcType=VARCHAR},
+			</if>
+			<if test="txKey != null">
+				tx_key = #{txKey,jdbcType=VARCHAR},
+			</if>
+			<if test="blockHash != null">
+				block_hash = #{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				height = #{height,jdbcType=BIGINT},
+			</if>
+			<if test="confirmationNo != null">
+				confirmation_no = #{confirmationNo,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="autoStatus != null">
+				auto_status = #{autoStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="checkSum != null">
+				check_sum = #{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="info != null">
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test="applyTime != null">
+				apply_time = #{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="successTime != null">
+				success_time = #{successTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="resendTime != null">
+				resend_time = #{resendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="batchId != null">
+				batch_id = #{batchId,jdbcType=INTEGER},
+			</if>
+			<if test="uuid != null">
+				uuid = #{uuid,jdbcType=VARCHAR},
+			</if>
+			<if test="clientName != null">
+				client_name = #{clientName,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdraw">
+		update asset_withdraw
+		set tran_id = #{tranId,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=VARCHAR},
+		asset =
+		#{asset,jdbcType=VARCHAR},
+		amount = #{amount,jdbcType=DECIMAL},
+		transfer_btc_amount = #{transferBtcAmount,jdbcType=DECIMAL},
+		transaction_fee =
+		#{transactionFee,jdbcType=DECIMAL},
+		commission_fee = #{commissionFee,jdbcType=DECIMAL},
+		paid_fee = #{paidFee,jdbcType=DECIMAL},
+		source_address =
+		#{sourceAddress,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		address_tag = #{addressTag,jdbcType=VARCHAR},
+		tx_id = #{txId,jdbcType=VARCHAR},
+		tx_key =
+		#{txKey,jdbcType=VARCHAR},
+		block_hash = #{blockHash,jdbcType=VARCHAR},
+		height = #{height,jdbcType=BIGINT},
+		confirmation_no = #{confirmationNo,jdbcType=INTEGER},
+		type = #{type,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		auto_status = #{autoStatus,jdbcType=VARCHAR},
+		check_sum = #{checkSum,jdbcType=VARCHAR},
+		info = #{info,jdbcType=VARCHAR},
+		apply_time = #{applyTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		success_time = #{successTime,jdbcType=TIMESTAMP},
+		resend_time = #{resendTime,jdbcType=TIMESTAMP},
+		batch_id =
+		#{batchId,jdbcType=INTEGER},
+		uuid = #{uuid,jdbcType=VARCHAR},
+		client_name = #{clientName,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<sql id="getWithdrawListSql">
+		<![CDATA[
+			where t2.status >= 0
+			and t2.user_id = #{userId,jdbcType=VARCHAR}
+		]]>
+		<if test="startTime != null">
+			<![CDATA[
+				and t2.apply_time >= #{startTime,jdbcType=TIMESTAMP}
+			]]>
+		</if>
+		<if test="endTime != null">
+			<![CDATA[
+				and t2.apply_time <= #{endTime,jdbcType=TIMESTAMP}
+			]]>
+		</if>
+		<if test="status != null">
+			and t2.status = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="asset != null and asset != ''">
+			and t2.asset = #{asset,jdbcType=VARCHAR}
+		</if>
+	</sql>
+	<select id="getWithdrawList" resultType="java.util.Map">
+		SELECT
+		t2.id as id,
+		t2.amount AS transferAmount,
+		t2.transaction_fee as transactionFee,
+		t2.apply_time AS applyTime,
+		t2.asset coin,
+		t2.status AS status,
+		a.address_url
+		as addressUrl,
+		t2.user_id AS userId,
+		t2.address,
+		t2.address_tag AS addressTag,
+		d.display_name as statusName,
+		t2.tx_id as txId,
+		t2.confirmation_no curConfirmTimes,
+		a.confirm_times confirmTimes,
+		t2.info,
+		case '${lang}' when 'cn' then ae.asset_label else ae.asset_label_en end as assetLabel,
+		CONCAT(a.url,t2.tx_id) as txUrl
+		FROM
+		asset_withdraw t2
+		left join dictionary d on d.code = status and d.type_code = 'withdraw_status_${lang}'
+		left join asset a on a.asset_code = t2.asset
+		left
+		join asset_expand ae on ae.asset = t2.asset
+		<include refid="getWithdrawListSql"></include>
+		ORDER BY apply_time DESC
+		<if test="page != null">
+			limit #{page.offset}, #{page.limit}
+		</if>
+	</select>
+
+	<select id="getWithdrawListCount" resultType="java.lang.Long">
+		SELECT count(1)
+		FROM
+		asset_withdraw t2
+		<include refid="getWithdrawListSql" />
+	</select>
+
+	<select id="getRepeatTXCount" resultType="java.lang.Integer">
+		select count(1) from asset_withdraw
+		where tx_id is not null
+		<if test="txId != null">
+			and tx_id != #{txId}
+		</if>
+		and tx_id != ''
+		and id in
+		<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+
+	<update id="confirmAutoWithdrawStatus">
+		update asset_withdraw
+		<set>
+			auto_status = #{autoStatus},
+			<if test="txId != null">
+				tx_id = #{txId},
+			</if>
+			<if test="txKey != null">
+				tx_key = #{txKey},
+			</if>
+			<if test="info != null">
+				info = #{info},
+			</if>
+			<if test="confirmationNo != null">
+				confirmation_no = #{confirmationNo},
+			</if>
+		</set>
+		where status = '4'
+		and type = '1'
+		and auto_status = '1'
+		and (tx_id is null or tx_id = '')
+		and id in
+		<foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+	
+	<select id ="selectByIdAndUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from asset_withdraw
+		where id = #{id,jdbcType=VARCHAR} and user_id=#{userId,jdbcType=VARCHAR}
+	</select>
+    <update id="updateStatusCancelWithdraw">
+		update asset_withdraw
+		<set>
+			status = 1,
+			<if test="info != null">
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test="successTime != null">
+				success_time = #{successTime,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR} and
+		user_id=#{userId,jdbcType=BIGINT} and (status=0 or status=2)
+	</update>
+	<update id="updateStatusCancelOrRefuseWithdraw">
+		update asset_withdraw
+		<set>
+			status = #{status,jdbcType=INTEGER},
+			<if test="info != null">
+				info = #{info,jdbcType=VARCHAR},
+			</if>
+			<if test="successTime != null">
+				success_time = #{successTime,jdbcType=TIMESTAMP}
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR} and
+		user_id=#{userId,jdbcType=BIGINT} and (status=0 or status=2)
+	</update>
+	<select id ="selectByUuId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from asset_withdraw
+		where uuid = #{uuid,jdbcType=VARCHAR} 
+	</select>
+	<select id="selectWithdrawByAddress" resultType="java.lang.Long">
+	    select count(*) from asset_withdraw where user_id=#{userId,jdbcType=VARCHAR} and address=#{address,jdbcType=VARCHAR} and transfer_btc_amount>#{amount,jdbcType=DECIMAL} and status=6
+	</select>
+	
+    <update id="updateStatusByPrevStatus" >
+    update asset_withdraw
+    <set>
+     status = #{status,jdbcType=INTEGER},
+    <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+    </if>
+      <if test="updateTime != null">
+         update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+     </set>
+    where id = #{id,jdbcType=VARCHAR} and status=#{prevStatus,jdbcType=VARCHAR}
+  </update>
+	<update id="updateResendEmailMsg">
+		update asset_withdraw
+		set
+		uuid = #{uuid,jdbcType=INTEGER},
+		resend_time=#{resendTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+
+	<select id="getWithdrawListBatch" parameterType="java.util.Map" resultType="java.util.Map" >
+		select id from
+		(select * from
+		asset_withdraw
+		where
+		<![CDATA[ apply_time < DATE_ADD(CURRENT_TIME(),INTERVAL -2 MINUTE) and apply_time > ADDDATE(CURDATE(),INTERVAL - 7 DAY) ]]>
+		) a
+		where type = #{type} and status = #{status} and (tx_id is null or tx_id = '') and (batch_id is null or batch_id = '')
+		and (auto_status is null or auto_status = '')
+		and asset in
+		<foreach collection="coins" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+		order by id limit #{offset}
+	</select>
+
+	<update id="takeWithdrawListBatch" parameterType="java.util.Map">
+		update asset_withdraw set batch_id = #{batchId},auto_status = '1',client_name = #{clientName} where type = #{type} and status = #{status} and (tx_id is null or tx_id = '') and (batch_id is null or batch_id = '')
+		and (auto_status is null or auto_status = '')
+		and asset in
+		<foreach collection="coins" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+		and id in
+		<foreach collection="idList" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+		order by id limit #{offset}
+	</update>
+
+	<select id="getTobeWithdrawList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT t1.id,
+		t1.tran_id as tranId,
+		t1.user_id userId,
+		t1.asset as asset,
+		ifnull(t1.confirmation_no,0)as confirmationNo,
+		t1.amount,
+		t1.check_sum as checkSum,
+		t1.transfer_btc_amount as transferBTCAmount,
+		t1.transaction_fee as transactionFee,
+		t1.commission_fee as commissionFee,
+		t1.address,
+		t1.address_tag as addressTag,
+		t1.type,
+		t1.status as status,
+		t1.auto_status as autoStatus,
+		ifnull(t1.tx_id,'') as txId,
+		t1.info as  info,
+		t1.apply_time as applyTime,
+		t1.update_time as updateTime,
+		t1.success_time as successTime,
+		t1.batch_id as batchId,
+		t2.email as userName
+		FROM asset_withdraw t1
+		LEFT JOIN `user` t2 ON t1.user_id = t2.user_id
+		<!--         LEFT JOIN dictionary t3 ON t1.state = t3.`code` AND t3.type_code = -->
+		<!--         'withdraw_state' -->
+		where t1.type=#{type,jdbcType=VARCHAR}
+		and t1.status=#{status}
+		and (t1.tx_id is null or t1.tx_id = '')
+		and t1.batch_id = #{batchId}
+		and t1.asset in
+		<foreach collection="coins" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+		and t1.id in
+		<foreach collection="idList" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+
+		<if test="offset!=null and offset>0">
+			LIMIT #{page},#{offset}
+		</if>
+	</select>
+	
+	<update id="resetAssetWithdraw" >
+       update asset_withdraw  set auto_status=null,block_hash=null,height=null,confirmation_no=null, batch_id=null where id= #{id,jdbcType=VARCHAR}
+	</update>
+  <select id="getAutoWithdrawCancelList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+      from asset_withdraw
+      <where>
+        <if test="status!=null">
+             and status=#{status,jdbcType=INTEGER}
+        </if>
+        <if test="limitTime!=null">
+             and apply_time &lt;= #{limitTime,jdbcType=TIMESTAMP}
+        </if>
+     </where>
+  </select>
+  <select id="getNeedSuccessWithdrawList" resultMap="BaseResultMap">
+     select 
+     <include refid="Base_Column_List" />
+     from asset_withdraw
+     <where>
+            <if test="asset!=null">
+                and asset=#{asset,jdbcType=VARCHAR}
+            </if>
+            <if test="startNo!=null and startNo!=''">
+                and confirmation_no >= #{startNo}
+            </if>
+            <if test="type!=null">
+                and type=#{type,jdbcType=VARCHAR}
+            </if>
+            <if test="status!=null">
+                and status=#{status,jdbcType=INTEGER}
+            </if>
+     </where>
+      order by apply_time asc limit 0,5000
+  </select>
+  	<update id="resetAutoAssetWithdraw">
+	   update asset_withdraw set status =4,id=#{uuid,jdbcType=VARCHAR}, tx_id = null,block_hash=null,height=null,confirmation_no=null,auto_status=null,batch_id=null,check_sum=#{checkSum,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateWithdrawNoPay">
+          update asset_withdraw set status=-2 where id=#{id,jdbcType=VARCHAR} and status=-1
+    </update>
+
+	<update id="updateBatchId"  >
+    update asset_withdraw set auto_status=null,batch_id=null where id=#{id,jdbcType=VARCHAR} and user_id=#{userId,jdbcType=VARCHAR} and asset=#{asset,jdbcType=VARCHAR}
+  </update>
+
+	<update id="modifyTxId">
+		update asset_withdraw
+		set
+		tx_id = #{txId},
+	    update_time = now()
+		where id = #{id}
+	</update>
+	<select id="getToBeCancelAssetWithdraw" resultMap="BaseResultMap">
+	  SELECT 
+      <include refid="Base_Column_List" />
+      FROM asset_withdraw 
+      where user_id = #{userId} and status in (0,2,4) and (auto_status is null or auto_status = 3)
+	</select> 
+	<update id="updateToBeRefuseWithdraw" >
+	    update asset_withdraw set status=#{status},info=#{info},success_time=#{successTime} where id=#{id} and user_id=#{userId} and status in (0,2,4) and (auto_status is null or auto_status = 3)
+	</update>
+	<update id="updateToBackendRefuseWithdraw" >
+	    update asset_withdraw set status=#{status},info=#{info},success_time=#{successTime} where id=#{id} and user_id=#{userId} and status in (0,2,4) 
+	</update>
+	<select id="getLastWithdraw" resultMap="BaseResultMap" >
+        select * from asset_withdraw
+        where user_id =#{userId,jdbcType=VARCHAR}
+        order by apply_time desc limit #{limit,jdbcType=INTEGER};
+    </select>
+	<select id="queryTobeWithdrawList" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT t1.id,
+		t1.tran_id as tranId,
+		t1.user_id userId,
+		t1.asset as asset,
+		ifnull(t1.confirmation_no,0)as confirmationNo,
+		t1.amount,
+		t1.check_sum as checkSum,
+		t1.transfer_btc_amount as transferBTCAmount,
+		t1.transaction_fee as transactionFee,
+		t1.commission_fee as commissionFee,
+		t1.address,
+		t1.address_tag as addressTag,
+		t1.type,
+		t1.status as status,
+		t1.auto_status as autoStatus,
+		ifnull(t1.tx_id,'') as txId,
+		t1.info as  info,
+		t1.apply_time as applyTime,
+		t1.update_time as updateTime,
+		t1.success_time as successTime,
+		t1.batch_id as batchId,
+		t1.client_name as clientName
+		FROM asset_withdraw t1
+		where t1.type=#{type,jdbcType=VARCHAR}
+		and t1.status=#{status}
+		and (t1.tx_id is null or t1.tx_id = '')
+		and t1.batch_id = #{batchId}
+		and t1.asset in
+		<foreach collection="coins" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+		and t1.id in
+		<foreach collection="idList" item="item" index="index" open="(" separator=","  close=")">
+			#{item}
+		</foreach>
+
+		<if test="offset!=null and offset!='' and offset>0">
+			LIMIT #{offset}
+		</if>
+	</select>
+ 	<select id="getUnsureList" resultMap="BaseResultMap" >
+        select * from asset_withdraw
+        where apply_time >=#{startTime}
+        and apply_time &gt;=#{endTime} and status=-1
+    </select>
+    <update id="updateUnsureWithdraw">
+       update asset_withdraw set status=0 where id=#{id,jdbcType=VARCHAR} and user_id=#{userId} and asset=#{asset} and status = -1
+    </update>
+    	<select id="getLastOneDayWithdrawAmount" resultType="java.math.BigDecimal">
+		select sum(transfer_btc_amount) as amount from asset_withdraw
+		where (status=0
+		|| status=2||status=4||status=6) and apply_time >=
+		date_sub(now(),interval 1 day)
+		<if test="userId!=null">
+			and user_id=#{userId}
+		</if>
+	</select>
+    <select id="getAssetWithdrawByUserId" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from asset_withdraw
+        where user_id = #{userId}
+        and status in (0,2)
+    </select>
+    <select id="selectWithdrawFailForAutoRefuse" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from asset_withdraw
+        <where>
+            <if test="asset != null">
+                and asset = #{asset}
+            </if>
+            and `status` = 4 and auto_status = 3 and update_time &lt; #{updateTime}
+            and info like CONCAT('%',#{info,jdbcType=VARCHAR},'%')
+            <if test="transferBtc != null">
+                and transfer_btc_amount &lt; #{transferBtc}
+            </if>
+        </where>
+    </select>
+    <update id="updateAssetWithdrawForAutoRefuse">
+		update asset_withdraw withdraw set status = #{status,jdbcType=INTEGER},info = #{info,jdbcType=VARCHAR} ,success_time = #{successTime,jdbcType=TIMESTAMP} where id = #{id,jdbcType=VARCHAR} and `status` = 4 and auto_status = 3
+	</update>
+	<select id="getCheckWithdrawList" resultMap="BaseResultMap" >
+        select 
+        <include refid="Base_Column_List" />
+        from asset_withdraw
+        where apply_time>#{startTime} and apply_time &lt;#{endTime}
+    </select>
+    </mapper>

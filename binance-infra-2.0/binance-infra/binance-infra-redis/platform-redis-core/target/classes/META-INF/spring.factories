@@ -1,0 +1,9 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.binance.platform.redis.RedisEnvironmentPostProcessor
+
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.redis.RedisAutoConfiguration,\
+com.binance.platform.redis.RedisLockAutoConfiguration,\
+com.binance.platform.redis.LocalCacheAutoConfiguration

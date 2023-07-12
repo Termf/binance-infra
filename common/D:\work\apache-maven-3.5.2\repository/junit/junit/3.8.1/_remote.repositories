@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 16:59:18 CST 2020
+junit-3.8.1.jar>nexus-aws=
+junit-3.8.1.pom>nexus-aws=

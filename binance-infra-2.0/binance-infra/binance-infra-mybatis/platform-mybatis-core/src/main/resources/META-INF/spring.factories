@@ -1,0 +1,7 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.binance.platform.mybatis.datasource.MyDynamicDataSourceContextInitializer
+
+org.springframework.boot.SpringApplicationRunListener=com.binance.platform.mybatis.mybatisplus.MybatisplusApplicationRunListener
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.mybatis.mybatisplus.MybatisplusAutoConfiguration
+

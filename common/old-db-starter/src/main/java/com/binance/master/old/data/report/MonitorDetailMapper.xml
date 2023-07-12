@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.report.MonitorDetailMapper">
+
+    <delete id="deleteAll" >
+      DELETE FROM  monitor_detail_snapshot
+    </delete>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into monitor_detail_snapshot (asset,charge_24,charge_per,withdraw_24,withdraw_per,retain_asset,system_retain,retain_asset_really,asset_position_count,asset_position_count_more,update_time)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.asset},#{item.charge24H},#{item.chargePer},#{item.withdraw24H},#{item.withdrawPer},#{item.retainAsset},#{item.systemRetain},#{item.retainAssetReally},#{item.assetPositionCount},#{item.assetPositionCountMore},now())
+        </foreach>
+    </insert>
+
+</mapper>

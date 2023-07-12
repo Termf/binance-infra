@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.withdraw.OldHotWalletClientMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.withdraw.OldHotWalletClient">
+		<result column="group_name" jdbcType="VARCHAR" property="groupName" />
+		<result column="client_name" jdbcType="VARCHAR" property="clientName" />
+		<result column="coins" jdbcType="VARCHAR" property="coins" />
+		<result column="enable" jdbcType="VARCHAR" property="enable" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		group_name, client_name, coins, enable
+	</sql>
+	<select id="getHotWalletClientByName" parameterType="java.lang.String"	resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from hot_wallet_client
+		where client_name = #{clientName,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

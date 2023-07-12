@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.charge.OldAddressBlackListMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.charge.OldAddressBlackList">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="currency" jdbcType="VARCHAR"
+			property="currency" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="updated_by_admin_id" jdbcType="VARCHAR"
+			property="updatedByAdminId" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, address, type, remark, time, user_id, currency, update_time,
+		updated_by_admin_id
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from address_black_list
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from address_black_list
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.charge.OldAddressBlackList">
+		insert into address_black_list (id, address, type,
+		remark, time, user_id,
+		currency, update_time, updated_by_admin_id
+		)
+		values (#{id,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
+		#{type,jdbcType=INTEGER},
+		#{remark,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR},
+		#{currency,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP},
+		#{updatedByAdminId,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.charge.OldAddressBlackList">
+		insert into address_black_list
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="currency != null">
+				currency,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="updatedByAdminId != null">
+				updated_by_admin_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="currency != null">
+				#{currency,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedByAdminId != null">
+				#{updatedByAdminId,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.charge.OldAddressBlackList">
+		update address_black_list
+		<set>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="currency != null">
+				currency = #{currency,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatedByAdminId != null">
+				updated_by_admin_id = #{updatedByAdminId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.charge.OldAddressBlackList">
+		update address_black_list
+		set address = #{address,jdbcType=VARCHAR},
+		type = #{type,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP},
+		user_id = #{userId,jdbcType=VARCHAR},
+		currency = #{currency,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		updated_by_admin_id = #{updatedByAdminId,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+		<select id="selectByAddress"
+		parameterType="java.lang.String" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from address_black_list
+		where address = #{address,jdbcType=VARCHAR}
+	</select>
+</mapper>

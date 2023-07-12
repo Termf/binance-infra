@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.trade.OldTradingLedgerMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.trade.OldTradingLedger">
+    <id column="tran_id" jdbcType="BIGINT" property="tranId" />
+    <result column="trade_id" jdbcType="DECIMAL" property="tradeId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="asset" jdbcType="VARCHAR" property="asset" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="commission" jdbcType="DECIMAL" property="commission" />
+    <result column="agent1" jdbcType="VARCHAR" property="agent1" />
+    <result column="agent_reward1" jdbcType="DECIMAL" property="agentReward1" />
+    <result column="agent2" jdbcType="VARCHAR" property="agent2" />
+    <result column="agent_reward2" jdbcType="DECIMAL" property="agentReward2" />
+    <result column="agent3" jdbcType="VARCHAR" property="agent3" />
+    <result column="agent_reward3" jdbcType="DECIMAL" property="agentReward3" />
+    <result column="agent4" jdbcType="VARCHAR" property="agent4" />
+    <result column="agent_reward4" jdbcType="DECIMAL" property="agentReward4" />
+    <result column="agent5" jdbcType="VARCHAR" property="agent5" />
+    <result column="agent_reward5" jdbcType="DECIMAL" property="agentReward5" />
+    <result column="super_agent_reward" jdbcType="DECIMAL" property="superAgentReward" />
+    <result column="exchange_income" jdbcType="DECIMAL" property="exchangeIncome" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    tran_id, trade_id, symbol, asset, user_id, direction, commission, agent1, agent_reward1, 
+    agent2, agent_reward2, agent3, agent_reward3, agent4, agent_reward4, agent5, agent_reward5, 
+    super_agent_reward, exchange_income, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trading_ledger
+    where tran_id = #{tranId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trading_ledger
+    where tran_id = #{tranId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.trade.OldTradingLedger">
+    insert into trading_ledger (tran_id, trade_id, symbol, 
+      asset, user_id, direction, 
+      commission, agent1, agent_reward1, 
+      agent2, agent_reward2, agent3, 
+      agent_reward3, agent4, agent_reward4, 
+      agent5, agent_reward5, super_agent_reward, 
+      exchange_income, time)
+    values (#{tranId,jdbcType=BIGINT}, #{tradeId,jdbcType=DECIMAL}, #{symbol,jdbcType=VARCHAR}, 
+      #{asset,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, 
+      #{commission,jdbcType=DECIMAL}, #{agent1,jdbcType=VARCHAR}, #{agentReward1,jdbcType=DECIMAL}, 
+      #{agent2,jdbcType=VARCHAR}, #{agentReward2,jdbcType=DECIMAL}, #{agent3,jdbcType=VARCHAR}, 
+      #{agentReward3,jdbcType=DECIMAL}, #{agent4,jdbcType=VARCHAR}, #{agentReward4,jdbcType=DECIMAL}, 
+      #{agent5,jdbcType=VARCHAR}, #{agentReward5,jdbcType=DECIMAL}, #{superAgentReward,jdbcType=DECIMAL}, 
+      #{exchangeIncome,jdbcType=DECIMAL}, #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.trade.OldTradingLedger">
+    insert into trading_ledger
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tranId != null">
+        tran_id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="asset != null">
+        asset,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="commission != null">
+        commission,
+      </if>
+      <if test="agent1 != null">
+        agent1,
+      </if>
+      <if test="agentReward1 != null">
+        agent_reward1,
+      </if>
+      <if test="agent2 != null">
+        agent2,
+      </if>
+      <if test="agentReward2 != null">
+        agent_reward2,
+      </if>
+      <if test="agent3 != null">
+        agent3,
+      </if>
+      <if test="agentReward3 != null">
+        agent_reward3,
+      </if>
+      <if test="agent4 != null">
+        agent4,
+      </if>
+      <if test="agentReward4 != null">
+        agent_reward4,
+      </if>
+      <if test="agent5 != null">
+        agent5,
+      </if>
+      <if test="agentReward5 != null">
+        agent_reward5,
+      </if>
+      <if test="superAgentReward != null">
+        super_agent_reward,
+      </if>
+      <if test="exchangeIncome != null">
+        exchange_income,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tranId != null">
+        #{tranId,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null">
+        #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="commission != null">
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="agent1 != null">
+        #{agent1,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward1 != null">
+        #{agentReward1,jdbcType=DECIMAL},
+      </if>
+      <if test="agent2 != null">
+        #{agent2,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward2 != null">
+        #{agentReward2,jdbcType=DECIMAL},
+      </if>
+      <if test="agent3 != null">
+        #{agent3,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward3 != null">
+        #{agentReward3,jdbcType=DECIMAL},
+      </if>
+      <if test="agent4 != null">
+        #{agent4,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward4 != null">
+        #{agentReward4,jdbcType=DECIMAL},
+      </if>
+      <if test="agent5 != null">
+        #{agent5,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward5 != null">
+        #{agentReward5,jdbcType=DECIMAL},
+      </if>
+      <if test="superAgentReward != null">
+        #{superAgentReward,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeIncome != null">
+        #{exchangeIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.trade.OldTradingLedger">
+    update trading_ledger
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null">
+        asset = #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        direction = #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="commission != null">
+        commission = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="agent1 != null">
+        agent1 = #{agent1,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward1 != null">
+        agent_reward1 = #{agentReward1,jdbcType=DECIMAL},
+      </if>
+      <if test="agent2 != null">
+        agent2 = #{agent2,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward2 != null">
+        agent_reward2 = #{agentReward2,jdbcType=DECIMAL},
+      </if>
+      <if test="agent3 != null">
+        agent3 = #{agent3,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward3 != null">
+        agent_reward3 = #{agentReward3,jdbcType=DECIMAL},
+      </if>
+      <if test="agent4 != null">
+        agent4 = #{agent4,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward4 != null">
+        agent_reward4 = #{agentReward4,jdbcType=DECIMAL},
+      </if>
+      <if test="agent5 != null">
+        agent5 = #{agent5,jdbcType=VARCHAR},
+      </if>
+      <if test="agentReward5 != null">
+        agent_reward5 = #{agentReward5,jdbcType=DECIMAL},
+      </if>
+      <if test="superAgentReward != null">
+        super_agent_reward = #{superAgentReward,jdbcType=DECIMAL},
+      </if>
+      <if test="exchangeIncome != null">
+        exchange_income = #{exchangeIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where tran_id = #{tranId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.trade.OldTradingLedger">
+    update trading_ledger
+    set trade_id = #{tradeId,jdbcType=DECIMAL},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      asset = #{asset,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      direction = #{direction,jdbcType=VARCHAR},
+      commission = #{commission,jdbcType=DECIMAL},
+      agent1 = #{agent1,jdbcType=VARCHAR},
+      agent_reward1 = #{agentReward1,jdbcType=DECIMAL},
+      agent2 = #{agent2,jdbcType=VARCHAR},
+      agent_reward2 = #{agentReward2,jdbcType=DECIMAL},
+      agent3 = #{agent3,jdbcType=VARCHAR},
+      agent_reward3 = #{agentReward3,jdbcType=DECIMAL},
+      agent4 = #{agent4,jdbcType=VARCHAR},
+      agent_reward4 = #{agentReward4,jdbcType=DECIMAL},
+      agent5 = #{agent5,jdbcType=VARCHAR},
+      agent_reward5 = #{agentReward5,jdbcType=DECIMAL},
+      super_agent_reward = #{superAgentReward,jdbcType=DECIMAL},
+      exchange_income = #{exchangeIncome,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP}
+    where tran_id = #{tranId,jdbcType=BIGINT}
+  </update>
+  <select id="fetchLedgerByTranId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+     select * from trading_ledger where tran_id = #{tranId,jdbcType=BIGINT}
+  </select>
+
+  <select id='fetchTradeCount' resultType="java.lang.Long" parameterType="java.util.Map">
+    select count(1)
+    from trading_ledger tl
+    left join trading_product tp on tl.symbol = tp.symbol
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and <![CDATA[tl.time >= #{startTimeDate,jdbcType=TIMESTAMP}]]>
+    and <![CDATA[tl.time < #{endTimeDate,jdbcType=TIMESTAMP}]]>
+
+    <if test="symbol != null">
+      and tl.symbol = #{symbol,jdbcType=VARCHAR}
+    </if>
+
+    <if test="side != null">
+      and tl.direction = #{side,jdbcType=VARCHAR}
+    </if>
+
+    <if test="baseAsset != null">
+      and tp.base_asset = #{baseAsset,jdbcType=VARCHAR}
+    </if>
+
+    <if test="quoteAsset != null">
+      and tp.quote_asset = #{quoteAsset,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <resultMap id="fetchTradeResultMap" type="com.binance.master.old.models.trade.TradeItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="trade_id" jdbcType="BIGINT" property="tradeId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="quantity" jdbcType="DECIMAL" property="qty" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="buyer_fee" jdbcType="DECIMAL" property="buyerFee" />
+    <result column="seller_fee" jdbcType="DECIMAL" property="sellerFee" />
+    <result column="buyer_order_id" jdbcType="BIGINT" property="buyerOrderId" />
+    <result column="seller_order_id" jdbcType="BIGINT" property="sellerOrderId" />
+    <result column="active_buy" jdbcType="BOOLEAN" property="activeBuy" />
+    <result column="real_pnl" jdbcType="DECIMAL" property="realPnl" />
+    <result column="asset" jdbcType="VARCHAR" property="feeAsset" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+
+  </resultMap>
+
+  <select id='fetchTrade' resultMap="fetchTradeResultMap" parameterType="java.util.Map">
+
+    select tl.user_id ,tl.trade_id , tl.symbol, tl.direction as side, tl.asset
+    from trading_ledger tl
+    left join trading_product tp on tl.symbol = tp.symbol
+    where user_id = #{userId,jdbcType=VARCHAR}
+    and <![CDATA[tl.time >= #{startTimeDate,jdbcType=TIMESTAMP}]]>
+    and <![CDATA[tl.time < #{endTimeDate,jdbcType=TIMESTAMP}]]>
+
+    <if test="symbol != null">
+      and tl.symbol = #{symbol,jdbcType=VARCHAR}
+    </if>
+
+    <if test="side != null">
+      and tl.direction = #{side,jdbcType=VARCHAR}
+    </if>
+
+    <if test="baseAsset != null">
+      and tp.base_asset = #{baseAsset,jdbcType=VARCHAR}
+    </if>
+
+    <if test="quoteAsset != null">
+      and tp.quote_asset = #{quoteAsset,jdbcType=VARCHAR}
+    </if>
+
+    order by tl.tran_id desc
+
+    limit #{start}, #{rows}
+
+  </select>
+
+  <select id="getMarketTradeNum"  resultType="java.util.Map" parameterType="java.util.Map">
+    select symbol , count(DISTINCT user_id) as num from trading_ledger
+    <where>
+      <if test="startTime != null and startTime !=''">
+        and time &gt;= #{startTime}
+      </if>
+      <if test="endTime != null and endTime !=''">
+        and time &lt;= #{endTime}
+      </if>
+    </where>
+    GROUP BY symbol
+  </select>
+
+  <select id="fetchLedgerBySideSymbolTrade" resultMap="BaseResultMap" parameterType="java.util.Map">
+     select <include refid="Base_Column_List" /> from trading_ledger where 
+     symbol=#{symbol,jdbcType=VARCHAR} and trade_id=#{tradeId,jdbcType=BIGINT} 
+     and direction=#{side,jdbcType=VARCHAR} and time = #{insertTime}
+  </select>
+</mapper>

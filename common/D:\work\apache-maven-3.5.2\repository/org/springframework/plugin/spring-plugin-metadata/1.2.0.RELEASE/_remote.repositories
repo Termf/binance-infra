@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 17:00:54 CST 2020
+spring-plugin-metadata-1.2.0.RELEASE.jar>nexus-aws=
+spring-plugin-metadata-1.2.0.RELEASE.pom>nexus-aws=

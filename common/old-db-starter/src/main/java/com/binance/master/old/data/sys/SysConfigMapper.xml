@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.sys.SysConfigMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.sys.SysConfig">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="display_name" jdbcType="VARCHAR" property="displayName" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, display_name, code, description
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_config
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from sys_config
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.sys.SysConfig">
+		insert into sys_config (id, display_name, code,
+		description)
+		values (#{id,jdbcType=VARCHAR}, #{displayName,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{description,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.sys.SysConfig">
+		insert into sys_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="displayName != null">
+				display_name,
+			</if>
+			<if test="code != null">
+				code,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="displayName != null">
+				#{displayName,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.sys.SysConfig">
+		update sys_config
+		<set>
+			<if test="displayName != null">
+				display_name = #{displayName,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.sys.SysConfig">
+		update sys_config
+		set display_name = #{displayName,jdbcType=VARCHAR},
+		code = #{code,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByDisplayName" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_config
+		where display_name = #{displayName,jdbcType=VARCHAR}
+	</select>
+</mapper>

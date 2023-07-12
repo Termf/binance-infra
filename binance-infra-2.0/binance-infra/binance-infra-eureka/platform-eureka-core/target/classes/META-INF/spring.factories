@@ -1,0 +1,6 @@
+org.springframework.boot.SpringApplicationRunListener=com.binance.platform.eureka.EurekaConfigurationListener
+org.springframework.context.ApplicationContextInitializer=com.binance.platform.EurekaRibbonApplicationContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.eureka.EurekatAutoConfiguration,\
+com.binance.platform.ribbon.MyRibbonAutoConfiguration,\
+com.binance.platform.shutdown.GracefulShutdownAutoconfiguration

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.trade.TradingRuleMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.trade.RuleItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="position_limit" jdbcType="DOUBLE" property="positionLimit" />
+    <result column="position_limit_value" jdbcType="DOUBLE" property="positionLimitValue" />
+    <result column="min_trade" jdbcType="DOUBLE" property="minTrade" />
+    <result column="max_trade" jdbcType="DOUBLE" property="maxTrade" />
+    <result column="min_price" jdbcType="DOUBLE" property="minPrice" />
+    <result column="max_price" jdbcType="DOUBLE" property="maxPrice" />
+    <result column="step_size" jdbcType="DOUBLE" property="stepSize" />
+    <result column="min_notional" jdbcType="DOUBLE" property="minNotional" />
+    <result column="max_trade_value" jdbcType="DOUBLE" property="maxTradeValue" />
+    <result column="tick_size" jdbcType="DOUBLE" property="tickSize" />
+    <result column="up_limit" jdbcType="DOUBLE" property="upLimit" />
+    <result column="down_limit" jdbcType="DOUBLE" property="downLimit" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="t_plus_n" jdbcType="INTEGER" property="tPlusN" />
+  </resultMap>
+
+  <select id="getRuleByRuleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from trading_rule where id=#{ruleId,jdbcType=BIGINT}
+  </select>
+</mapper>

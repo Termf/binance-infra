@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.account.OldUserOperationLogMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.account.OldUserOperationLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="operation" jdbcType="VARCHAR" property="operation" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+		<result column="client_type" jdbcType="VARCHAR" property="clientType" />
+		<result column="version_code" jdbcType="VARCHAR" property="versionCode" />
+		<result column="apikey" jdbcType="VARCHAR" property="apikey" />
+		<result column="request" jdbcType="VARCHAR" property="request" />
+		<result column="response" jdbcType="VARCHAR" property="response" />
+		<result column="browser" jdbcType="VARCHAR" property="browser" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, operation, user_id, ip, client_type, version_code, apikey, request,
+		response,
+		browser, time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_operation_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_operation_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.account.OldUserOperationLog">
+		insert into user_operation_log (id, operation, user_id,
+		ip, client_type, version_code,
+		apikey, request, response,
+		browser, time)
+		values (#{id,jdbcType=INTEGER}, #{operation,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR},
+		#{ip,jdbcType=VARCHAR}, #{clientType,jdbcType=VARCHAR}, #{versionCode,jdbcType=VARCHAR},
+		#{apikey,jdbcType=VARCHAR}, #{request,jdbcType=VARCHAR},
+		#{response,jdbcType=VARCHAR},
+		#{browser,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.account.OldUserOperationLog">
+		insert into user_operation_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="operation != null">
+				operation,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="ip != null">
+				ip,
+			</if>
+			<if test="clientType != null">
+				client_type,
+			</if>
+			<if test="versionCode != null">
+				version_code,
+			</if>
+			<if test="apikey != null">
+				apikey,
+			</if>
+			<if test="request != null">
+				request,
+			</if>
+			<if test="response != null">
+				response,
+			</if>
+			<if test="browser != null">
+				browser,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="operation != null">
+				#{operation,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="clientType != null">
+				#{clientType,jdbcType=VARCHAR},
+			</if>
+			<if test="versionCode != null">
+				#{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="apikey != null">
+				#{apikey,jdbcType=VARCHAR},
+			</if>
+			<if test="request != null">
+				#{request,jdbcType=VARCHAR},
+			</if>
+			<if test="response != null">
+				#{response,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				#{browser,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.account.OldUserOperationLog">
+		update user_operation_log
+		<set>
+			<if test="operation != null">
+				operation = #{operation,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="clientType != null">
+				client_type = #{clientType,jdbcType=VARCHAR},
+			</if>
+			<if test="versionCode != null">
+				version_code = #{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="apikey != null">
+				apikey = #{apikey,jdbcType=VARCHAR},
+			</if>
+			<if test="request != null">
+				request = #{request,jdbcType=VARCHAR},
+			</if>
+			<if test="response != null">
+				response = #{response,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				browser = #{browser,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.account.OldUserOperationLog">
+		update user_operation_log
+		set operation = #{operation,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=VARCHAR},
+		ip = #{ip,jdbcType=VARCHAR},
+		client_type = #{clientType,jdbcType=VARCHAR},
+		version_code = #{versionCode,jdbcType=VARCHAR},
+		apikey = #{apikey,jdbcType=VARCHAR},
+		request = #{request,jdbcType=VARCHAR},
+		response = #{response,jdbcType=VARCHAR},
+		browser = #{browser,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByUserIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_operation_log
+		where user_id IN
+		<foreach collection="userIds" open="(" close=")" separator="," item="item">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+</mapper>

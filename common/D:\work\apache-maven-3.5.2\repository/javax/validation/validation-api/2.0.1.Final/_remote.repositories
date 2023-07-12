@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 17:00:54 CST 2020
+validation-api-2.0.1.Final.jar>nexus-aws=
+validation-api-2.0.1.Final.pom>nexus-aws=

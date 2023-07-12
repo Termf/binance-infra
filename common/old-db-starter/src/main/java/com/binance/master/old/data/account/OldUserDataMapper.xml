@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.account.OldUserDataMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.account.OldUserData">
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="active" jdbcType="BIT" property="active" />
+		<result column="purchase" jdbcType="BIT" property="purchase" />
+		<result column="trade" jdbcType="BIT" property="trade" />
+		<result column="change_pass" jdbcType="BIT" property="changePass" />
+		<result column="full_depth" jdbcType="BIT" property="fullDepth" />
+		<result column="agent_comment" jdbcType="VARCHAR" property="agentComment" />
+		<result column="comment" jdbcType="VARCHAR" property="comment" />
+		<result column="activate_time" jdbcType="TIMESTAMP" property="activateTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="children" jdbcType="TINYINT" property="children" />
+		<result column="protocol_confirm" jdbcType="BIT" property="protocolConfirm" />
+		<result column="user_type" jdbcType="VARCHAR" property="userType" />
+		<result column="union_id" jdbcType="VARCHAR" property="unionId" />
+		<result column="wx_bind_status" jdbcType="TINYINT" property="wxBindStatus" />
+		<result column="advance_order_limit" jdbcType="INTEGER"
+			property="advanceOrderLimit" />
+		<result column="withdraw_max_asset_day" jdbcType="DECIMAL"
+			property="withdrawMaxAssetDay" />
+		<result column="withdraw_max_count_day" jdbcType="INTEGER"
+			property="withdrawMaxCountDay" />
+		<result column="security_level" jdbcType="INTEGER" property="securityLevel" />
+		<result column="afs_security_level" jdbcType="INTEGER"
+			property="afsSecurityLevel" />
+		<result column="afs_security_score" jdbcType="INTEGER"
+			property="afsSecurityScore" />
+		<result column="commission_status" jdbcType="INTEGER" property="commissionStatus" />
+		<result column="special_flag" jdbcType="BIT" property="specialFlag" />
+		<result column="seed_user" jdbcType="INTEGER" property="seedUser" />
+		<result column="review_quota" jdbcType="DECIMAL" property="reviewQuota" />
+		<result column="pnl_threshold" jdbcType="DECIMAL" property="pnlThreshold" />
+		<result column="can_trade" jdbcType="INTEGER" property="canTrade" />
+		<result column="trade_forbidden" jdbcType="TINYINT" property="tradeForbidden" />
+		<result column="app_trade" jdbcType="TINYINT" property="appTrade" />
+		<result column="Anti_phishing_code" jdbcType="VARCHAR"
+			property="antiPhishingCode" />
+		<result column="api_trade_status" jdbcType="BIT" property="apiTradeStatus" />
+		<result column="mobile_code" jdbcType="VARCHAR" property="mobileCode" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, active, purchase,
+		trade, change_pass, full_depth,
+		agent_comment,
+		comment, activate_time, update_time,
+		children,
+		protocol_confirm, user_type,
+		union_id, wx_bind_status,
+		advance_order_limit,
+		withdraw_max_asset_day, withdraw_max_count_day,
+		security_level, afs_security_level, afs_security_score,
+		commission_status, special_flag, seed_user,
+		review_quota,
+		pnl_threshold, can_trade,
+		trade_forbidden, app_trade,
+		Anti_phishing_code,
+		api_trade_status, mobile_code
+	</sql>
+	<insert id="insert" parameterType="com.binance.master.old.models.account.OldUserData">
+		insert into user_data
+		(user_id, active, purchase,
+		trade, change_pass, full_depth,
+		agent_comment,
+		comment, activate_time, update_time,
+		children,
+		protocol_confirm, user_type,
+		union_id, wx_bind_status,
+		advance_order_limit,
+		withdraw_max_asset_day, withdraw_max_count_day,
+		security_level, afs_security_level, afs_security_score,
+		commission_status, special_flag, seed_user,
+		review_quota,
+		pnl_threshold, can_trade,
+		trade_forbidden, app_trade,
+		Anti_phishing_code,
+		api_trade_status, mobile_code)
+		values
+		(#{userId,jdbcType=VARCHAR}, #{active,jdbcType=BIT},
+		#{purchase,jdbcType=BIT},
+		#{trade,jdbcType=BIT},
+		#{changePass,jdbcType=BIT}, #{fullDepth,jdbcType=BIT},
+		#{agentComment,jdbcType=VARCHAR},
+		#{comment,jdbcType=VARCHAR},
+		#{activateTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{children,jdbcType=TINYINT}, #{protocolConfirm,jdbcType=BIT},
+		#{userType,jdbcType=VARCHAR},
+		#{unionId,jdbcType=VARCHAR},
+		#{wxBindStatus,jdbcType=TINYINT},
+		#{advanceOrderLimit,jdbcType=INTEGER},
+		#{withdrawMaxAssetDay,jdbcType=DECIMAL},
+		#{withdrawMaxCountDay,jdbcType=INTEGER},
+		#{securityLevel,jdbcType=INTEGER},
+		#{afsSecurityLevel,jdbcType=INTEGER},
+		#{afsSecurityScore,jdbcType=INTEGER},
+		#{commissionStatus,jdbcType=INTEGER}, #{specialFlag,jdbcType=BIT},
+		#{seedUser,jdbcType=INTEGER},
+		#{reviewQuota,jdbcType=DECIMAL},
+		#{pnlThreshold,jdbcType=DECIMAL}, #{canTrade,jdbcType=INTEGER},
+		#{tradeForbidden,jdbcType=TINYINT}, #{appTrade,jdbcType=TINYINT},
+		#{antiPhishingCode,jdbcType=VARCHAR},
+		#{apiTradeStatus,jdbcType=BIT},
+		#{mobileCode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.account.OldUserData">
+		insert into user_data
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="active != null">
+				active,
+			</if>
+			<if test="purchase != null">
+				purchase,
+			</if>
+			<if test="trade != null">
+				trade,
+			</if>
+			<if test="changePass != null">
+				change_pass,
+			</if>
+			<if test="fullDepth != null">
+				full_depth,
+			</if>
+			<if test="agentComment != null">
+				agent_comment,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+			<if test="activateTime != null">
+				activate_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="children != null">
+				children,
+			</if>
+			<if test="protocolConfirm != null">
+				protocol_confirm,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="unionId != null">
+				union_id,
+			</if>
+			<if test="wxBindStatus != null">
+				wx_bind_status,
+			</if>
+			<if test="advanceOrderLimit != null">
+				advance_order_limit,
+			</if>
+			<if test="withdrawMaxAssetDay != null">
+				withdraw_max_asset_day,
+			</if>
+			<if test="withdrawMaxCountDay != null">
+				withdraw_max_count_day,
+			</if>
+			<if test="securityLevel != null">
+				security_level,
+			</if>
+			<if test="afsSecurityLevel != null">
+				afs_security_level,
+			</if>
+			<if test="afsSecurityScore != null">
+				afs_security_score,
+			</if>
+			<if test="commissionStatus != null">
+				commission_status,
+			</if>
+			<if test="specialFlag != null">
+				special_flag,
+			</if>
+			<if test="seedUser != null">
+				seed_user,
+			</if>
+			<if test="reviewQuota != null">
+				review_quota,
+			</if>
+			<if test="pnlThreshold != null">
+				pnl_threshold,
+			</if>
+			<if test="canTrade != null">
+				can_trade,
+			</if>
+			<if test="tradeForbidden != null">
+				trade_forbidden,
+			</if>
+			<if test="appTrade != null">
+				app_trade,
+			</if>
+			<if test="antiPhishingCode != null">
+				Anti_phishing_code,
+			</if>
+			<if test="apiTradeStatus != null">
+				api_trade_status,
+			</if>
+			<if test="mobileCode != null">
+				mobile_code,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="active != null">
+				#{active,jdbcType=BIT},
+			</if>
+			<if test="purchase != null">
+				#{purchase,jdbcType=BIT},
+			</if>
+			<if test="trade != null">
+				#{trade,jdbcType=BIT},
+			</if>
+			<if test="changePass != null">
+				#{changePass,jdbcType=BIT},
+			</if>
+			<if test="fullDepth != null">
+				#{fullDepth,jdbcType=BIT},
+			</if>
+			<if test="agentComment != null">
+				#{agentComment,jdbcType=VARCHAR},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+			<if test="activateTime != null">
+				#{activateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="children != null">
+				#{children,jdbcType=TINYINT},
+			</if>
+			<if test="protocolConfirm != null">
+				#{protocolConfirm,jdbcType=BIT},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="unionId != null">
+				#{unionId,jdbcType=VARCHAR},
+			</if>
+			<if test="wxBindStatus != null">
+				#{wxBindStatus,jdbcType=TINYINT},
+			</if>
+			<if test="advanceOrderLimit != null">
+				#{advanceOrderLimit,jdbcType=INTEGER},
+			</if>
+			<if test="withdrawMaxAssetDay != null">
+				#{withdrawMaxAssetDay,jdbcType=DECIMAL},
+			</if>
+			<if test="withdrawMaxCountDay != null">
+				#{withdrawMaxCountDay,jdbcType=INTEGER},
+			</if>
+			<if test="securityLevel != null">
+				#{securityLevel,jdbcType=INTEGER},
+			</if>
+			<if test="afsSecurityLevel != null">
+				#{afsSecurityLevel,jdbcType=INTEGER},
+			</if>
+			<if test="afsSecurityScore != null">
+				#{afsSecurityScore,jdbcType=INTEGER},
+			</if>
+			<if test="commissionStatus != null">
+				#{commissionStatus,jdbcType=INTEGER},
+			</if>
+			<if test="specialFlag != null">
+				#{specialFlag,jdbcType=BIT},
+			</if>
+			<if test="seedUser != null">
+				#{seedUser,jdbcType=INTEGER},
+			</if>
+			<if test="reviewQuota != null">
+				#{reviewQuota,jdbcType=DECIMAL},
+			</if>
+			<if test="pnlThreshold != null">
+				#{pnlThreshold,jdbcType=DECIMAL},
+			</if>
+			<if test="canTrade != null">
+				#{canTrade,jdbcType=INTEGER},
+			</if>
+			<if test="tradeForbidden != null">
+				#{tradeForbidden,jdbcType=TINYINT},
+			</if>
+			<if test="appTrade != null">
+				#{appTrade,jdbcType=TINYINT},
+			</if>
+			<if test="antiPhishingCode != null">
+				#{antiPhishingCode,jdbcType=VARCHAR},
+			</if>
+			<if test="apiTradeStatus != null">
+				#{apiTradeStatus,jdbcType=BIT},
+			</if>
+			<if test="mobileCode != null">
+				#{mobileCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectByUserIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM user_data WHERE user_id IN 
+		<foreach collection="userIds" open="(" close=")" separator="," item="item">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<select id="selectByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		FROM user_data WHERE user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getTotalWithdrawAssetNum" resultType="java.math.BigDecimal" parameterType="java.lang.String">
+           select withdraw_max_asset_day from user_data where user_id=#{userId,jdbcType=VARCHAR}
+    </select>
+</mapper>

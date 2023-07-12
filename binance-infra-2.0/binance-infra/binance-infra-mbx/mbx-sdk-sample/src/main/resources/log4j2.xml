@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- 过滤掉org.springframework.boot.actuate.endpoint.we及其子对象的日志 -->
+        <Logger name="org.springframework.boot.actuate.endpoint.we" level="error"/>
+        <Logger name="com.netflix.discovery.DiscoveryClient" level="error"/>
+        <Logger name="com.binance.platform.mbx" level="debug"/>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

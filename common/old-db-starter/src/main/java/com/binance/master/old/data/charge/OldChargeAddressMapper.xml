@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.charge.OldChargeAddressMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.charge.OldChargeAddress">
+		<id column="address" jdbcType="VARCHAR" property="address" />
+		<id column="address_tag" jdbcType="VARCHAR" property="addressTag" />
+		<id column="coin" jdbcType="VARCHAR" property="coin" />
+		<result column="check_sum" jdbcType="VARCHAR"
+			property="checkSum" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="modify_time" jdbcType="TIMESTAMP"
+			property="modifyTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		address, address_tag, coin, check_sum, status, create_time, modify_time
+	</sql>
+	<select id="getNewAddressByCoin" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from(select * from charge_address where coin = #{coin} and status =
+		'0' limit 100) a order by rand() limit 1
+	</select>
+
+	<update id="takeAddress"
+		parameterType="com.binance.master.old.models.charge.OldChargeAddress">
+		update charge_address set status = '1' ,modify_time =
+		#{modifyTime}
+		where address = #{address} and address_tag =
+		#{addressTag} and coin =
+		#{coin} and status = '0'
+	</update>
+</mapper>

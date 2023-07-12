@@ -1,0 +1,11 @@
+org.springframework.context.ApplicationContextInitializer=com.binance.platform.openfeign.FeignApplicationContextInitializer
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.openfeign.body.RequestBodyCacheAutoConfiguration,\
+com.binance.platform.openfeign.OpenFeignAutoConfiguration,\
+com.binance.platform.openfeign.signature.SignatureAutoConfiguration,\
+com.binance.platform.openfeign.gray.hystrix.RequestAttributeHystrixAutoConfiguration,\
+com.binance.platform.openfeign.gray.GrayAutoConfiguration,\
+com.binance.platform.openfeign.idempotent.IdempotentAutoConfiguration,\
+com.binance.platform.openfeign.tracing.TracingAutoConfiguration,\
+com.binance.platform.openfeign.HttpClientPoolCloseIdleAutoConfiguration,\
+com.binance.platform.openfeign.protect.SystemProtectAutoConfiguration

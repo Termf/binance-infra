@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.product.UserProductDataMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.product.UserProductData">
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="full_depth" jdbcType="BIT" property="fullDepth" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="buyer_commission" jdbcType="DECIMAL" property="buyerCommission" />
+    <result column="seller_commission" jdbcType="DECIMAL" property="sellerCommission" />
+    <result column="maker_commission" jdbcType="DECIMAL" property="makerCommission" />
+    <result column="taker_commission" jdbcType="DECIMAL" property="takerCommission" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    user_id, symbol, full_depth, update_time, buyer_commission, seller_commission, maker_commission, 
+    taker_commission
+  </sql>
+
+  <select id="fetchUserProductData" resultMap="BaseResultMap">
+    SELECT * FROM user_product_data WHERE user_id = #{userId,jdbcType=VARCHAR} and symbol=#{symbol,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

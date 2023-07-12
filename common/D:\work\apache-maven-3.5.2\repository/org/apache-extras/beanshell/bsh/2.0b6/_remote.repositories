@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 16:57:48 CST 2020
+bsh-2.0b6.jar>nexus-aws=
+bsh-2.0b6.pom>nexus-aws=

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.trade.TradingHolidayMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.trade.HolidayItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="holiday_start" jdbcType="TIMESTAMP" property="holidayStart" />
+    <result column="holiday_end" jdbcType="VARCHAR" property="holidayEnd" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+
+  <select id="isHoliday" parameterType="java.sql.Timestamp" resultType="java.lang.Long">
+    select count(1) from trading_holiday
+    where holiday_start &lt;= #{day,jdbcType=TIMESTAMP} and holiday_end &gt;= #{day,jdbcType=TIMESTAMP}
+  </select>
+</mapper>

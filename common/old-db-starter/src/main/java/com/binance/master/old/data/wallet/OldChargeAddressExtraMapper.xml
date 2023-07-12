@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.wallet.OldChargeAddressExtraMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.wallet.OldChargeAddressExtra">
+		<id column="address" jdbcType="VARCHAR" property="address" />
+		<id column="coin" jdbcType="VARCHAR" property="coin" />
+		<result column="date" jdbcType="TIMESTAMP" property="date" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		address, coin, date
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtraKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from charge_address_extra
+		where address = #{address,jdbcType=VARCHAR}
+		and coin = #{coin,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtraKey">
+		delete from charge_address_extra
+		where address = #{address,jdbcType=VARCHAR}
+		and coin = #{coin,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtra">
+		insert into charge_address_extra (address, coin, date
+		)
+		values (#{address,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtra">
+		insert into charge_address_extra
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="address != null">
+				address,
+			</if>
+			<if test="coin != null">
+				coin,
+			</if>
+			<if test="date != null">
+				date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="coin != null">
+				#{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="date != null">
+				#{date,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtra">
+		update charge_address_extra
+		<set>
+			<if test="date != null">
+				date = #{date,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where address = #{address,jdbcType=VARCHAR}
+		and coin = #{coin,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.wallet.OldChargeAddressExtra">
+		update charge_address_extra
+		set date = #{date,jdbcType=TIMESTAMP}
+		where address = #{address,jdbcType=VARCHAR}
+		and coin = #{coin,jdbcType=VARCHAR}
+	</update>
+	<select id="getChargeAddressExtra" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from charge_address_extra
+		where date = #{date}
+	</select>
+</mapper>

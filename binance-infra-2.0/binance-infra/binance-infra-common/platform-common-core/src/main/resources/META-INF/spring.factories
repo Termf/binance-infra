@@ -1,0 +1,9 @@
+org.springframework.boot.SpringApplicationRunListener=\
+com.binance.platform.env.EnvApplictionRunListener
+
+org.springframework.context.ApplicationContextInitializer=\
+com.binance.platform.mask.MaskKeyInitializer
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.OldMasterCommonConfig,\
+com.binance.platform.AlarmAutoConfiguration

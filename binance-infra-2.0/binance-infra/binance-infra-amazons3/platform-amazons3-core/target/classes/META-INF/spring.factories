@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.amazon.s3.config.AmazonS3Config,\
+com.binance.platform.amazon.s3.config.AmazonRekognitionConfig,\
+com.binance.platform.amazon.s3.config.AmazonLambdaConfig

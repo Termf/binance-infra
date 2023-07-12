@@ -1,0 +1,7 @@
+org.springframework.boot.SpringApplicationRunListener=\
+com.binance.platform.env.EnvApplictionRunListener
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.doc.Swagger2Config,\
+com.binance.platform.OldMasterCommonConfig

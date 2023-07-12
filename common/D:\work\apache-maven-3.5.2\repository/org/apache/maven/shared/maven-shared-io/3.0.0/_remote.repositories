@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 16:57:48 CST 2020
+maven-shared-io-3.0.0.jar>nexus-aws=
+maven-shared-io-3.0.0.pom>nexus-aws=

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>platform-mbx-dependencies</artifactId>
+	<version>2.0.1-SNAPSHOT</version>
+	<name>platform-mbx-dependencies</name>
+	<packaging>pom</packaging>
+	<parent>
+		<artifactId>binance-infra-dependencies-parent</artifactId>
+		<groupId>com.binance.infra.avengers</groupId>
+		<version>2.0.1-SNAPSHOT</version>
+	</parent>
+	<properties>
+		<platform-web.version>2.0.1-SNAPSHOT</platform-web.version>
+	</properties>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.binance.infra.avengers</groupId>
+				<artifactId>platform-starter-web</artifactId>
+				<version>${platform-web.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.binance.infra.avengers</groupId>
+				<artifactId>platform-mbx-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.binance.infra.avengers</groupId>
+				<artifactId>platform-starter-mbx</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>net.jodah</groupId>
+				<artifactId>expiringmap</artifactId>
+				<version>0.5.9</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.userData.UserDataMapper">
+  <resultMap id="BaseResultMap" type="com.wenfex.common.dto.UserDataModel">
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="INTEGER" />
+    <result column="purchase" property="purchase" jdbcType="INTEGER" />
+    <result column="children" property="children" jdbcType="INTEGER" />
+    <result column="trade" property="trade" jdbcType="INTEGER" />
+    <result column="change_pass" property="changePass" jdbcType="INTEGER" />
+    <result column="full_depth" property="fullDepth" jdbcType="INTEGER" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+    <result column="activate_time" property="activateTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="protocol_confirm" property="protocolConfirm" jdbcType="TINYINT" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="union_id" property="unionId" jdbcType="VARCHAR" />
+    <result column="wx_bind_status" property="wxBindStatus" jdbcType="VARCHAR" />
+    <result column="security_level" property="securityLevel" jdbcType="INTEGER"/>
+    <result column="commission_status" property="commissionStatus" jdbcType="INTEGER"/>
+    <result column="seed_user" property="seedUser" jdbcType="INTEGER"/>
+    <result column="trade_forbidden" property="tradeForbidden" jdbcType="INTEGER"/>
+    <result column="review_quota" property="reviewQuota" jdbcType="DOUBLE"/>
+    <result column="pnl_threshold" property="pnlThreshold" jdbcType="DOUBLE"/>
+    <result column="withdraw_max_asset_day" property="withdrawMaxAssetDay" jdbcType="DOUBLE"/>
+    <result column="can_trade" property="canTrade" jdbcType="INTEGER"/>
+    <result column="anti_phishing_code" property="antiPhishingCode" jdbcType="VARCHAR"/>
+    <result column="app_trade" property="appTrade" jdbcType="INTEGER"/>
+    <result column="special_flag"  property="specialFlag" jdbcType="TINYINT"/>
+    <result column="api_trade_status"  property="apiTradeStatus" jdbcType="TINYINT"/>
+    <result column="mobile_code" property="mobileCode" jdbcType="VARCHAR"/>
+    <result column="authentication_type" property="authenticationType" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <select id="selectSpecialUserIdList" resultType="java.lang.String">
+    select user_id from user_data
+    where special_flag = 1
+  </select>
+
+</mapper>

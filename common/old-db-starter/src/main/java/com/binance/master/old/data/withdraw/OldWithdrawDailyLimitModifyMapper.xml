@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.withdraw.OldWithdrawDailyLimitModifyMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.withdraw.OldWithdrawDailyLimitModify">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="withdraw_daliy_limit_last" jdbcType="DECIMAL"
+			property="withdrawDaliyLimitLast" />
+		<result column="modify_cause" jdbcType="VARCHAR"
+			property="modifyCause" />
+		<result column="auto_restore" jdbcType="SMALLINT"
+			property="autoRestore" />
+		<result column="restore_time_plan" jdbcType="TIMESTAMP"
+			property="restoreTimePlan" />
+		<result column="restore_time_actual" jdbcType="TIMESTAMP"
+			property="restoreTimeActual" />
+		<result column="forbid_reason" jdbcType="VARCHAR"
+			property="forbidReason" />
+		<result column="forbid_restore_time" jdbcType="TIMESTAMP"
+			property="forbidRestoreTime" />
+		<result column="forbid_restore_time_actual"
+			jdbcType="TIMESTAMP" property="forbidRestoreTimeActual" />
+		<result column="forbid_auto_restore" jdbcType="SMALLINT"
+			property="forbidAutoRestore" />
+		<result column="apply_info" jdbcType="VARCHAR"
+			property="applyInfo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, withdraw_daliy_limit_last, modify_cause, auto_restore,
+		restore_time_plan,
+		restore_time_actual, forbid_reason, forbid_restore_time, forbid_restore_time_actual,
+		forbid_auto_restore, apply_info
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_daily_limit_modify
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from withdraw_daily_limit_modify
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawDailyLimitModify">
+		insert into withdraw_daily_limit_modify (user_id, withdraw_daliy_limit_last,
+		modify_cause,
+		auto_restore, restore_time_plan, restore_time_actual,
+		forbid_reason, forbid_restore_time, forbid_restore_time_actual,
+		forbid_auto_restore, apply_info)
+		values (#{userId,jdbcType=VARCHAR},
+		#{withdrawDaliyLimitLast,jdbcType=DECIMAL},
+		#{modifyCause,jdbcType=VARCHAR},
+		#{autoRestore,jdbcType=SMALLINT}, #{restoreTimePlan,jdbcType=TIMESTAMP},
+		#{restoreTimeActual,jdbcType=TIMESTAMP},
+		#{forbidReason,jdbcType=VARCHAR},
+		#{forbidRestoreTime,jdbcType=TIMESTAMP},
+		#{forbidRestoreTimeActual,jdbcType=TIMESTAMP},
+		#{forbidAutoRestore,jdbcType=SMALLINT}, #{applyInfo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawDailyLimitModify">
+		insert into withdraw_daily_limit_modify
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="withdrawDaliyLimitLast != null">
+				withdraw_daliy_limit_last,
+			</if>
+			<if test="modifyCause != null">
+				modify_cause,
+			</if>
+			<if test="autoRestore != null">
+				auto_restore,
+			</if>
+			<if test="restoreTimePlan != null">
+				restore_time_plan,
+			</if>
+			<if test="restoreTimeActual != null">
+				restore_time_actual,
+			</if>
+			<if test="forbidReason != null">
+				forbid_reason,
+			</if>
+			<if test="forbidRestoreTime != null">
+				forbid_restore_time,
+			</if>
+			<if test="forbidRestoreTimeActual != null">
+				forbid_restore_time_actual,
+			</if>
+			<if test="forbidAutoRestore != null">
+				forbid_auto_restore,
+			</if>
+			<if test="applyInfo != null">
+				apply_info,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="withdrawDaliyLimitLast != null">
+				#{withdrawDaliyLimitLast,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyCause != null">
+				#{modifyCause,jdbcType=VARCHAR},
+			</if>
+			<if test="autoRestore != null">
+				#{autoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="restoreTimePlan != null">
+				#{restoreTimePlan,jdbcType=TIMESTAMP},
+			</if>
+			<if test="restoreTimeActual != null">
+				#{restoreTimeActual,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidReason != null">
+				#{forbidReason,jdbcType=VARCHAR},
+			</if>
+			<if test="forbidRestoreTime != null">
+				#{forbidRestoreTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidRestoreTimeActual != null">
+				#{forbidRestoreTimeActual,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidAutoRestore != null">
+				#{forbidAutoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="applyInfo != null">
+				#{applyInfo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawDailyLimitModify">
+		update withdraw_daily_limit_modify
+		<set>
+			<if test="withdrawDaliyLimitLast != null">
+				withdraw_daliy_limit_last = #{withdrawDaliyLimitLast,jdbcType=DECIMAL},
+			</if>
+			<if test="modifyCause != null">
+				modify_cause = #{modifyCause,jdbcType=VARCHAR},
+			</if>
+			<if test="autoRestore != null">
+				auto_restore = #{autoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="restoreTimePlan != null">
+				restore_time_plan = #{restoreTimePlan,jdbcType=TIMESTAMP},
+			</if>
+			<if test="restoreTimeActual != null">
+				restore_time_actual = #{restoreTimeActual,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidReason != null">
+				forbid_reason = #{forbidReason,jdbcType=VARCHAR},
+			</if>
+			<if test="forbidRestoreTime != null">
+				forbid_restore_time = #{forbidRestoreTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidRestoreTimeActual != null">
+				forbid_restore_time_actual = #{forbidRestoreTimeActual,jdbcType=TIMESTAMP},
+			</if>
+			<if test="forbidAutoRestore != null">
+				forbid_auto_restore = #{forbidAutoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="applyInfo != null">
+				apply_info = #{applyInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawDailyLimitModify">
+		update withdraw_daily_limit_modify
+		set withdraw_daliy_limit_last =
+		#{withdrawDaliyLimitLast,jdbcType=DECIMAL},
+		modify_cause = #{modifyCause,jdbcType=VARCHAR},
+		auto_restore = #{autoRestore,jdbcType=SMALLINT},
+		restore_time_plan = #{restoreTimePlan,jdbcType=TIMESTAMP},
+		restore_time_actual = #{restoreTimeActual,jdbcType=TIMESTAMP},
+		forbid_reason = #{forbidReason,jdbcType=VARCHAR},
+		forbid_restore_time = #{forbidRestoreTime,jdbcType=TIMESTAMP},
+		forbid_restore_time_actual = #{forbidRestoreTimeActual,jdbcType=TIMESTAMP},
+		forbid_auto_restore = #{forbidAutoRestore,jdbcType=SMALLINT},
+		apply_info = #{applyInfo,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+
+	<select id="getListByUserId" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from withdraw_daily_limit_modify
+		where user_id in
+		<foreach collection="userIds" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+</mapper>

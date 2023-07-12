@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.account.OldUserSecurityMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.account.OldUserSecurity">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+		<result column="login_failed_num" jdbcType="INTEGER" property="loginFailedNum" />
+		<result column="login_failed_time" jdbcType="TIMESTAMP"
+			property="loginFailedTime" />
+		<result column="cash_password" jdbcType="VARCHAR" property="cashPassword" />
+		<result column="pay_pwd_failed_num" jdbcType="INTEGER"
+			property="payPwdFailedNum" />
+		<result column="disable_time" jdbcType="TIMESTAMP" property="disableTime" />
+		<result column="user_type" jdbcType="VARCHAR" property="userType" />
+		<result column="status" jdbcType="CHAR" property="status" />
+		<result column="money_passsword_code" jdbcType="VARCHAR"
+			property="moneyPassswordCode" />
+		<result column="money_password" jdbcType="VARCHAR" property="moneyPassword" />
+		<result column="money_password_status" jdbcType="INTEGER"
+			property="moneyPasswordStatus" />
+		<result column="secret_key" jdbcType="VARCHAR" property="secretKey" />
+		<result column="mobile_security" jdbcType="INTEGER" property="mobileSecurity" />
+		<result column="validation_status" jdbcType="INTEGER" property="validationStatus" />
+		<result column="unbind_time" jdbcType="TIMESTAMP" property="unbindTime" />
+		<result column="confirm_tips" jdbcType="BIT" property="confirmTips" />
+		<result column="withdraw_white_status" jdbcType="BIT" property="withdrawWhiteStatus" />
+		<result column="encrypted_secret_key" jdbcType="VARCHAR" property="encryptedSecretKey" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, last_login_time, login_failed_num, login_failed_time,
+		cash_password,
+		pay_pwd_failed_num, disable_time, user_type, status, money_passsword_code,
+		money_password,
+		money_password_status, secret_key, mobile_security, validation_status, unbind_time,confirm_tips
+		,withdraw_white_status,encrypted_secret_key
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_security
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_security
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.account.OldUserSecurity">
+		insert into user_security (id, user_id, last_login_time,
+		login_failed_num, login_failed_time, cash_password,
+		pay_pwd_failed_num, disable_time, user_type,
+		status, money_passsword_code, money_password,
+		money_password_status, secret_key, mobile_security,
+		validation_status, unbind_time)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},
+		#{lastLoginTime,jdbcType=TIMESTAMP},
+		#{loginFailedNum,jdbcType=INTEGER},
+		#{loginFailedTime,jdbcType=TIMESTAMP},
+		#{cashPassword,jdbcType=VARCHAR},
+		#{payPwdFailedNum,jdbcType=INTEGER}, #{disableTime,jdbcType=TIMESTAMP}, #{userType,jdbcType=VARCHAR},
+		#{status,jdbcType=CHAR}, #{moneyPassswordCode,jdbcType=VARCHAR},
+		#{moneyPassword,jdbcType=VARCHAR},
+		#{moneyPasswordStatus,jdbcType=INTEGER},
+		#{secretKey,jdbcType=VARCHAR}, #{mobileSecurity,jdbcType=INTEGER},
+		#{validationStatus,jdbcType=INTEGER},
+		#{unbindTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.account.OldUserSecurity">
+		insert into user_security
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time,
+			</if>
+			<if test="loginFailedNum != null">
+				login_failed_num,
+			</if>
+			<if test="loginFailedTime != null">
+				login_failed_time,
+			</if>
+			<if test="cashPassword != null">
+				cash_password,
+			</if>
+			<if test="payPwdFailedNum != null">
+				pay_pwd_failed_num,
+			</if>
+			<if test="disableTime != null">
+				disable_time,
+			</if>
+			<if test="userType != null">
+				user_type,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="moneyPassswordCode != null">
+				money_passsword_code,
+			</if>
+			<if test="moneyPassword != null">
+				money_password,
+			</if>
+			<if test="moneyPasswordStatus != null">
+				money_password_status,
+			</if>
+			<if test="secretKey != null">
+				secret_key,
+			</if>
+			<if test="mobileSecurity != null">
+				mobile_security,
+			</if>
+			<if test="validationStatus != null">
+				validation_status,
+			</if>
+			<if test="unbindTime != null">
+				unbind_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				#{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginFailedNum != null">
+				#{loginFailedNum,jdbcType=INTEGER},
+			</if>
+			<if test="loginFailedTime != null">
+				#{loginFailedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cashPassword != null">
+				#{cashPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="payPwdFailedNum != null">
+				#{payPwdFailedNum,jdbcType=INTEGER},
+			</if>
+			<if test="disableTime != null">
+				#{disableTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userType != null">
+				#{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="moneyPassswordCode != null">
+				#{moneyPassswordCode,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyPassword != null">
+				#{moneyPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyPasswordStatus != null">
+				#{moneyPasswordStatus,jdbcType=INTEGER},
+			</if>
+			<if test="secretKey != null">
+				#{secretKey,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileSecurity != null">
+				#{mobileSecurity,jdbcType=INTEGER},
+			</if>
+			<if test="validationStatus != null">
+				#{validationStatus,jdbcType=INTEGER},
+			</if>
+			<if test="unbindTime != null">
+				#{unbindTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.account.OldUserSecurity">
+		update user_security
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="lastLoginTime != null">
+				last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginFailedNum != null">
+				login_failed_num = #{loginFailedNum,jdbcType=INTEGER},
+			</if>
+			<if test="loginFailedTime != null">
+				login_failed_time = #{loginFailedTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="cashPassword != null">
+				cash_password = #{cashPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="payPwdFailedNum != null">
+				pay_pwd_failed_num = #{payPwdFailedNum,jdbcType=INTEGER},
+			</if>
+			<if test="disableTime != null">
+				disable_time = #{disableTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userType != null">
+				user_type = #{userType,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=CHAR},
+			</if>
+			<if test="moneyPassswordCode != null">
+				money_passsword_code = #{moneyPassswordCode,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyPassword != null">
+				money_password = #{moneyPassword,jdbcType=VARCHAR},
+			</if>
+			<if test="moneyPasswordStatus != null">
+				money_password_status = #{moneyPasswordStatus,jdbcType=INTEGER},
+			</if>
+			<if test="secretKey != null">
+				secret_key = #{secretKey,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileSecurity != null">
+				mobile_security = #{mobileSecurity,jdbcType=INTEGER},
+			</if>
+			<if test="validationStatus != null">
+				validation_status = #{validationStatus,jdbcType=INTEGER},
+			</if>
+			<if test="unbindTime != null">
+				unbind_time = #{unbindTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.account.OldUserSecurity">
+		update user_security
+		set user_id = #{userId,jdbcType=VARCHAR},
+		last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+		login_failed_num = #{loginFailedNum,jdbcType=INTEGER},
+		login_failed_time = #{loginFailedTime,jdbcType=TIMESTAMP},
+		cash_password = #{cashPassword,jdbcType=VARCHAR},
+		pay_pwd_failed_num = #{payPwdFailedNum,jdbcType=INTEGER},
+		disable_time = #{disableTime,jdbcType=TIMESTAMP},
+		user_type = #{userType,jdbcType=VARCHAR},
+		status = #{status,jdbcType=CHAR},
+		money_passsword_code = #{moneyPassswordCode,jdbcType=VARCHAR},
+		money_password = #{moneyPassword,jdbcType=VARCHAR},
+		money_password_status = #{moneyPasswordStatus,jdbcType=INTEGER},
+		secret_key = #{secretKey,jdbcType=VARCHAR},
+		mobile_security = #{mobileSecurity,jdbcType=INTEGER},
+		validation_status = #{validationStatus,jdbcType=INTEGER},
+		unbind_time = #{unbindTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByUserIds" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_security
+		where user_id IN 
+		<foreach collection="userIds" open="(" close=")" separator="," item="item">
+			#{item,jdbcType=VARCHAR}
+		</foreach>
+		and user_type = 'P'
+	</select>
+	
+	<select id="selectByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_security
+		where user_id = #{userId,jdbcType=VARCHAR} and user_type = 'P'
+	</select>
+</mapper>

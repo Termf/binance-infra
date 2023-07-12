@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.product.ProductDataMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.product.ProductItem">
+    <id column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="symbol_type" jdbcType="VARCHAR" property="symbolType" />
+    <result column="base_asset" jdbcType="VARCHAR" property="baseAsset" />
+    <result column="quote_asset" jdbcType="VARCHAR" property="quoteAsset" />
+    <result column="min_qty" jdbcType="DECIMAL" property="minQty" />
+    <result column="max_qty" jdbcType="DECIMAL" property="maxQty" />
+    <result column="max_price" jdbcType="DECIMAL" property="maxPrice" />
+    <result column="decimal_places" jdbcType="INTEGER" property="decimalPlaces" />
+    <result column="close_price" jdbcType="DECIMAL" property="closePrice" />
+    <result column="prev_close" jdbcType="DECIMAL" property="prevClose" />
+    <result column="tick_size" jdbcType="DECIMAL" property="tickSize" />
+    <result column="min_trade" jdbcType="DECIMAL" property="minTrade" />
+    <result column="min_price" jdbcType="DECIMAL" property="minPrice" />
+    <result column="step_size" jdbcType="DECIMAL" property="stepSize" />
+    <result column="min_notional" jdbcType="DECIMAL" property="minNotional" />
+    <result column="buyer_commission_asset" jdbcType="VARCHAR" property="buyerCommissionAsset" />
+    <result column="seller_commission_asset" jdbcType="VARCHAR" property="sellerCommissionAsset" />
+    <result column="active" jdbcType="BIT" property="active" />
+    <result column="off_market" jdbcType="BIT" property="offMarket" />
+    <result column="matching_unit_type" jdbcType="VARCHAR" property="matchingUnitType" />
+    <result column="base_asset_unit" jdbcType="VARCHAR" property="baseAssetUnit" />
+    <result column="quote_asset_unit" jdbcType="VARCHAR" property="quoteAssetUnit" />
+    <result column="base_asset_name" jdbcType="VARCHAR" property="baseAssetName" />
+    <result column="quote_asset_name" jdbcType="VARCHAR" property="quoteAssetName" />
+    <result column="test" jdbcType="BIT" property="test" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    symbol, status, symbol_type, base_asset, quote_asset, min_qty, max_qty, max_price, 
+    decimal_places, close_price, prev_close, rule_id, active, off_market, test, buyer_commission, 
+    seller_commission, maker_commission, taker_commission, buyer_commission_asset, seller_commission_asset, 
+    matching_unit_type, seq_num
+  </sql>
+
+  <select id="fetchProductBySymbol" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tp.*,tr.tick_size,tr.min_trade,tr.min_price,tr.max_price as maxPrice,
+    tr.step_size,tr.min_notional,a1.asset_name as base_asset_name, a2.asset_name as quote_asset_name,
+    (select a.unit from asset a where a.asset_code = tp.base_asset) base_asset_unit,
+    (select a.unit from asset a where a.asset_code = tp.quote_asset) quote_asset_unit from trading_product tp
+    inner join trading_rule tr on tp.rule_id = tr.id LEFT JOIN asset a1 on tp.base_asset=a1.asset_code
+    LEFT JOIN asset a2 on tp.quote_asset=a2.asset_code where tp.symbol=#{symbol,jdbcType=VARCHAR}
+  </select>
+
+  <select id="fetchProducts" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tp.*, tr.tick_size,tr.min_trade,tr.min_price,tr.max_price as maxPrice,tr.step_size,
+    tr.min_notional, tr.up_limit, tr.down_limit,
+    (select a.unit from asset a where a.asset_code = tp.base_asset) base_asset_unit,
+    (select a.unit from asset a where a.asset_code = tp.quote_asset) quote_asset_unit
+    from trading_product tp inner join trading_rule tr on tp.rule_id = tr.id
+    where off_market != 1 and tp.symbol like #{symbol,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getIndex" parameterType="java.lang.String" resultType="java.util.Map">
+     select id, index_id as indexId,name as symbol,description as name,init_price as initPrice,multiplier,test
+     from composite_index where index_id=#{indexId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getIndexBySymbol" parameterType="java.lang.String" resultType="java.util.Map">
+     select id, index_id,name as symbol,description as name,init_price,multiplier,test
+     from composite_index where name=#{symbol,jdbcType=VARCHAR}
+  </select>
+
+  <!--<select id="getUserTradeFee" parameterType="java.util.Map" resultType="java.util.Map">
+     SELECT #{userId,jdbcType=VARCHAR} as userId,tp.symbol AS symbol,  IFNULL(tp.buyer_commission, 0) +
+     IFNULL(up.buyer_commission, 0) + IFNULL(u.buyer_commission, 0) + IFNULL(tp.maker_commission, 0) +
+     IFNULL(up.maker_commission, 0) + IFNULL(u.maker_commission, 0) AS buyMakerCommission,
+     IFNULL(tp.buyer_commission, 0) + IFNULL(up.buyer_commission, 0) + IFNULL(u.buyer_commission, 0) +  IFNULL(tp.taker_commission, 0) +
+     IFNULL(up.taker_commission, 0) + IFNULL(u.taker_commission, 0) AS buyTakerCommission,
+     IFNULL(tp.seller_commission, 0) +
+     IFNULL(up.seller_commission, 0) + IFNULL(u.seller_commission, 0) + IFNULL(tp.maker_commission, 0) +
+     IFNULL(up.maker_commission, 0) + IFNULL(u.maker_commission, 0) AS sellMakerCommission,
+     IFNULL(tp.seller_commission, 0) +
+     IFNULL(up.seller_commission, 0) + IFNULL(u.seller_commission, 0)+  IFNULL(tp.taker_commission, 0) +
+     IFNULL(up.taker_commission, 0) + IFNULL(u.taker_commission, 0) AS sellTakerCommission,
+     od.department_name departmentName FROM (SELECT #{userId,jdbcType=VARCHAR} as user_id, symbol,buyer_commission,seller_commission,maker_commission,taker_commission from
+    trading_product where symbol=#{symbol,jdbcType=VARCHAR}) tp LEFT JOIN (SELECT symbol,user_id, buyer_commission, seller_commission,maker_commission,taker_commission
+    FROM user_product_data WHERE user_id = #{userId,jdbcType=VARCHAR} and symbol=#{symbol,jdbcType=VARCHAR} ) up ON tp.symbol = up.symbol LEFT JOIN (
+    SELECT user_id, buyer_commission, seller_commission,maker_commission,taker_commission FROM user WHERE user_id = #{userId,jdbcType=VARCHAR}
+    ) u ON tp.user_id = u.user_id left join product p on tp.symbol = p.product_code left join operation_department od on od.id = p.department_id
+    <if test="departmentId != null">
+      where p.department_id=#{departmentId,jdbcType=INTEGER}
+    </if>
+  </select>-->
+
+  <insert id="addProduct" parameterType="com.binance.master.old.models.product.ProductItem" >
+    insert trading_product (symbol, status, symbol_type, base_asset, quote_asset, min_qty, max_qty,
+    max_price,decimal_places, rule_id, close_price, prev_close, matching_unit_type) values
+    (#{symbol,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{symbolType,jdbcType=VARCHAR},
+    #{baseAsset,jdbcType=VARCHAR}, #{quoteAsset,jdbcType=VARCHAR}, #{minQty,jdbcType=DECIMAL},
+    #{maxQty,jdbcType=DECIMAL}, #{maxPrice,jdbcType=DECIMAL}, #{decimalPlaces,jdbcType=INTEGER},
+    #{ruleId,jdbcType=INTEGER}, #{closePrice,jdbcType=DECIMAL}, #{prevClose,jdbcType=DECIMAL},
+    #{matchingUnitType,jdbcType=VARCHAR}) on duplicate key update symbol = #{symbol,jdbcType=VARCHAR}
+  </insert>
+
+  <select id="getProduct" resultType="java.util.Map">
+    select tp.*, tr.tick_size,tr.min_trade,tr.min_price,tr.max_price as maxPrice,tr.step_size,
+    tr.min_notional, tr.up_limit, tr.down_limit,
+    (select a.unit from asset a where a.asset_code = tp.base_asset) base_asset_unit,
+    (select a.unit from asset a where a.asset_code = tp.quote_asset) quote_asset_unit
+    from trading_product tp inner join trading_rule tr on tp.rule_id = tr.id
+    where off_market != 1
+
+    <if test="symbol != null">
+      and symbol=#{symbol,jdbcType=VARCHAR}
+    </if>
+
+    <if test="symbol == null">
+      and test != 1
+    </if>
+
+  </select>
+
+  <select id="getAllSymbols" resultType="java.lang.String">
+    select symbol from trading_product order by symbol
+  </select>
+
+  <select id="getVisibleSymbols" resultType="java.lang.String">
+    select symbol from trading_product where off_market != 1 and test != 1 order by  seq_num
+  </select>
+
+  <select id="getIndexes" resultType="java.util.Map">
+    select index_id as indexId, name from composite_index where index_id is not null
+  </select>
+
+  <select id="getAllIndexs" resultType="java.lang.String">
+    select index_id from composite_index order by  index_id
+  </select>
+
+  <select id="getAllIndexsByName" resultType="java.lang.String">
+    select name from composite_index order by name
+  </select>
+
+  <select id="getVisibleIndexs" resultType="java.lang.String">
+    select index_id from composite_index  where test != 1 order by index_id
+  </select>
+
+  <select id="getSymbolsByIndex" resultType="java.lang.String" parameterType="java.lang.String">
+    select symbol from index_constituent where  index_id=#{indexId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getSymbolByIndex" resultType="java.util.Map" parameterType="java.lang.String">
+   select ic.symbol from index_constituent ic LEFT JOIN  composite_index ci on ic.index_id = ci.id
+   where ci.index_id = #{indexId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getSymbolsByAsset" resultType="java.lang.String">
+    select symbol from trading_product
+    <where>
+      <if test="baseAsset != null and baseAsset != ''">
+        and base_asset = #{baseAsset,jdbcType=VARCHAR}
+      </if>
+      <if test="quoteAsset != null and quoteAsset != ''">
+        and quote_asset = #{quoteAsset,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by symbol
+  </select>
+  
+  <select id="getSymbolsMeta" parameterType="com.binance.master.old.models.product.SymbolMeta" resultType="com.binance.master.old.models.product.SymbolMeta">
+    select symbol, symbol_type as symbolType, base_asset as baseAsset, quote_asset as quoteAsset, status, test, active
+    from trading_product
+    <where>
+      <if test="symbolMeta.symbol != null">
+        and symbol = #{symbolMeta.symbol, jdbcType=VARCHAR}
+      </if>
+      <if test="symbolMeta.baseAsset != null">
+        and base_asset = #{symbolMeta.baseAsset, jdbcType=VARCHAR}
+      </if>
+      <if test="symbolMeta.quoteAsset != null">
+        and quote_asset = #{symbolMeta.quoteAsset, jdbcType=VARCHAR}
+      </if>
+      <if test="symbolMeta.symbolType != null">
+        and symbol_type = #{symbolMeta.symbolType, jdbcType=VARCHAR}
+      </if>
+      <if test="symbolMeta.status != null">
+        and status = #{symbolMeta.status, jdbcType=VARCHAR}
+      </if>
+      <if test="symbolMeta.active != null">
+        and active = #{symbolMeta.active, jdbcType=TINYINT}
+      </if>
+      <if test="symbolMeta.test != null">
+        and test = #{symbolMeta.test, jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+
+</mapper>

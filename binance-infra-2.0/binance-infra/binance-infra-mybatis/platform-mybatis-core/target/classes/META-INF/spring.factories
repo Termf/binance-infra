@@ -1,0 +1,6 @@
+org.springframework.boot.SpringApplicationRunListener=com.binance.platform.mybatis.mybatisplus.MybatisplusApplicationRunListener
+org.springframework.boot.env.EnvironmentPostProcessor=com.binance.platform.mybatis.datasource.ExcludeDynamicDataSourceAutoConfigProcessor
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.mybatis.mybatisplus.MybatisplusAutoConfiguration,\
+com.binance.platform.mybatis.datasource.MyDynamicDataSourceAutoConfiguration
+

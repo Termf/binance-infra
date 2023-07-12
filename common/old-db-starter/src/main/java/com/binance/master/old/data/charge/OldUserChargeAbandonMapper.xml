@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.charge.OldUserChargeAbandonMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.charge.OldUserChargeAbandon">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="tran_id" jdbcType="BIGINT" property="tranId" />
+		<result column="tx_id" jdbcType="VARCHAR" property="txId" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="coin" jdbcType="VARCHAR" property="coin" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="block_hash" jdbcType="VARCHAR" property="blockHash" />
+		<result column="height" jdbcType="BIGINT" property="height" />
+		<result column="source_address" jdbcType="VARCHAR" property="sourceAddress" />
+		<result column="target_address" jdbcType="VARCHAR" property="targetAddress" />
+		<result column="target_address_tag" jdbcType="VARCHAR" property="targetAddressTag" />
+		<result column="transfer_amount" jdbcType="DECIMAL" property="transferAmount" />
+		<result column="confirmation_no" jdbcType="INTEGER" property="confirmationNo" />
+		<result column="check_sum" jdbcType="VARCHAR" property="checkSum" />
+		<result column="status" jdbcType="SMALLINT" property="status" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="audit_opinion" jdbcType="VARCHAR" property="auditOpinion" />
+		<result column="auditor" jdbcType="VARCHAR" property="auditor" />
+		<result column="audit_time" jdbcType="TIMESTAMP" property="auditTime" />
+		<result column="complete_time" jdbcType="TIMESTAMP" property="completeTime" />
+		<result column="comments" jdbcType="VARCHAR" property="comments" />
+		<result column="bundle" jdbcType="VARCHAR" property="bundle" />
+		<result column="timestamp" jdbcType="BIGINT" property="timestamp" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, tran_id, tx_id, user_id, coin, type, block_hash, height, source_address, target_address,
+		target_address_tag, transfer_amount, confirmation_no, check_sum, status, insert_time,
+		update_time, audit_opinion, auditor, audit_time, complete_time, comments, bundle,
+		timestamp, creator
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_charge_abandon
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user_charge_abandon
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.charge.OldUserChargeAbandon">
+		insert into user_charge_abandon (id, tran_id, tx_id,
+		user_id, coin, type,
+		block_hash, height, source_address,
+		target_address, target_address_tag, transfer_amount,
+		confirmation_no, check_sum, status,
+		insert_time, update_time, audit_opinion,
+		auditor, audit_time, complete_time,
+		comments, bundle, timestamp,
+		creator)
+		values (#{id,jdbcType=INTEGER}, #{tranId,jdbcType=BIGINT}, #{txId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR}, #{coin,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{blockHash,jdbcType=VARCHAR}, #{height,jdbcType=BIGINT}, #{sourceAddress,jdbcType=VARCHAR},
+		#{targetAddress,jdbcType=VARCHAR}, #{targetAddressTag,jdbcType=VARCHAR}, #{transferAmount,jdbcType=DECIMAL},
+		#{confirmationNo,jdbcType=INTEGER}, #{checkSum,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},
+		#{insertTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{auditOpinion,jdbcType=VARCHAR},
+		#{auditor,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, #{completeTime,jdbcType=TIMESTAMP},
+		#{comments,jdbcType=VARCHAR}, #{bundle,jdbcType=VARCHAR}, #{timestamp,jdbcType=BIGINT},
+		#{creator,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.charge.OldUserChargeAbandon">
+		insert into user_charge_abandon
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="tranId != null">
+				tran_id,
+			</if>
+			<if test="txId != null">
+				tx_id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="coin != null">
+				coin,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="blockHash != null">
+				block_hash,
+			</if>
+			<if test="height != null">
+				height,
+			</if>
+			<if test="sourceAddress != null">
+				source_address,
+			</if>
+			<if test="targetAddress != null">
+				target_address,
+			</if>
+			<if test="targetAddressTag != null">
+				target_address_tag,
+			</if>
+			<if test="transferAmount != null">
+				transfer_amount,
+			</if>
+			<if test="confirmationNo != null">
+				confirmation_no,
+			</if>
+			<if test="checkSum != null">
+				check_sum,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="auditOpinion != null">
+				audit_opinion,
+			</if>
+			<if test="auditor != null">
+				auditor,
+			</if>
+			<if test="auditTime != null">
+				audit_time,
+			</if>
+			<if test="completeTime != null">
+				complete_time,
+			</if>
+			<if test="comments != null">
+				comments,
+			</if>
+			<if test="bundle != null">
+				bundle,
+			</if>
+			<if test="timestamp != null">
+				timestamp,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tranId != null">
+				#{tranId,jdbcType=BIGINT},
+			</if>
+			<if test="txId != null">
+				#{txId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="coin != null">
+				#{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="blockHash != null">
+				#{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				#{height,jdbcType=BIGINT},
+			</if>
+			<if test="sourceAddress != null">
+				#{sourceAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="targetAddress != null">
+				#{targetAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="targetAddressTag != null">
+				#{targetAddressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="transferAmount != null">
+				#{transferAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="confirmationNo != null">
+				#{confirmationNo,jdbcType=INTEGER},
+			</if>
+			<if test="checkSum != null">
+				#{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=SMALLINT},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditOpinion != null">
+				#{auditOpinion,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				#{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeTime != null">
+				#{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="comments != null">
+				#{comments,jdbcType=VARCHAR},
+			</if>
+			<if test="bundle != null">
+				#{bundle,jdbcType=VARCHAR},
+			</if>
+			<if test="timestamp != null">
+				#{timestamp,jdbcType=BIGINT},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.charge.OldUserChargeAbandon">
+		update user_charge_abandon
+		<set>
+			<if test="tranId != null">
+				tran_id = #{tranId,jdbcType=BIGINT},
+			</if>
+			<if test="txId != null">
+				tx_id = #{txId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="coin != null">
+				coin = #{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="blockHash != null">
+				block_hash = #{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				height = #{height,jdbcType=BIGINT},
+			</if>
+			<if test="sourceAddress != null">
+				source_address = #{sourceAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="targetAddress != null">
+				target_address = #{targetAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="targetAddressTag != null">
+				target_address_tag = #{targetAddressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="transferAmount != null">
+				transfer_amount = #{transferAmount,jdbcType=DECIMAL},
+			</if>
+			<if test="confirmationNo != null">
+				confirmation_no = #{confirmationNo,jdbcType=INTEGER},
+			</if>
+			<if test="checkSum != null">
+				check_sum = #{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=SMALLINT},
+			</if>
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditOpinion != null">
+				audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+			</if>
+			<if test="auditor != null">
+				auditor = #{auditor,jdbcType=VARCHAR},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="completeTime != null">
+				complete_time = #{completeTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="comments != null">
+				comments = #{comments,jdbcType=VARCHAR},
+			</if>
+			<if test="bundle != null">
+				bundle = #{bundle,jdbcType=VARCHAR},
+			</if>
+			<if test="timestamp != null">
+				timestamp = #{timestamp,jdbcType=BIGINT},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.charge.OldUserChargeAbandon">
+		update user_charge_abandon
+		set tran_id = #{tranId,jdbcType=BIGINT},
+		tx_id = #{txId,jdbcType=VARCHAR},
+		user_id = #{userId,jdbcType=VARCHAR},
+		coin = #{coin,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		block_hash = #{blockHash,jdbcType=VARCHAR},
+		height = #{height,jdbcType=BIGINT},
+		source_address = #{sourceAddress,jdbcType=VARCHAR},
+		target_address = #{targetAddress,jdbcType=VARCHAR},
+		target_address_tag = #{targetAddressTag,jdbcType=VARCHAR},
+		transfer_amount = #{transferAmount,jdbcType=DECIMAL},
+		confirmation_no = #{confirmationNo,jdbcType=INTEGER},
+		check_sum = #{checkSum,jdbcType=VARCHAR},
+		status = #{status,jdbcType=SMALLINT},
+		insert_time = #{insertTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		audit_opinion = #{auditOpinion,jdbcType=VARCHAR},
+		auditor = #{auditor,jdbcType=VARCHAR},
+		audit_time = #{auditTime,jdbcType=TIMESTAMP},
+		complete_time = #{completeTime,jdbcType=TIMESTAMP},
+		comments = #{comments,jdbcType=VARCHAR},
+		bundle = #{bundle,jdbcType=VARCHAR},
+		timestamp = #{timestamp,jdbcType=BIGINT},
+		creator = #{creator,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertBranchCharge">
+		insert ignore into user_charge_abandon(
+			<include refid="Base_Column_List"></include>
+		)
+		select
+		<include refid="Base_Column_List"></include>
+		from user_charge
+		where block_hash = #{blockHash,jdbcType=VARCHAR}
+		and status = 0 and type = 1 and coin
+	</insert>
+</mapper>

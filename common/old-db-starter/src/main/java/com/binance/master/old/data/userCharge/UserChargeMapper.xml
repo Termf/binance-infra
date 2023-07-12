@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.userCharge.UserChargeMapper">
+  <select id="getChargeToday" resultType="java.lang.Long" parameterType="java.util.Map" >
+    select count(DISTINCT (user_id)) as count from user_charge
+    where status='1' and type = '1'
+    and insert_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+    and insert_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+  </select>
+
+  <select id="getVirtualChargeAmount" parameterType="java.util.Map" resultType="java.util.Map">
+    select coin as asset , sum(transfer_amount) as sum from user_charge
+    <where>
+      type = '2'
+      AND status ='1'
+      <if test="startTime!=null and startTime!=''">
+        and insert_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime!=null and endTime!=''">
+        and insert_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    GROUP BY coin
+  </select>
+
+  <select id="assetChargeAmount" parameterType="java.util.Map" resultType="java.util.Map">
+    select coin as asset , sum(transfer_amount) as amount from user_charge
+    <where>
+      type= '1'
+      and status = '1'
+      <if test="startTime!=null and startTime!=''">
+        and insert_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="endTime!=null and endTime!=''">
+        and insert_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    GROUP BY coin
+  </select>
+
+</mapper>

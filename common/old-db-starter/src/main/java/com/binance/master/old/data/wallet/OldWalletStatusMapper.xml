@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.wallet.OldWalletStatusMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.wallet.OldWalletStatus">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="coin" jdbcType="VARCHAR" property="coin" />
+		<result column="balance" jdbcType="VARCHAR" property="balance" />
+		<result column="unspent_balance" jdbcType="VARCHAR" property="unspentBalance" />
+		<result column="last_success_time" jdbcType="VARCHAR" property="lastSuccessTime" />
+		<result column="insert_time" jdbcType="TIMESTAMP" property="insertTime" />
+		<result column="client_name" jdbcType="VARCHAR" property="clientName" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, coin, balance, unspent_balance, last_success_time, insert_time, client_name,
+		type
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from wallet_status
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from wallet_status
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.wallet.OldWalletStatus">
+		insert into wallet_status (id, coin, balance,
+		unspent_balance, last_success_time, insert_time,
+		client_name, type)
+		values (#{id,jdbcType=BIGINT}, #{coin,jdbcType=VARCHAR}, #{balance,jdbcType=VARCHAR},
+		#{unspentBalance,jdbcType=VARCHAR}, #{lastSuccessTime,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP},
+		#{clientName,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.wallet.OldWalletStatus">
+		insert into wallet_status
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="coin != null">
+				coin,
+			</if>
+			<if test="balance != null">
+				balance,
+			</if>
+			<if test="unspentBalance != null">
+				unspent_balance,
+			</if>
+			<if test="lastSuccessTime != null">
+				last_success_time,
+			</if>
+			<if test="insertTime != null">
+				insert_time,
+			</if>
+			<if test="clientName != null">
+				client_name,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="coin != null">
+				#{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="balance != null">
+				#{balance,jdbcType=VARCHAR},
+			</if>
+			<if test="unspentBalance != null">
+				#{unspentBalance,jdbcType=VARCHAR},
+			</if>
+			<if test="lastSuccessTime != null">
+				#{lastSuccessTime,jdbcType=VARCHAR},
+			</if>
+			<if test="insertTime != null">
+				#{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clientName != null">
+				#{clientName,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.wallet.OldWalletStatus">
+		update wallet_status
+		<set>
+			<if test="coin != null">
+				coin = #{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="balance != null">
+				balance = #{balance,jdbcType=VARCHAR},
+			</if>
+			<if test="unspentBalance != null">
+				unspent_balance = #{unspentBalance,jdbcType=VARCHAR},
+			</if>
+			<if test="lastSuccessTime != null">
+				last_success_time = #{lastSuccessTime,jdbcType=VARCHAR},
+			</if>
+			<if test="insertTime != null">
+				insert_time = #{insertTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="clientName != null">
+				client_name = #{clientName,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.wallet.OldWalletStatus">
+		update wallet_status
+		set coin = #{coin,jdbcType=VARCHAR},
+		balance = #{balance,jdbcType=VARCHAR},
+		unspent_balance = #{unspentBalance,jdbcType=VARCHAR},
+		last_success_time = #{lastSuccessTime,jdbcType=VARCHAR},
+		insert_time = #{insertTime,jdbcType=TIMESTAMP},
+		client_name = #{clientName,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+</mapper>

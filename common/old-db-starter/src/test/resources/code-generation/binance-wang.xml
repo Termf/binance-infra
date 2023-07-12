@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 王振华的生成文件 -->
+	<!-- jar 不要用6.x版本的生成会有问题 -->
+	<classPathEntry
+		location="D:/work/apache-maven-3.6.1/repository/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar" />
+	<context id="context" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="UTF-8" />
+		<!-- 去除自动生成的注释 -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://tk-dev-web-db.cluster-ctdjwepesacu.ap-northeast-1.rds.amazonaws.com:3306/pnk?useUnicode=true"
+			userId="bijiedev" password="rIbDsmmZeRqM3n0TrIcV" />
+
+		<javaTypeResolver>
+			<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- javabeen生成的地方 -->
+		<javaModelGenerator targetPackage="com.binance.master.old.models.wallet" targetProject="master-old">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- mapper.xml生成的地方 -->
+		<sqlMapGenerator targetPackage="com.binance.master.old.data.wallet" targetProject="master-old">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- mapper接口 -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.binance.master.old.data.wallet" targetProject="master-old">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator> 
+		
+		
+		<!-- <table tableName="withdraw_daily_limit_modify" domainObjectName="OldWithdrawDailyLimitModify" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" /> -->
+			
+		<table tableName="charge_address_extra" domainObjectName="OldChargeAddressExtra" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" />
+			
+		<!-- <table tableName="block_log" domainObjectName="OldBlockLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" />
+
+		<table tableName="block_log_abandon" domainObjectName="OldBlockLogAbandon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" />
+
+		<table tableName="user_charge_address" domainObjectName="OldUserChargeAddress" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" />
+
+		<table tableName="user_charge" domainObjectName="OldUserCharge" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" />
+
+		<table tableName="user_charge_abandon" domainObjectName="OldUserChargeAbandon" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false" /> -->
+
+		<!-- <table tableName="user" domainObjectName="OldUser" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			/> <table tableName="user_data" domainObjectName="OldUserData" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" /> <table tableName="user_forbidden_code" domainObjectName="OldUserForbiddenCode" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false" /> <table tableName="user_id_photo" domainObjectName="OldUserIdPhoto" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> <table tableName="user_ip" domainObjectName="OldUserIp" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> <table tableName="user_log" domainObjectName="OldUserLog" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> <table tableName="user_operation_log" domainObjectName="OldUserOperationLog" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" /> <table tableName="user_operation_summary" 
+			domainObjectName="OldUserOperationSummary" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" 
+			/> <table tableName="user_password_log" domainObjectName="OldUserPasswordLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false" /> <table tableName="user_security" domainObjectName="OldUserSecurity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false" /> -->
+		<!-- 表名和生成的实体名 -->
+	</context>
+</generatorConfiguration>

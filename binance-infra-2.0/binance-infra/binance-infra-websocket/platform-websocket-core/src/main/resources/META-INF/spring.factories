@@ -1,0 +1,6 @@
+org.springframework.context.ApplicationContextInitializer=\
+com.binance.platform.websocket.SpringContextHolder
+
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.platform.websocket.WebSocketClientConfiguration

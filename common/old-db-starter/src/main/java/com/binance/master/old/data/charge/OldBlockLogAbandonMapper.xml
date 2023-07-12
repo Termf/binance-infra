@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.charge.OldBlockLogAbandonMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.charge.OldBlockLogAbandon">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="coin" jdbcType="VARCHAR" property="coin" />
+		<result column="height" jdbcType="BIGINT" property="height" />
+		<result column="block_hash" jdbcType="VARCHAR" property="blockHash" />
+		<result column="pre_block_hash" jdbcType="VARCHAR" property="preBlockHash" />
+		<result column="time" jdbcType="TIMESTAMP" property="time" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, coin, height, block_hash, pre_block_hash, time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from block_log_abandon
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from block_log_abandon
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.charge.OldBlockLogAbandon">
+		insert into block_log_abandon (id, coin, height,
+		block_hash, pre_block_hash, time
+		)
+		values (#{id,jdbcType=INTEGER}, #{coin,jdbcType=VARCHAR}, #{height,jdbcType=BIGINT},
+		#{blockHash,jdbcType=VARCHAR}, #{preBlockHash,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.charge.OldBlockLogAbandon">
+		insert into block_log_abandon
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="coin != null">
+				coin,
+			</if>
+			<if test="height != null">
+				height,
+			</if>
+			<if test="blockHash != null">
+				block_hash,
+			</if>
+			<if test="preBlockHash != null">
+				pre_block_hash,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="coin != null">
+				#{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				#{height,jdbcType=BIGINT},
+			</if>
+			<if test="blockHash != null">
+				#{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="preBlockHash != null">
+				#{preBlockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.charge.OldBlockLogAbandon">
+		update block_log_abandon
+		<set>
+			<if test="coin != null">
+				coin = #{coin,jdbcType=VARCHAR},
+			</if>
+			<if test="height != null">
+				height = #{height,jdbcType=BIGINT},
+			</if>
+			<if test="blockHash != null">
+				block_hash = #{blockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="preBlockHash != null">
+				pre_block_hash = #{preBlockHash,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.charge.OldBlockLogAbandon">
+		update block_log_abandon
+		set coin = #{coin,jdbcType=VARCHAR},
+		height = #{height,jdbcType=BIGINT},
+		block_hash = #{blockHash,jdbcType=VARCHAR},
+		pre_block_hash = #{preBlockHash,jdbcType=VARCHAR},
+		time = #{time,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

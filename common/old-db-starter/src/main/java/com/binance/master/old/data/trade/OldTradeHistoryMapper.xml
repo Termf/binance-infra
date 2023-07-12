@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.trade.OldTradeHistoryMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.trade.OldTradeHistory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="trade_id" jdbcType="DECIMAL" property="tradeId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="buyer_user_id" jdbcType="VARCHAR" property="buyerUserId" />
+    <result column="buyer_order_id" jdbcType="DECIMAL" property="buyerOrderId" />
+    <result column="buy_commission_asset" jdbcType="VARCHAR" property="buyCommissionAsset" />
+    <result column="seller_user_id" jdbcType="VARCHAR" property="sellerUserId" />
+    <result column="seller_order_id" jdbcType="DECIMAL" property="sellerOrderId" />
+    <result column="sell_commission_asset" jdbcType="VARCHAR" property="sellCommissionAsset" />
+    <result column="buyer_fee" jdbcType="DECIMAL" property="buyerFee" />
+    <result column="seller_fee" jdbcType="DECIMAL" property="sellerFee" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="qty" jdbcType="DECIMAL" property="qty" />
+    <result column="active_buy" jdbcType="BIT" property="activeBuy" />
+    <result column="real_pnl" jdbcType="DECIMAL" property="realPnl" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, trade_id, symbol, buyer_user_id, buyer_order_id, buy_commission_asset, seller_user_id, 
+    seller_order_id, sell_commission_asset, buyer_fee, seller_fee, price, qty, active_buy, 
+    real_pnl, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from trade_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    select 
+    count(1)
+    from ${trade_history} b where b.TIME &lt; '2018-08-24 04:00:00' 
+  </select>
+  <select id="selectPage" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select 
+    	a.tran_id, a.trade_id, a.symbol,a.direction AS side,  a.user_id,  
+		IF(a.direction = 'BUY' ,b.buyer_order_id,b.seller_order_id) AS order_id,
+		IF(a.direction = 'BUY' ,b.buy_commission_asset,b.sell_commission_asset) AS commission_asset,
+		IF(a.direction = 'BUY' ,b.buyer_fee,b.seller_fee) AS fee,
+		b.price,
+		b.qty,
+		b.active_buy,
+		a.agent1 AS agent,
+		a.agent_reward1 AS agent_reward,
+		a.exchange_income,
+		a.time AS insert_time,
+		b.id
+    from ${trading_ledger} a, ${trade_history} b where a.trade_id = b.trade_id AND a.symbol = b.symbol
+    and b.id > #{batchMaxId,jdbcType=BIGINT} and b.TIME &lt; '2018-08-24 04:00:00' 
+    order by b.id asc  limit #{dbCommitCount,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from trade_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.trade.OldTradeHistory">
+    insert into trade_history (id, trade_id, symbol, 
+      buyer_user_id, buyer_order_id, buy_commission_asset, 
+      seller_user_id, seller_order_id, sell_commission_asset, 
+      buyer_fee, seller_fee, price, 
+      qty, active_buy, real_pnl, 
+      time)
+    values (#{id,jdbcType=BIGINT}, #{tradeId,jdbcType=DECIMAL}, #{symbol,jdbcType=VARCHAR}, 
+      #{buyerUserId,jdbcType=VARCHAR}, #{buyerOrderId,jdbcType=DECIMAL}, #{buyCommissionAsset,jdbcType=VARCHAR}, 
+      #{sellerUserId,jdbcType=VARCHAR}, #{sellerOrderId,jdbcType=DECIMAL}, #{sellCommissionAsset,jdbcType=VARCHAR}, 
+      #{buyerFee,jdbcType=DECIMAL}, #{sellerFee,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{qty,jdbcType=DECIMAL}, #{activeBuy,jdbcType=BIT}, #{realPnl,jdbcType=DECIMAL}, 
+      #{time,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.trade.OldTradeHistory">
+    insert into trade_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="tradeId != null">
+        trade_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="buyerUserId != null">
+        buyer_user_id,
+      </if>
+      <if test="buyerOrderId != null">
+        buyer_order_id,
+      </if>
+      <if test="buyCommissionAsset != null">
+        buy_commission_asset,
+      </if>
+      <if test="sellerUserId != null">
+        seller_user_id,
+      </if>
+      <if test="sellerOrderId != null">
+        seller_order_id,
+      </if>
+      <if test="sellCommissionAsset != null">
+        sell_commission_asset,
+      </if>
+      <if test="buyerFee != null">
+        buyer_fee,
+      </if>
+      <if test="sellerFee != null">
+        seller_fee,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="qty != null">
+        qty,
+      </if>
+      <if test="activeBuy != null">
+        active_buy,
+      </if>
+      <if test="realPnl != null">
+        real_pnl,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="tradeId != null">
+        #{tradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerUserId != null">
+        #{buyerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerOrderId != null">
+        #{buyerOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="buyCommissionAsset != null">
+        #{buyCommissionAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerUserId != null">
+        #{sellerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerOrderId != null">
+        #{sellerOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="sellCommissionAsset != null">
+        #{sellCommissionAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerFee != null">
+        #{buyerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerFee != null">
+        #{sellerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="qty != null">
+        #{qty,jdbcType=DECIMAL},
+      </if>
+      <if test="activeBuy != null">
+        #{activeBuy,jdbcType=BIT},
+      </if>
+      <if test="realPnl != null">
+        #{realPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.trade.OldTradeHistory">
+    update trade_history
+    <set>
+      <if test="tradeId != null">
+        trade_id = #{tradeId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerUserId != null">
+        buyer_user_id = #{buyerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerOrderId != null">
+        buyer_order_id = #{buyerOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="buyCommissionAsset != null">
+        buy_commission_asset = #{buyCommissionAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerUserId != null">
+        seller_user_id = #{sellerUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerOrderId != null">
+        seller_order_id = #{sellerOrderId,jdbcType=DECIMAL},
+      </if>
+      <if test="sellCommissionAsset != null">
+        sell_commission_asset = #{sellCommissionAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerFee != null">
+        buyer_fee = #{buyerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="sellerFee != null">
+        seller_fee = #{sellerFee,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="qty != null">
+        qty = #{qty,jdbcType=DECIMAL},
+      </if>
+      <if test="activeBuy != null">
+        active_buy = #{activeBuy,jdbcType=BIT},
+      </if>
+      <if test="realPnl != null">
+        real_pnl = #{realPnl,jdbcType=DECIMAL},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.trade.OldTradeHistory">
+    update trade_history
+    set trade_id = #{tradeId,jdbcType=DECIMAL},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      buyer_user_id = #{buyerUserId,jdbcType=VARCHAR},
+      buyer_order_id = #{buyerOrderId,jdbcType=DECIMAL},
+      buy_commission_asset = #{buyCommissionAsset,jdbcType=VARCHAR},
+      seller_user_id = #{sellerUserId,jdbcType=VARCHAR},
+      seller_order_id = #{sellerOrderId,jdbcType=DECIMAL},
+      sell_commission_asset = #{sellCommissionAsset,jdbcType=VARCHAR},
+      buyer_fee = #{buyerFee,jdbcType=DECIMAL},
+      seller_fee = #{sellerFee,jdbcType=DECIMAL},
+      price = #{price,jdbcType=DECIMAL},
+      qty = #{qty,jdbcType=DECIMAL},
+      active_buy = #{activeBuy,jdbcType=BIT},
+      real_pnl = #{realPnl,jdbcType=DECIMAL},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectTrade" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from trade_history  where symbol=#{symbol,jdbcType=VARCHAR} and trade_id=#{tradeId,jdbcType=BIGINT}
+  </select>
+  
+  <select id="selectByUnite" resultMap="BaseResultMap" parameterType="com.binance.master.old.models.trade.OldTradeHistory">
+    select * from ${sellCommissionAsset}  where symbol=#{symbol,jdbcType=VARCHAR} and trade_id=#{tradeId,jdbcType=BIGINT} and time = #{time}
+  </select>
+  <select id="selectTradeIdAndSymbol" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+    select 
+    	a.tran_id, a.trade_id, a.symbol,a.direction AS side,  a.user_id,  
+		IF(a.direction = 'BUY' ,b.buyer_order_id,b.seller_order_id) AS order_id,
+		IF(a.direction = 'BUY' ,b.buy_commission_asset,b.sell_commission_asset) AS commission_asset,
+		IF(a.direction = 'BUY' ,b.buyer_fee,b.seller_fee) AS fee,
+		b.price,
+		b.qty,
+		b.active_buy,
+		a.agent1 AS agent,
+		a.agent_reward1 AS agent_reward,
+		a.exchange_income,
+		a.time AS insert_time,
+		b.id
+    from ${trading_ledger} a, ${trade_history} b where a.trade_id = b.trade_id AND a.symbol = b.symbol
+    and b.trade_id = #{tradeId} and b.symbol = #{symbol}
+    order by b.id asc 
+  </select>
+  
+  
+</mapper>

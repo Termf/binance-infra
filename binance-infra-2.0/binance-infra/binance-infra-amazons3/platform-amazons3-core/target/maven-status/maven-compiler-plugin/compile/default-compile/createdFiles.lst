@@ -1,0 +1,13 @@
+com/binance/platform/amazon/s3/util/S3ObjectUtils.class
+com/binance/platform/amazon/s3/config/BaseAmazonConfig.class
+com/binance/platform/amazon/s3/service/impl/LambdaServiceImpl.class
+com/binance/platform/amazon/s3/config/AmazonRekognitionConfig.class
+com/binance/platform/amazon/s3/service/impl/RekongnitionServiceImpl.class
+com/binance/platform/amazon/s3/service/impl/S3ObjectWithSSEService.class
+com/binance/platform/amazon/s3/service/S3ObjectService.class
+com/binance/platform/amazon/s3/service/impl/AbstractS3ObjectService.class
+com/binance/platform/amazon/s3/service/LambdaService.class
+com/binance/platform/amazon/s3/service/RekongnitionService.class
+com/binance/platform/amazon/s3/config/AmazonS3Config.class
+com/binance/platform/amazon/s3/service/impl/S3ObjectServiceImpl.class
+com/binance/platform/amazon/s3/config/AmazonLambdaConfig.class

@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.charge.OldWithdrawAddressMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.charge.OldWithdrawAddress">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="asset" jdbcType="VARCHAR" property="asset" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="address_tag" jdbcType="VARCHAR"
+			property="addressTag" />
+		<result column="default_flag" jdbcType="VARCHAR"
+			property="defaultFlag" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="check_sum" jdbcType="VARCHAR"
+			property="checkSum" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="white_status" jdbcType="BIT"
+			property="whiteStatus" />
+		<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+		<result column="email_send_time" jdbcType="TIMESTAMP"
+			property="emailSendTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, asset, name, address, address_tag, default_flag, status,
+		check_sum,
+		create_time, update_time, white_status, uuid, email_send_time
+	</sql>
+	<select id="selectByPrimaryKey"
+		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_address
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from withdraw_address
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.charge.OldWithdrawAddress" keyProperty="id" useGeneratedKeys="true">
+		insert into withdraw_address (id, user_id, asset,
+		name, address, address_tag,
+		default_flag, status, check_sum,
+		create_time, update_time, white_status,
+		uuid, email_send_time)
+		values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},
+		#{asset,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{addressTag,jdbcType=VARCHAR},
+		#{defaultFlag,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{checkSum,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{whiteStatus,jdbcType=BIT},
+		#{uuid,jdbcType=VARCHAR}, #{emailSendTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.charge.OldWithdrawAddress" keyProperty="id" useGeneratedKeys="true">
+		insert into withdraw_address
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="asset != null">
+				asset,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="addressTag != null">
+				address_tag,
+			</if>
+			<if test="defaultFlag != null">
+				default_flag,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="checkSum != null">
+				check_sum,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="whiteStatus != null">
+				white_status,
+			</if>
+			<if test="uuid != null">
+				uuid,
+			</if>
+			<if test="emailSendTime != null">
+				email_send_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="asset != null">
+				#{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="addressTag != null">
+				#{addressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultFlag != null">
+				#{defaultFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="checkSum != null">
+				#{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="whiteStatus != null">
+				#{whiteStatus,jdbcType=BIT},
+			</if>
+			<if test="uuid != null">
+				#{uuid,jdbcType=VARCHAR},
+			</if>
+			<if test="emailSendTime != null">
+				#{emailSendTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.charge.OldWithdrawAddress">
+		update withdraw_address
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="asset != null">
+				asset = #{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="addressTag != null">
+				address_tag = #{addressTag,jdbcType=VARCHAR},
+			</if>
+			<if test="defaultFlag != null">
+				default_flag = #{defaultFlag,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="checkSum != null">
+				check_sum = #{checkSum,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="whiteStatus != null">
+				white_status = #{whiteStatus,jdbcType=BIT},
+			</if>
+			<if test="uuid != null">
+				uuid = #{uuid,jdbcType=VARCHAR},
+			</if>
+			<if test="emailSendTime != null">
+				email_send_time = #{emailSendTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.charge.OldWithdrawAddress">
+		update withdraw_address
+		set user_id = #{userId,jdbcType=VARCHAR},
+		asset = #{asset,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		address_tag = #{addressTag,jdbcType=VARCHAR},
+		default_flag = #{defaultFlag,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		check_sum = #{checkSum,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		white_status = #{whiteStatus,jdbcType=BIT},
+		uuid = #{uuid,jdbcType=VARCHAR},
+		email_send_time = #{emailSendTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getWithdrawWhitelistAddressList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		<if test="status != null">
+			and status = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="whiteStatus != null">
+			and white_status = #{whiteStatus,jdbcType=BIT}
+		</if>
+		<if test="asset != null">
+			and asset = #{asset,jdbcType=VARCHAR}
+		</if>
+		order by create_time desc
+	</select>
+	
+	<delete id="batchDeletionUserWithdrawWhitelistAddress">
+		delete from withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in 
+		<foreach collection="ids" open="(" close=")" item="item" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+	<update id="removeWhiteListAddress">
+		update withdraw_address set white_status = 0
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in 
+		<foreach collection="ids" open="(" close=")" item="item" separator=",">
+			#{item}
+		</foreach>
+	</update>
+	<select id="queryWithdrawWhitelistAddress" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 
+		withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and asset = #{asset,jdbcType=VARCHAR}
+		<if test="status != null">
+			and status = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="address != null">
+			and address = #{address,jdbcType=VARCHAR}
+		</if>
+		<if test="addressTag != null">
+			and address_tag = #{addressTag,jdbcType=VARCHAR}
+		</if>
+		limit 1
+	</select>
+	<select id="queryWithdrawWhitelistAddressCount" resultType="java.lang.Integer">
+		select
+		count(1)
+		from 
+		withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and asset = #{asset,jdbcType=VARCHAR}
+		and status = '1'
+	</select>
+	<select id="queryByUuidAndUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 
+		withdraw_address
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		and status = '1' 
+		and white_status = 0
+		<if test="userId != null">
+			and user_id = #{userId,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<update id="updateWhiteStatus">
+		update withdraw_address set white_status = #{whiteStatus,jdbcType=BIT}
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+	<select id="getListByUserIdAndIdsAndWhiteStatus" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from 
+		withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and white_status = #{whiteStatus,jdbcType=BIT}
+		and id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</select>
+	<update id="updateUuid">
+		update withdraw_address set uuid = #{uuid,jdbcType=VARCHAR},email_send_time = #{emailSendTime,jdbcType=TIMESTAMP},
+		update_time = now()
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+	
+	
+	<update id="updateStatus">
+		update withdraw_address set status = #{status,jdbcType=VARCHAR},
+		update_time = now()
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</update>
+	
+	<delete id="deleteWhiteListAddress">
+		delete from withdraw_address
+		where user_id = #{userId,jdbcType=VARCHAR}
+		and id in
+		<foreach collection="ids" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

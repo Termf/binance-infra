@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.withdraw.OldAssetWithdrawApproveMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.withdraw.OldAssetWithdrawApprove">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="withdraw_id" jdbcType="VARCHAR" property="withdrawId" />
+		<result column="asset" jdbcType="VARCHAR" property="asset" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="tx_id" jdbcType="VARCHAR" property="txId" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="tran_id" jdbcType="VARCHAR" property="tranId" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="approve_status" jdbcType="VARCHAR" property="approveStatus" />
+		<result column="proposer" jdbcType="VARCHAR" property="proposer" />
+		<result column="proposer" jdbcType="VARCHAR" property="proposer" />
+		<result column="approver" jdbcType="VARCHAR" property="approver" />
+		<result column="apply_date" jdbcType="TIMESTAMP" property="applyDate" />
+		<result column="propose_date" jdbcType="TIMESTAMP" property="proposeDate" />
+		<result column="approve_date" jdbcType="TIMESTAMP" property="approveDate" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		 id, withdraw_id, asset, amount, tx_id, address, tran_id, user_id, approve_status,
+    proposer, approver, apply_date,propose_date, approve_date, remark
+	</sql>
+	<sql id="Base_Where_List">
+		<where>
+			<if test="approveStatus!=null and approveStatus!=''">
+				and t3.approve_status=#{approveStatus,jdbcType=VARCHAR}
+			</if>
+			<if test="userId != null and userId != ''">
+				and t3.user_id like CONCAT(#{userId,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="asset!=null and asset!=''">
+				and t3.asset=#{asset,jdbcType=VARCHAR}
+			</if>
+			<if test="email !=null and email !=''">
+				and t2.email like CONCAT(#{email,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="address!=null and address !=''">
+				and t3.address like CONCAT(#{address,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="tranId!=null and tranId!=''">
+				and t3.tran_id=#{tranId,jdbcType=INTEGER}
+			</if>
+			<if test="txId!=null and txId!=''">
+				and t3.tx_id=#{txId,jdbcType=VARCHAR}
+			</if>
+
+		</where>
+	</sql>
+	<sql id="Base_SortByWhere_List">
+		<if test="sort =='userId'">
+			userId
+		</if>
+		<if test="sort =='asset'">
+			asset
+		</if>
+		<if test="sort =='amount'">
+			amount
+		</if>
+		<if test="sort =='tranId'">
+			tranId
+		</if>
+		<if test="sort =='proposeDate'">
+			propose_date
+		</if>
+		<if test="sort =='approveDate'">
+			approve_date
+		</if>
+	</sql>
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="Base_Column_List" />
+		from asset_withdraw_approve
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getInitAssetWithdrawApproveByTranId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+		select
+		<include refid="Base_Column_List" />
+		from asset_withdraw_approve
+		where tran_id = #{tranId,jdbcType=VARCHAR} and approve_status = 'I'
+	</select>
+
+	<select id="getAssetWithdrawApprove" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT
+		t3.id,
+		t3.proposer,t3.approver,t3.apply_date applyDate,
+		t3.propose_date proposeDate,t3.approve_date approveDate,
+		t3.approve_status approveStatus,
+		t3.tran_id as tranId,
+		t3.user_id userId,
+		t3.asset as asset,
+		t3.amount,
+		t3.address,
+		ifnull(t3.tx_id,'') as txId,
+		t2.email as userName
+		,a.url as blockUrl,a.address_url as addressUrl,a.confirm_times as confirmTimes
+		FROM asset_withdraw_approve t3
+		LEFT JOIN `user` t2 ON t3.user_id = t2.user_id
+		left join asset a on a.asset_code = t3.asset
+		<include refid="Base_Where_List" />
+		<if test="sort != null and sort != '' and order == 'desc'">
+			order by
+			<include refid="Base_SortByWhere_List" />
+			desc
+		</if>
+		<if test="sort != null and sort != '' and order == 'asc'">
+			order by
+			<include refid="Base_SortByWhere_List" />
+			asc
+		</if>
+		<if test="sort==null and sort==''">
+			order by propose_date desc
+		</if>
+		<if test="offset!=null and offset!='' and offset>0">
+			LIMIT #{page},#{offset}
+		</if>
+	</select>
+	<select id="getAssetWithdrawApproveCount" resultType="java.lang.Long" parameterType="java.util.Map">
+		SELECT count(*)
+		FROM asset_withdraw_approve t3
+		LEFT JOIN `user` t2 ON t3.user_id = t2.user_id
+		<include refid="Base_Where_List" />
+	</select>
+	<select id="getWithdrawApproveByProposer" resultType="java.lang.Long" parameterType="java.util.Map">
+		SELECT count(*)
+		FROM asset_withdraw_approve
+		where proposer = #{proposer,jdbcType=VARCHAR} and id in
+		<foreach collection="ids" index="index" item="item"
+				 open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<select id="getAssetWithdrawApproveByIds" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT <include refid="Base_Column_List" />
+		FROM asset_withdraw_approve
+		<where>
+			id in
+			<foreach collection="ids" index="index" item="item"
+					 open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			<if test="approveStatus != null" >
+				and approve_status = #{approveStatus,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insert" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdrawApprove" >
+    insert into asset_withdraw_approve (withdraw_id, asset,
+      amount, tx_id, address,
+      tran_id, user_id, approve_status,
+      proposer, approver, apply_date,propose_date,
+      approve_date, remark)
+    values ( #{withdrawId,jdbcType=VARCHAR}, #{asset,jdbcType=VARCHAR},
+      #{amount,jdbcType=DECIMAL}, #{txId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{tranId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{approveStatus,jdbcType=VARCHAR},
+      #{proposer,jdbcType=VARCHAR}, #{approver,jdbcType=VARCHAR}, #{applyDate,jdbcType=TIMESTAMP}, now(),
+      #{approveDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+	<update id="updateById" parameterType="com.binance.master.old.models.withdraw.OldAssetWithdrawApprove" >
+		update asset_withdraw_approve
+		<set >
+			<if test="withdrawId != null" >
+				withdraw_id = #{withdrawId,jdbcType=VARCHAR},
+			</if>
+			<if test="asset != null" >
+				asset = #{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="tranId != null" >
+				tran_id = #{tranId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null" >
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="approveStatus != null" >
+				approve_status = #{approveStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="proposer != null" >
+				proposer = #{proposer,jdbcType=VARCHAR},
+			</if>
+			<if test="approver != null" >
+				approver = #{approver,jdbcType=VARCHAR},
+			</if>
+			<if test="proposeDate != null" >
+				propose_date = #{proposeDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="approveDate != null" >
+				approve_date = #{approveDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null" >
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateAssetWithdrawStatus" >
+		update asset_withdraw_approve set
+		approve_status = #{approveStatus,jdbcType=VARCHAR},
+		approver = #{approver,jdbcType=VARCHAR},
+		approve_date = now()
+		where approve_status = 'I'  and  id  in
+		<foreach collection="ids" index="index" item="item"
+				 open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
+
+	<select id="getAssetWithdrawApproveByWithdrawIds" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT <include refid="Base_Column_List" />
+		FROM asset_withdraw_approve
+		<where>
+			tran_id in
+			<foreach collection="tranIds" index="index" item="item"
+					 open="(" separator="," close=")">
+				#{item}
+			</foreach>
+			<if test="approveStatus != null" >
+				and approve_status = #{approveStatus,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+</mapper>

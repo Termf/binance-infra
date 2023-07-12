@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.withdraw.OldWithdrawFeeMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.withdraw.OldWithdrawFee">
+		<result column="date" jdbcType="DATE" property="date" />
+		<result column="asset" jdbcType="VARCHAR" property="asset" />
+		<result column="tx_fee" jdbcType="DECIMAL" property="txFee" />
+		<result column="tran_id" jdbcType="BIGINT" property="tranId" />
+	</resultMap>
+	<insert id="insert" parameterType="com.binance.master.old.models.withdraw.OldWithdrawFee">
+		insert into withdraw_fee (date, asset, tx_fee,
+		tran_id)
+		values (#{date,jdbcType=DATE}, #{asset,jdbcType=VARCHAR}, #{txFee,jdbcType=DECIMAL},
+		#{tranId,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.withdraw.OldWithdrawFee">
+		insert into withdraw_fee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				date,
+			</if>
+			<if test="asset != null">
+				asset,
+			</if>
+			<if test="txFee != null">
+				tx_fee,
+			</if>
+			<if test="tranId != null">
+				tran_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="date != null">
+				#{date,jdbcType=DATE},
+			</if>
+			<if test="asset != null">
+				#{asset,jdbcType=VARCHAR},
+			</if>
+			<if test="txFee != null">
+				#{txFee,jdbcType=DECIMAL},
+			</if>
+			<if test="tranId != null">
+				#{tranId,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+</mapper>

@@ -1,0 +1,25 @@
+package com.binance.master.signature.rsa;
+
+import java.io.IOException;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class RSASignerTest {
+
+    private final String privateKeyStr = "-----BEGIN RSA PRIVATE KEY-----\n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\n-----END RSA PRIVATE KEY-----";
+    @Test
+    public void loadSigner() {
+        try {
+            RSASigner signer = new RSASigner(privateKeyStr);
+            Assert.assertNotNull(signer);
+        } catch (IOException e) {
+            Assert.fail(e.getMessage());
+        }
+    }
+
+
+    @Test
+    public void doSign() {
+    }
+}

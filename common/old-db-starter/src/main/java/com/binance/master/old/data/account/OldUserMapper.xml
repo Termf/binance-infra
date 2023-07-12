@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.account.OldUserMapper">
+	<resultMap id="BaseResultMap" type="com.binance.master.old.models.account.OldUser">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+		<result column="parent" jdbcType="VARCHAR" property="parent" />
+		<result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+		<result column="real_agent" jdbcType="VARCHAR" property="realAgent" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+		<result column="email_verified" jdbcType="VARCHAR" property="emailVerified" />
+		<result column="passwd_verify_code" jdbcType="VARCHAR"
+			property="passwdVerifyCode" />
+		<result column="app_active_code" jdbcType="VARCHAR" property="appActiveCode" />
+		<result column="email_verify_code" jdbcType="VARCHAR" property="emailVerifyCode" />
+		<result column="agent_level" jdbcType="INTEGER" property="agentLevel" />
+		<result column="saleman" jdbcType="VARCHAR" property="saleman" />
+		<result column="agent_province" jdbcType="INTEGER" property="agentProvince" />
+		<result column="agent_reward_ratio" jdbcType="DECIMAL"
+			property="agentRewardRatio" />
+		<result column="trading_account" jdbcType="DECIMAL" property="tradingAccount" />
+		<result column="maker_commission" jdbcType="DECIMAL" property="makerCommission" />
+		<result column="taker_commission" jdbcType="DECIMAL" property="takerCommission" />
+		<result column="buyer_commission" jdbcType="DECIMAL" property="buyerCommission" />
+		<result column="seller_commission" jdbcType="DECIMAL" property="sellerCommission" />
+		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+		<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+		<result column="department_id" jdbcType="INTEGER" property="departmentId" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+		<result column="pw_update_time" jdbcType="TIMESTAMP" property="pwUpdateTime" />
+		<result column="ts" jdbcType="VARCHAR" property="ts" />
+		<result column="email_verified_time" jdbcType="TIMESTAMP"
+			property="emailVerifiedTime" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, email, mobile_no, parent, agent_id, real_agent, password, salt,
+		email_verified,
+		passwd_verify_code, app_active_code, email_verify_code, agent_level, saleman,
+		agent_province,
+		agent_reward_ratio, trading_account, maker_commission, taker_commission,
+		buyer_commission,
+		seller_commission, update_time, create_time, nick_name, department_id, remark,
+		pw_update_time,
+		ts, email_verified_time
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByEmailOnly" resultMap="BaseResultMap"
+			parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where email = #{email,jdbcType=VARCHAR}  limit 0,1
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from user
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.account.OldUser">
+		insert into user (user_id, email, mobile_no,
+		parent, agent_id, real_agent,
+		password, salt, email_verified,
+		passwd_verify_code, app_active_code, email_verify_code,
+		agent_level, saleman, agent_province,
+		agent_reward_ratio, trading_account, maker_commission,
+		taker_commission, buyer_commission, seller_commission,
+		update_time, create_time, nick_name,
+		department_id, remark, pw_update_time,
+		ts, email_verified_time)
+		values (#{userId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+		#{mobileNo,jdbcType=VARCHAR},
+		#{parent,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{realAgent,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+		#{emailVerified,jdbcType=VARCHAR},
+		#{passwdVerifyCode,jdbcType=VARCHAR},
+		#{appActiveCode,jdbcType=VARCHAR},
+		#{emailVerifyCode,jdbcType=VARCHAR},
+		#{agentLevel,jdbcType=INTEGER}, #{saleman,jdbcType=VARCHAR}, #{agentProvince,jdbcType=INTEGER},
+		#{agentRewardRatio,jdbcType=DECIMAL},
+		#{tradingAccount,jdbcType=DECIMAL},
+		#{makerCommission,jdbcType=DECIMAL},
+		#{takerCommission,jdbcType=DECIMAL},
+		#{buyerCommission,jdbcType=DECIMAL},
+		#{sellerCommission,jdbcType=DECIMAL},
+		#{updateTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},
+		#{nickName,jdbcType=VARCHAR},
+		#{departmentId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{pwUpdateTime,jdbcType=TIMESTAMP},
+		#{ts,jdbcType=VARCHAR}, #{emailVerifiedTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.account.OldUser">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="mobileNo != null">
+				mobile_no,
+			</if>
+			<if test="parent != null">
+				parent,
+			</if>
+			<if test="agentId != null">
+				agent_id,
+			</if>
+			<if test="realAgent != null">
+				real_agent,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="emailVerified != null">
+				email_verified,
+			</if>
+			<if test="passwdVerifyCode != null">
+				passwd_verify_code,
+			</if>
+			<if test="appActiveCode != null">
+				app_active_code,
+			</if>
+			<if test="emailVerifyCode != null">
+				email_verify_code,
+			</if>
+			<if test="agentLevel != null">
+				agent_level,
+			</if>
+			<if test="saleman != null">
+				saleman,
+			</if>
+			<if test="agentProvince != null">
+				agent_province,
+			</if>
+			<if test="agentRewardRatio != null">
+				agent_reward_ratio,
+			</if>
+			<if test="tradingAccount != null">
+				trading_account,
+			</if>
+			<if test="makerCommission != null">
+				maker_commission,
+			</if>
+			<if test="takerCommission != null">
+				taker_commission,
+			</if>
+			<if test="buyerCommission != null">
+				buyer_commission,
+			</if>
+			<if test="sellerCommission != null">
+				seller_commission,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="nickName != null">
+				nick_name,
+			</if>
+			<if test="departmentId != null">
+				department_id,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="pwUpdateTime != null">
+				pw_update_time,
+			</if>
+			<if test="ts != null">
+				ts,
+			</if>
+			<if test="emailVerifiedTime != null">
+				email_verified_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileNo != null">
+				#{mobileNo,jdbcType=VARCHAR},
+			</if>
+			<if test="parent != null">
+				#{parent,jdbcType=VARCHAR},
+			</if>
+			<if test="agentId != null">
+				#{agentId,jdbcType=VARCHAR},
+			</if>
+			<if test="realAgent != null">
+				#{realAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerified != null">
+				#{emailVerified,jdbcType=VARCHAR},
+			</if>
+			<if test="passwdVerifyCode != null">
+				#{passwdVerifyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appActiveCode != null">
+				#{appActiveCode,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerifyCode != null">
+				#{emailVerifyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="agentLevel != null">
+				#{agentLevel,jdbcType=INTEGER},
+			</if>
+			<if test="saleman != null">
+				#{saleman,jdbcType=VARCHAR},
+			</if>
+			<if test="agentProvince != null">
+				#{agentProvince,jdbcType=INTEGER},
+			</if>
+			<if test="agentRewardRatio != null">
+				#{agentRewardRatio,jdbcType=DECIMAL},
+			</if>
+			<if test="tradingAccount != null">
+				#{tradingAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="makerCommission != null">
+				#{makerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="takerCommission != null">
+				#{takerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="buyerCommission != null">
+				#{buyerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="sellerCommission != null">
+				#{sellerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				#{departmentId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="pwUpdateTime != null">
+				#{pwUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ts != null">
+				#{ts,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerifiedTime != null">
+				#{emailVerifiedTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.account.OldUser">
+		update user
+		<set>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="mobileNo != null">
+				mobile_no = #{mobileNo,jdbcType=VARCHAR},
+			</if>
+			<if test="parent != null">
+				parent = #{parent,jdbcType=VARCHAR},
+			</if>
+			<if test="agentId != null">
+				agent_id = #{agentId,jdbcType=VARCHAR},
+			</if>
+			<if test="realAgent != null">
+				real_agent = #{realAgent,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerified != null">
+				email_verified = #{emailVerified,jdbcType=VARCHAR},
+			</if>
+			<if test="passwdVerifyCode != null">
+				passwd_verify_code = #{passwdVerifyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appActiveCode != null">
+				app_active_code = #{appActiveCode,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerifyCode != null">
+				email_verify_code = #{emailVerifyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="agentLevel != null">
+				agent_level = #{agentLevel,jdbcType=INTEGER},
+			</if>
+			<if test="saleman != null">
+				saleman = #{saleman,jdbcType=VARCHAR},
+			</if>
+			<if test="agentProvince != null">
+				agent_province = #{agentProvince,jdbcType=INTEGER},
+			</if>
+			<if test="agentRewardRatio != null">
+				agent_reward_ratio = #{agentRewardRatio,jdbcType=DECIMAL},
+			</if>
+			<if test="tradingAccount != null">
+				trading_account = #{tradingAccount,jdbcType=DECIMAL},
+			</if>
+			<if test="makerCommission != null">
+				maker_commission = #{makerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="takerCommission != null">
+				taker_commission = #{takerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="buyerCommission != null">
+				buyer_commission = #{buyerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="sellerCommission != null">
+				seller_commission = #{sellerCommission,jdbcType=DECIMAL},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nickName != null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentId != null">
+				department_id = #{departmentId,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="pwUpdateTime != null">
+				pw_update_time = #{pwUpdateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="ts != null">
+				ts = #{ts,jdbcType=VARCHAR},
+			</if>
+			<if test="emailVerifiedTime != null">
+				email_verified_time = #{emailVerifiedTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.account.OldUser">
+		update user
+		set email = #{email,jdbcType=VARCHAR},
+		mobile_no = #{mobileNo,jdbcType=VARCHAR},
+		parent = #{parent,jdbcType=VARCHAR},
+		agent_id = #{agentId,jdbcType=VARCHAR},
+		real_agent = #{realAgent,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		email_verified = #{emailVerified,jdbcType=VARCHAR},
+		passwd_verify_code = #{passwdVerifyCode,jdbcType=VARCHAR},
+		app_active_code = #{appActiveCode,jdbcType=VARCHAR},
+		email_verify_code = #{emailVerifyCode,jdbcType=VARCHAR},
+		agent_level = #{agentLevel,jdbcType=INTEGER},
+		saleman = #{saleman,jdbcType=VARCHAR},
+		agent_province = #{agentProvince,jdbcType=INTEGER},
+		agent_reward_ratio = #{agentRewardRatio,jdbcType=DECIMAL},
+		trading_account = #{tradingAccount,jdbcType=DECIMAL},
+		maker_commission = #{makerCommission,jdbcType=DECIMAL},
+		taker_commission = #{takerCommission,jdbcType=DECIMAL},
+		buyer_commission = #{buyerCommission,jdbcType=DECIMAL},
+		seller_commission = #{sellerCommission,jdbcType=DECIMAL},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		nick_name = #{nickName,jdbcType=VARCHAR},
+		department_id = #{departmentId,jdbcType=INTEGER},
+		remark = #{remark,jdbcType=VARCHAR},
+		pw_update_time = #{pwUpdateTime,jdbcType=TIMESTAMP},
+		ts = #{ts,jdbcType=VARCHAR},
+		email_verified_time = #{emailVerifiedTime,jdbcType=TIMESTAMP}
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="selectByMinUserIdAndMaxUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		<![CDATA[
+			WHERE user_id > #{minUserId,jdbcType=VARCHAR} AND user_id < #{maxUserId,jdbcType=VARCHAR} 
+			and email is not null and trim(email) != ''
+			ORDER BY user_id ASC LIMIT #{limit,jdbcType=BIGINT}
+		]]>
+	</select>
+	<select id='getUserByAccount' resultMap="BaseResultMap" parameterType="java.lang.Long">
+	   select * from user where trading_account = #{accountId,jdbcType=BIGINT}
+	</select>
+	
+	<select id="getEmptyPnkTradingAccount" resultType="java.lang.String">
+		select user_id userId from user where trading_account is null 
+		AND <![CDATA[ create_time >= ADDDATE(NOW(),INTERVAL -1 HOUR) ]]> 
+		AND <![CDATA[ create_time < ADDDATE(NOW(),INTERVAL -30 MINUTE) ]]>
+		AND email_verified = '0'
+	</select>
+	
+	<select id="getPnkTradingAccount" resultType="java.lang.String">
+		select user_id userId from user where trading_account is null AND email_verified = '0'
+	</select>
+</mapper>

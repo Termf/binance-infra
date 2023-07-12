@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.binance.master.old.data.withdraw.OldWithdrawExepmtReviewAmountMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.withdraw.OldWithdrawExepmtReviewAmount">
+		<id column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="amount" jdbcType="DECIMAL" property="amount" />
+		<result column="reason" jdbcType="VARCHAR" property="reason" />
+		<result column="auto_restore" jdbcType="SMALLINT"
+			property="autoRestore" />
+		<result column="restore_plan_time" jdbcType="TIMESTAMP"
+			property="restorePlanTime" />
+		<result column="restore_actual_time" jdbcType="TIMESTAMP"
+			property="restoreActualTime" />
+		<result column="active" jdbcType="SMALLINT" property="active" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="creator" jdbcType="VARCHAR" property="creator" />
+		<result column="updator" jdbcType="VARCHAR" property="updator" />
+		<result column="db_create_time" jdbcType="TIMESTAMP"
+			property="dbCreateTime" />
+		<result column="db_modify_time" jdbcType="TIMESTAMP"
+			property="dbModifyTime" />
+		<result column="apply_info" jdbcType="VARCHAR"
+			property="applyInfo" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		user_id, amount, reason, auto_restore, restore_plan_time, restore_actual_time,
+		active,
+		create_time, update_time, creator, updator, db_create_time, db_modify_time,
+		apply_info
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from withdraw_exepmt_review_amount
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from withdraw_exepmt_review_amount
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawExepmtReviewAmount">
+		insert into withdraw_exepmt_review_amount (user_id, amount, reason,
+		auto_restore, restore_plan_time, restore_actual_time,
+		active, create_time, update_time,
+		creator, updator, db_create_time,
+		db_modify_time, apply_info)
+		values (#{userId,jdbcType=VARCHAR}, #{amount,jdbcType=DECIMAL},
+		#{reason,jdbcType=VARCHAR},
+		#{autoRestore,jdbcType=SMALLINT}, #{restorePlanTime,jdbcType=TIMESTAMP},
+		#{restoreActualTime,jdbcType=TIMESTAMP},
+		#{active,jdbcType=SMALLINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR}, #{updator,jdbcType=VARCHAR},
+		#{dbCreateTime,jdbcType=TIMESTAMP},
+		#{dbModifyTime,jdbcType=TIMESTAMP}, #{applyInfo,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawExepmtReviewAmount">
+		insert into withdraw_exepmt_review_amount
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="amount != null">
+				amount,
+			</if>
+			<if test="reason != null">
+				reason,
+			</if>
+			<if test="autoRestore != null">
+				auto_restore,
+			</if>
+			<if test="restorePlanTime != null">
+				restore_plan_time,
+			</if>
+			<if test="restoreActualTime != null">
+				restore_actual_time,
+			</if>
+			<if test="active != null">
+				active,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="updateTime != null">
+				update_time,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="updator != null">
+				updator,
+			</if>
+			<if test="dbCreateTime != null">
+				db_create_time,
+			</if>
+			<if test="dbModifyTime != null">
+				db_modify_time,
+			</if>
+			<if test="applyInfo != null">
+				apply_info,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="amount != null">
+				#{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="reason != null">
+				#{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="autoRestore != null">
+				#{autoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="restorePlanTime != null">
+				#{restorePlanTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="restoreActualTime != null">
+				#{restoreActualTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="active != null">
+				#{active,jdbcType=SMALLINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="updator != null">
+				#{updator,jdbcType=VARCHAR},
+			</if>
+			<if test="dbCreateTime != null">
+				#{dbCreateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dbModifyTime != null">
+				#{dbModifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyInfo != null">
+				#{applyInfo,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawExepmtReviewAmount">
+		update withdraw_exepmt_review_amount
+		<set>
+			<if test="amount != null">
+				amount = #{amount,jdbcType=DECIMAL},
+			</if>
+			<if test="reason != null">
+				reason = #{reason,jdbcType=VARCHAR},
+			</if>
+			<if test="autoRestore != null">
+				auto_restore = #{autoRestore,jdbcType=SMALLINT},
+			</if>
+			<if test="restorePlanTime != null">
+				restore_plan_time = #{restorePlanTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="restoreActualTime != null">
+				restore_actual_time = #{restoreActualTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="active != null">
+				active = #{active,jdbcType=SMALLINT},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="updator != null">
+				updator = #{updator,jdbcType=VARCHAR},
+			</if>
+			<if test="dbCreateTime != null">
+				db_create_time = #{dbCreateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="dbModifyTime != null">
+				db_modify_time = #{dbModifyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applyInfo != null">
+				apply_info = #{applyInfo,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.binance.master.old.models.withdraw.OldWithdrawExepmtReviewAmount">
+		update withdraw_exepmt_review_amount
+		set amount = #{amount,jdbcType=DECIMAL},
+		reason = #{reason,jdbcType=VARCHAR},
+		auto_restore = #{autoRestore,jdbcType=SMALLINT},
+		restore_plan_time = #{restorePlanTime,jdbcType=TIMESTAMP},
+		restore_actual_time = #{restoreActualTime,jdbcType=TIMESTAMP},
+		active = #{active,jdbcType=SMALLINT},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		creator = #{creator,jdbcType=VARCHAR},
+		updator = #{updator,jdbcType=VARCHAR},
+		db_create_time = #{dbCreateTime,jdbcType=TIMESTAMP},
+		db_modify_time = #{dbModifyTime,jdbcType=TIMESTAMP},
+		apply_info = #{applyInfo,jdbcType=VARCHAR}
+		where user_id = #{userId,jdbcType=VARCHAR}
+	</update>
+</mapper>

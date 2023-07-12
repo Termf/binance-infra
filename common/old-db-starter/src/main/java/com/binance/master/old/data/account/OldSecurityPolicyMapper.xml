@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.account.OldSecurityPolicyMapper" >
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.account.OldSecurityPolicy" >
+    <result column="security_level" property="securityLevel" jdbcType="INTEGER" />
+    <result column="review_quota" property="reviewQuota" jdbcType="DECIMAL" />
+    <result column="pnl_threshold" property="pnlThreshold" jdbcType="DECIMAL" />
+    <result column="withdraw" property="withdraw" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, security_level, review_quota,pnl_threshold, withdraw
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from security_policy
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from security_policy
+		where security_level = #{securityLevel,jdbcType=INTEGER}
+</select>
+</mapper>

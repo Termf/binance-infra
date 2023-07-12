@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.userAsset.UserAssetMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.userAsset.UserAsset">
+    <id column="uid" jdbcType="VARCHAR" property="uid" />
+    <id column="asset" jdbcType="VARCHAR" property="asset" />
+    <result column="free" jdbcType="DECIMAL" property="free" />
+    <result column="locked" jdbcType="DECIMAL" property="locked" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="withdrawing" jdbcType="DECIMAL" property="withdrawing" />
+    <result column="modified_at" jdbcType="TIMESTAMP" property="modifiedAt" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="ipoing" jdbcType="DECIMAL" property="ipoing" />
+    <result column="ipoable" jdbcType="DECIMAL" property="ipoable" />
+    <result column="storage" jdbcType="DECIMAL" property="storage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uid, asset, free, locked, freeze, withdrawing, modified_at, created_at, ipoing, ipoable, 
+    storage
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAssetKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_asset
+    where uid = #{uid,jdbcType=VARCHAR}
+      and asset = #{asset,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAssetKey">
+    delete from user_asset
+    where uid = #{uid,jdbcType=VARCHAR}
+      and asset = #{asset,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+    insert into user_asset (uid, asset, free, 
+      locked, freeze, withdrawing, 
+      modified_at, created_at, ipoing, 
+      ipoable, storage)
+    values (#{uid,jdbcType=VARCHAR}, #{asset,jdbcType=VARCHAR}, #{free,jdbcType=DECIMAL}, 
+      #{locked,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, #{withdrawing,jdbcType=DECIMAL}, 
+      #{modifiedAt,jdbcType=TIMESTAMP}, #{createdAt,jdbcType=TIMESTAMP}, #{ipoing,jdbcType=DECIMAL}, 
+      #{ipoable,jdbcType=DECIMAL}, #{storage,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+    insert into user_asset
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="asset != null">
+        asset,
+      </if>
+      <if test="free != null">
+        free,
+      </if>
+      <if test="locked != null">
+        locked,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="withdrawing != null">
+        withdrawing,
+      </if>
+      <if test="modifiedAt != null">
+        modified_at,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="ipoing != null">
+        ipoing,
+      </if>
+      <if test="ipoable != null">
+        ipoable,
+      </if>
+      <if test="storage != null">
+        storage,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null">
+        #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="free != null">
+        #{free,jdbcType=DECIMAL},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawing != null">
+        #{withdrawing,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedAt != null">
+        #{modifiedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipoing != null">
+        #{ipoing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoable != null">
+        #{ipoable,jdbcType=DECIMAL},
+      </if>
+      <if test="storage != null">
+        #{storage,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+    update user_asset
+    <set>
+      <if test="free != null">
+        free = #{free,jdbcType=DECIMAL},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawing != null">
+        withdrawing = #{withdrawing,jdbcType=DECIMAL},
+      </if>
+      <if test="modifiedAt != null">
+        modified_at = #{modifiedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ipoing != null">
+        ipoing = #{ipoing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoable != null">
+        ipoable = #{ipoable,jdbcType=DECIMAL},
+      </if>
+      <if test="storage != null">
+        storage = #{storage,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=VARCHAR}
+      and asset = #{asset,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+    update user_asset
+    set free = #{free,jdbcType=DECIMAL},
+      locked = #{locked,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      withdrawing = #{withdrawing,jdbcType=DECIMAL},
+      modified_at = #{modifiedAt,jdbcType=TIMESTAMP},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      ipoing = #{ipoing,jdbcType=DECIMAL},
+      ipoable = #{ipoable,jdbcType=DECIMAL},
+      storage = #{storage,jdbcType=DECIMAL}
+    where uid = #{uid,jdbcType=VARCHAR}
+      and asset = #{asset,jdbcType=VARCHAR}
+  </update>
+	<update id="updateUserAsset" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+		update user_asset set
+		free = coalesce(#{free,jdbcType=DECIMAL}, free),
+		locked = coalesce(#{locked,jdbcType=DECIMAL}, locked),
+		freeze = coalesce( #{freeze,jdbcType=DECIMAL}, freeze),
+		withdrawing = coalesce(#{withdrawing,jdbcType=DECIMAL}, withdrawing),
+		ipoable = coalesce(#{ipoable,jdbcType=DECIMAL}, ipoable),
+		ipoing = coalesce(#{ipoing,jdbcType=DECIMAL}, ipoing),
+		storage = coalesce(#{storage,jdbcType=DECIMAL}, storage),
+		modified_at = #{modifiedAt,jdbcType=TIMESTAMP}
+		where uid = #{uid,jdbcType=VARCHAR} and asset = #{asset,jdbcType=VARCHAR}
+	</update>
+	<insert id="addOrUpdateUserAsset" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+		insert into user_asset(uid,asset,free,locked, modified_at, created_at)
+		values(#{uid,jdbcType=VARCHAR},#{asset,jdbcType=VARCHAR},#{free,jdbcType=DECIMAL},#{locked,jdbcType=DECIMAL},now(),
+		now())
+		on duplicate key update free = COALESCE( VALUES(free), free),
+		locked = COALESCE( VALUES(locked), locked),
+		modified_at = COALESCE( VALUES(modified_at), now())
+	</insert>
+	<select id="fetchUserAssetByUidAndAsset" resultMap="BaseResultMap" parameterType="java.util.Map">
+    	select * from user_asset where uid = #{userId,jdbcType=VARCHAR} and asset = #{asset,jdbcType=VARCHAR}
+	</select>
+	<insert id="addCommission" parameterType="com.binance.master.old.models.userAsset.UserAsset">
+		insert into user_asset(uid,asset,free,locked,ipoable, modified_at,
+		created_at)
+		values(#{uid,jdbcType=VARCHAR},#{asset,jdbcType=VARCHAR},#{free,jdbcType=DECIMAL},#{locked,jdbcType=DECIMAL},#{ipoable,jdbcType=DECIMAL},#{modifiedAt,jdbcType=TIMESTAMP},
+		#{createdAt,jdbcType=TIMESTAMP})
+		on duplicate key update ipoable = COALESCE(ipoable, 0) +
+		VALUES(ipoable),
+		modified_at = VALUES(modified_at)
+	</insert>
+	
+	<select id="getCheckWithdrawing" resultType="java.util.Map" parameterType="java.util.Map">
+		select * from (select * from user_asset where withdrawing > 0) ua left join
+		(select user_id, asset, sum(transaction_fee+amount) as total from
+		asset_withdraw where status in (0, 2, 4) group by user_id, asset)
+		aw on ua.uid = aw.user_id and ua.asset = aw.asset and ua.withdrawing = aw.total
+		where aw.user_id is null
+	</select>
+	
+	<select id="verifyWithdrawing" resultType="java.util.Map"
+		parameterType="java.util.Map">
+		select user_id as userId,aw.asset as asset,delta as total,withdrawing as withdrawing from (select user_id,asset,sum(amount+ transaction_fee) as delta
+		from asset_withdraw where status in(0,2,4) GROUP BY user_id,asset) aw
+		LEFT JOIN user_asset ua on aw.user_id=ua.uid and aw.asset=ua.asset
+		where aw.delta!=ua.withdrawing
+	</select>
+
+    <select id ="getAllAsset" resultType="java.util.Map">
+		select asset from user_asset GROUP BY asset
+	</select>
+
+    <select id="getUserAssetAmount" resultType="java.util.Map">
+		select uid as userId ,asset,(free+locked+freeze+withdrawing) as amount from user_asset
+		ORDER by uid
+	</select>
+
+    <select id="getRetainAsset" resultType="java.util.Map" >
+		select asset , sum(free+locked+freeze+withdrawing) as sum from user_asset GROUP BY asset
+	</select>
+
+    <select id="getRetainAssetReally" resultType="java.util.Map" >
+		select asset , sum(free+locked+freeze+withdrawing) as sum from user_asset ua LEFT JOIN user_data ud on ua.uid = ud.user_id where ud.special_flag = 0 GROUP BY asset
+	</select>
+
+    <select id="getPositionCount" resultType="java.lang.Long" >
+		SELECT COUNT(DISTINCT t.uid)as count from (select uid,asset from user_asset where (free+locked+freeze+withdrawing)>0 GROUP BY uid,asset)t
+	</select>
+
+    <select id = "getSystemRetain" resultType="java.util.Map" >
+			SELECT
+			ua.asset ,(ua.uAAmount-ifnull(vc.viCrAmount,0)+ifnull(vw.viWiAmount,0)) as amount
+			FROM
+				(
+					SELECT
+						asset,
+						ifnull(sum(
+							free + freeze + locked + withdrawing
+						),0) AS uAAmount
+					FROM
+						user_asset
+					GROUP BY
+						asset
+				) ua
+			LEFT JOIN (
+				SELECT
+					coin AS asset,
+					ifnull(sum(transfer_amount),0) AS viCrAmount
+				FROM
+					user_charge
+				WHERE
+					type = 2
+				AND STATUS = 1
+				GROUP BY
+					coin
+			) vc ON ua.asset = vc.asset
+			LEFT JOIN (
+				SELECT
+					asset,
+					ifnull(sum(amount),0) AS viWiAmount
+				FROM
+					asset_withdraw
+				WHERE
+					type = 2
+				AND STATUS = 6
+				GROUP BY
+					asset
+			) vw ON ua.asset = vw.asset
+			GROUP BY ua.asset
+	</select>
+
+    <select id="getAssetPositionCount" resultType="java.util.Map">
+		select asset,count(1) AS count from user_asset where (withdrawing+locked+freeze+free)>0
+		GROUP BY asset
+	</select>
+
+    <select id="getAssetPositionCountMore" resultType="java.util.Map">
+		select ua.asset,count(1) AS count from user_asset ua LEFT JOIN asset_price ap on ua.asset = ap.asset
+		where (ua.withdrawing+ua.locked+ua.freeze+ua.free)*ap.price > 0.01
+		GROUP BY ua.asset
+	</select>
+	<select id="getAssetByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select asset,free,locked from user_asset 
+		where uid = #{uid,jdbcType=VARCHAR}
+	</select>
+    <select id="getAllAssetByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" /> from user_asset
+		where uid = #{uid,jdbcType=VARCHAR}
+	</select>
+
+    <select id="getDistinctAsset" resultType="java.lang.String">
+		select asset from user_asset group by asset
+	</select>
+
+    <select id="getVerifyResult" resultType="com.binance.master.old.models.report.TotalVerifyDto" >
+        SELECT
+        asset, SUM(
+        free + locked + freeze + withdrawing + ipoing + ipoable + STORAGE
+        ) AS userAssetCurrentAmt
+        FROM
+        user_asset
+        WHERE asset IN
+        <foreach collection="assets" item="item" index="index"  open="(" separator="," close=")" >
+            #{item}
+        </foreach>
+        GROUP BY asset
+    </select>
+</mapper>

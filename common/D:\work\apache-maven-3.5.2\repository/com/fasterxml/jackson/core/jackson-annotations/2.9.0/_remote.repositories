@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 17:00:54 CST 2020
+jackson-annotations-2.9.0.jar>nexus-aws=
+jackson-annotations-2.9.0.pom>nexus-aws=

@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.order.OldOpenOrderMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.order.OldOpenOrder">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="order_id" jdbcType="DECIMAL" property="orderId" />
+    <result column="symbol" jdbcType="VARCHAR" property="symbol" />
+    <result column="account_id" jdbcType="DECIMAL" property="accountId" />
+    <result column="orig_client_order_id" jdbcType="VARCHAR" property="origClientOrderId" />
+    <result column="client_order_id" jdbcType="VARCHAR" property="clientOrderId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="orig_qty" jdbcType="DECIMAL" property="origQty" />
+    <result column="executed_qty" jdbcType="DECIMAL" property="executedQty" />
+    <result column="executed_quote_qty" jdbcType="DECIMAL" property="executedQuoteQty" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="time_in_force" jdbcType="VARCHAR" property="timeInForce" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="side" jdbcType="VARCHAR" property="side" />
+    <result column="stop_price" jdbcType="DECIMAL" property="stopPrice" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, order_id, symbol, account_id, orig_client_order_id, client_order_id, 
+    price, orig_qty, executed_qty, executed_quote_qty, status, time_in_force, type, side, 
+    stop_price, update_time, time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from open_order
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from open_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.order.OldOpenOrder">
+    insert into open_order (id, user_id, order_id, 
+      symbol, account_id, orig_client_order_id, 
+      client_order_id, price, orig_qty, 
+      executed_qty, executed_quote_qty, status, 
+      time_in_force, type, side, 
+      stop_price, update_time, time
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{orderId,jdbcType=DECIMAL}, 
+      #{symbol,jdbcType=VARCHAR}, #{accountId,jdbcType=DECIMAL}, #{origClientOrderId,jdbcType=VARCHAR}, 
+      #{clientOrderId,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{origQty,jdbcType=DECIMAL}, 
+      #{executedQty,jdbcType=DECIMAL}, #{executedQuoteQty,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, 
+      #{timeInForce,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{side,jdbcType=VARCHAR}, 
+      #{stopPrice,jdbcType=DECIMAL}, #{updateTime,jdbcType=TIMESTAMP}, #{time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.order.OldOpenOrder">
+    insert into open_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="symbol != null">
+        symbol,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="origClientOrderId != null">
+        orig_client_order_id,
+      </if>
+      <if test="clientOrderId != null">
+        client_order_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="origQty != null">
+        orig_qty,
+      </if>
+      <if test="executedQty != null">
+        executed_qty,
+      </if>
+      <if test="executedQuoteQty != null">
+        executed_quote_qty,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="timeInForce != null">
+        time_in_force,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="side != null">
+        side,
+      </if>
+      <if test="stopPrice != null">
+        stop_price,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="origClientOrderId != null">
+        #{origClientOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientOrderId != null">
+        #{clientOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="origQty != null">
+        #{origQty,jdbcType=DECIMAL},
+      </if>
+      <if test="executedQty != null">
+        #{executedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="executedQuoteQty != null">
+        #{executedQuoteQty,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInForce != null">
+        #{timeInForce,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPrice != null">
+        #{stopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.order.OldOpenOrder">
+    update open_order
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=DECIMAL},
+      </if>
+      <if test="symbol != null">
+        symbol = #{symbol,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=DECIMAL},
+      </if>
+      <if test="origClientOrderId != null">
+        orig_client_order_id = #{origClientOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="clientOrderId != null">
+        client_order_id = #{clientOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="origQty != null">
+        orig_qty = #{origQty,jdbcType=DECIMAL},
+      </if>
+      <if test="executedQty != null">
+        executed_qty = #{executedQty,jdbcType=DECIMAL},
+      </if>
+      <if test="executedQuoteQty != null">
+        executed_quote_qty = #{executedQuoteQty,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="timeInForce != null">
+        time_in_force = #{timeInForce,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="side != null">
+        side = #{side,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPrice != null">
+        stop_price = #{stopPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="time != null">
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.order.OldOpenOrder">
+    update open_order
+    set user_id = #{userId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=DECIMAL},
+      symbol = #{symbol,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=DECIMAL},
+      orig_client_order_id = #{origClientOrderId,jdbcType=VARCHAR},
+      client_order_id = #{clientOrderId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      orig_qty = #{origQty,jdbcType=DECIMAL},
+      executed_qty = #{executedQty,jdbcType=DECIMAL},
+      executed_quote_qty = #{executedQuoteQty,jdbcType=DECIMAL},
+      status = #{status,jdbcType=VARCHAR},
+      time_in_force = #{timeInForce,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      side = #{side,jdbcType=VARCHAR},
+      stop_price = #{stopPrice,jdbcType=DECIMAL},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      time = #{time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getOpenOrder" resultMap="BaseResultMap" parameterType="java.util.Map">
+    select * from open_order where order_id = #{orderId,jdbcType=BIGINT} and symbol = #{symbol,jdbcType=VARCHAR}
+  </select>
+    <delete id="deleteOpenOrder" parameterType="java.util.Map">
+    delete from open_order where order_id = #{orderId,jdbcType=BIGINT} and symbol = #{symbol,jdbcType=VARCHAR}
+  </delete>
+    <insert id="addOrUpdateOpenOrder" parameterType="com.binance.master.old.models.order.OldOpenOrder">
+		insert
+		open_order (account_id, user_id, symbol, order_id,
+		orig_client_order_id, client_order_id, price, orig_qty, executed_qty,
+		status, time_in_force, type, side, stop_price, update_time,
+		insert_time) values
+		(#{accountId,jdbcType=BIGINT},
+		#{userId,jdbcType=VARCHAR}, #{symbol,jdbcType=VARCHAR},
+		#{orderId,jdbcType=BIGINT}, #{origClientOrderId,jdbcType=VARCHAR},
+		#{clientOrderId,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},
+		#{origQty,jdbcType=DECIMAL}, #{executedQty,jdbcType=DECIMAL},
+		#{status,jdbcType=VARCHAR},#{timeInForce,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{side,jdbcType=VARCHAR},
+		#{stopPrice,jdbcType=DECIMAL},
+		#{updateTime,jdbcType=TIMESTAMP},#{insertTime,jdbcType=TIMESTAMP})
+		on duplicate key update client_order_id =
+		#{clientOrderId,jdbcType=VARCHAR}, executed_qty =
+		#{executedQty,jdbcType=DECIMAL}, status = #{status,jdbcType=VARCHAR},
+		time_in_force = #{timeInForce,jdbcType=VARCHAR},
+		stop_price =
+		#{stopPrice,jdbcType=DECIMAL},
+		update_time=#{updateTime,jdbcType=TIMESTAMP}
+	</insert>
+	<update id="updateOpenExecutedAmount" parameterType="java.util.Map">
+		update open_order set
+		executed_quote_qty = #{amount,jdbcType=DECIMAL} + executed_quote_qty
+		where order_id = #{orderId,jdbcType=BIGINT} and symbol =
+		#{symbol,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+    	select * from open_order where TIME &lt; '2018-08-24 04:00:00' order by TIME  limit #{handleCount,jdbcType=BIGINT} ,#{dbCommitCount,jdbcType=BIGINT}
+    </select>
+	
+	
+	<select id="selectCount" resultType="java.lang.Integer" >
+    	select count(1) from open_order where TIME &lt; '2018-08-24 04:00:00' 
+    </select>
+</mapper>

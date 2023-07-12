@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 17:00:54 CST 2020
+hibernate-validator-5.2.4.Final.jar>nexus-aws=
+hibernate-validator-5.2.4.Final.pom>nexus-aws=

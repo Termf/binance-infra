@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.binance.master.task.AutoTaskFactory,\
+com.binance.master.task.AutoTaskConfig

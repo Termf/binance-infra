@@ -1,0 +1,13 @@
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/config/AmazonS3Config.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/impl/AbstractS3ObjectService.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/S3ObjectService.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/impl/RekongnitionServiceImpl.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/impl/S3ObjectWithSSEService.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/util/S3ObjectUtils.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/config/AmazonRekognitionConfig.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/RekongnitionService.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/LambdaService.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/config/AmazonLambdaConfig.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/impl/LambdaServiceImpl.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/config/BaseAmazonConfig.java
+/Users/user/work/code/binance-infra/binance-infra-2.0/binance-infra/binance-infra-amazons3/platform-amazons3-core/src/main/java/com/binance/platform/amazon/s3/service/impl/S3ObjectServiceImpl.java

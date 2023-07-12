@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.asset.AssetMapper" >
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.asset.OldAsset" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="asset_code" property="assetCode" jdbcType="VARCHAR" />
+    <result column="asset_name" property="assetName" jdbcType="VARCHAR" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="transaction_fee" property="transactionFee" jdbcType="DECIMAL" />
+    <result column="commission_rate" property="commissionRate" jdbcType="DECIMAL" />
+    <result column="free_audit_withdraw_amt" property="freeAuditWithdrawAmt" jdbcType="DECIMAL" />
+    <result column="free_user_charge_amount" property="freeUserChargeAmount" jdbcType="DECIMAL" />
+    <result column="min_product_withdraw" property="minProductWithdraw" jdbcType="DECIMAL" />
+    <result column="withdraw_integer_multiple" property="withdrawIntegerMultiple" jdbcType="DECIMAL" />
+    <result column="confirm_times" property="confirmTimes" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="address_url" property="addressUrl" jdbcType="VARCHAR" />
+    <result column="support_market" property="supportMarket" jdbcType="VARCHAR" />
+    <result column="test" property="test" jdbcType="SMALLINT" />
+    <result column="enable_charge" property="enableCharge" jdbcType="BIT" />
+    <result column="enable_withdraw" property="enableWithdraw" jdbcType="BIT" />
+    <result column="reg_ex" property="regEx" jdbcType="VARCHAR" />
+    <result column="reg_ex_tag" property="regExTag" jdbcType="VARCHAR" />
+    <result column="gas" property="gas" jdbcType="DECIMAL" />
+    <result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+    <result column="seq_num" property="seqNum" jdbcType="INTEGER" />
+    <result column="is_legal_money" property="isLegalMoney" jdbcType="BIT" />
+    <result column="reconciliation_amount" property="reconciliationAmount" jdbcType="DECIMAL" />
+    <result column="chinese_name" property="chineseName" jdbcType="VARCHAR" />
+    <result column="cn_link" property="cnLink" jdbcType="VARCHAR" />
+    <result column="en_link" property="enLink" jdbcType="VARCHAR" />
+    <result column="logo_url" property="logoUrl" jdbcType="VARCHAR" />
+    <result column="force_status" property="forceStatus" jdbcType="BIT" />
+    <result column="reset_address_status" property="resetAddressStatus" jdbcType="BIT" />
+    <result column="same_address" property="sameAddress" jdbcType="BIT" />
+    <result column="deposit_tip_status" property="depositTipStatus" jdbcType="BIT" />
+    <result column="block_url" property="blockUrl" jdbcType="VARCHAR" />
+    <result column="dynamic_fee_status" property="dynamicFeeStatus" jdbcType="BIT" />
+    <result column="fee_reference_asset" property="feeReferenceAsset" jdbcType="VARCHAR" />
+    <result column="fee_rate" property="feeRate" jdbcType="DECIMAL" />
+    <result column="fee_digit" property="feeDigit" jdbcType="INTEGER" />
+    <result column="is_trade" property="isTrade" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, asset_code, asset_name, unit, transaction_fee, commission_rate, free_audit_withdraw_amt, 
+    free_user_charge_amount, min_product_withdraw, withdraw_integer_multiple, confirm_times, 
+    create_time, url, address_url, support_market, test, enable_charge, enable_withdraw, 
+    reg_ex, reg_ex_tag, gas, parent_code, seq_num, is_legal_money, reconciliation_amount, 
+    chinese_name, cn_link, en_link, logo_url, force_status, reset_address_status, same_address, 
+    deposit_tip_status, block_url, dynamic_fee_status, fee_reference_asset, fee_rate, 
+    fee_digit, is_trade
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from asset
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from asset
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.asset.OldAsset" >
+    insert into asset (id, asset_code, asset_name, 
+      unit, transaction_fee, commission_rate, 
+      free_audit_withdraw_amt, free_user_charge_amount, 
+      min_product_withdraw, withdraw_integer_multiple, 
+      confirm_times, create_time, url, 
+      address_url, support_market, test, 
+      enable_charge, enable_withdraw, reg_ex, 
+      reg_ex_tag, gas, parent_code, 
+      seq_num, is_legal_money, reconciliation_amount, 
+      chinese_name, cn_link, en_link, 
+      logo_url, force_status, reset_address_status, 
+      same_address, deposit_tip_status, block_url, 
+      dynamic_fee_status, fee_reference_asset, fee_rate, 
+      fee_digit, is_trade)
+    values (#{id,jdbcType=INTEGER}, #{assetCode,jdbcType=VARCHAR}, #{assetName,jdbcType=VARCHAR}, 
+      #{unit,jdbcType=VARCHAR}, #{transactionFee,jdbcType=DECIMAL}, #{commissionRate,jdbcType=DECIMAL}, 
+      #{freeAuditWithdrawAmt,jdbcType=DECIMAL}, #{freeUserChargeAmount,jdbcType=DECIMAL}, 
+      #{minProductWithdraw,jdbcType=DECIMAL}, #{withdrawIntegerMultiple,jdbcType=DECIMAL}, 
+      #{confirmTimes,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{url,jdbcType=VARCHAR}, 
+      #{addressUrl,jdbcType=VARCHAR}, #{supportMarket,jdbcType=VARCHAR}, #{test,jdbcType=SMALLINT}, 
+      #{enableCharge,jdbcType=BIT}, #{enableWithdraw,jdbcType=BIT}, #{regEx,jdbcType=VARCHAR}, 
+      #{regExTag,jdbcType=VARCHAR}, #{gas,jdbcType=DECIMAL}, #{parentCode,jdbcType=VARCHAR}, 
+      #{seqNum,jdbcType=INTEGER}, #{isLegalMoney,jdbcType=BIT}, #{reconciliationAmount,jdbcType=DECIMAL}, 
+      #{chineseName,jdbcType=VARCHAR}, #{cnLink,jdbcType=VARCHAR}, #{enLink,jdbcType=VARCHAR}, 
+      #{logoUrl,jdbcType=VARCHAR}, #{forceStatus,jdbcType=BIT}, #{resetAddressStatus,jdbcType=BIT}, 
+      #{sameAddress,jdbcType=BIT}, #{depositTipStatus,jdbcType=BIT}, #{blockUrl,jdbcType=VARCHAR}, 
+      #{dynamicFeeStatus,jdbcType=BIT}, #{feeReferenceAsset,jdbcType=VARCHAR}, #{feeRate,jdbcType=DECIMAL}, 
+      #{feeDigit,jdbcType=INTEGER}, #{isTrade,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.asset.OldAsset" >
+    insert into asset
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="assetCode != null" >
+        asset_code,
+      </if>
+      <if test="assetName != null" >
+        asset_name,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="transactionFee != null" >
+        transaction_fee,
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate,
+      </if>
+      <if test="freeAuditWithdrawAmt != null" >
+        free_audit_withdraw_amt,
+      </if>
+      <if test="freeUserChargeAmount != null" >
+        free_user_charge_amount,
+      </if>
+      <if test="minProductWithdraw != null" >
+        min_product_withdraw,
+      </if>
+      <if test="withdrawIntegerMultiple != null" >
+        withdraw_integer_multiple,
+      </if>
+      <if test="confirmTimes != null" >
+        confirm_times,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="addressUrl != null" >
+        address_url,
+      </if>
+      <if test="supportMarket != null" >
+        support_market,
+      </if>
+      <if test="test != null" >
+        test,
+      </if>
+      <if test="enableCharge != null" >
+        enable_charge,
+      </if>
+      <if test="enableWithdraw != null" >
+        enable_withdraw,
+      </if>
+      <if test="regEx != null" >
+        reg_ex,
+      </if>
+      <if test="regExTag != null" >
+        reg_ex_tag,
+      </if>
+      <if test="gas != null" >
+        gas,
+      </if>
+      <if test="parentCode != null" >
+        parent_code,
+      </if>
+      <if test="seqNum != null" >
+        seq_num,
+      </if>
+      <if test="isLegalMoney != null" >
+        is_legal_money,
+      </if>
+      <if test="reconciliationAmount != null" >
+        reconciliation_amount,
+      </if>
+      <if test="chineseName != null" >
+        chinese_name,
+      </if>
+      <if test="cnLink != null" >
+        cn_link,
+      </if>
+      <if test="enLink != null" >
+        en_link,
+      </if>
+      <if test="logoUrl != null" >
+        logo_url,
+      </if>
+      <if test="forceStatus != null" >
+        force_status,
+      </if>
+      <if test="resetAddressStatus != null" >
+        reset_address_status,
+      </if>
+      <if test="sameAddress != null" >
+        same_address,
+      </if>
+      <if test="depositTipStatus != null" >
+        deposit_tip_status,
+      </if>
+      <if test="blockUrl != null" >
+        block_url,
+      </if>
+      <if test="dynamicFeeStatus != null" >
+        dynamic_fee_status,
+      </if>
+      <if test="feeReferenceAsset != null" >
+        fee_reference_asset,
+      </if>
+      <if test="feeRate != null" >
+        fee_rate,
+      </if>
+      <if test="feeDigit != null" >
+        fee_digit,
+      </if>
+      <if test="isTrade != null" >
+        is_trade,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="assetCode != null" >
+        #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null" >
+        #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionFee != null" >
+        #{transactionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionRate != null" >
+        #{commissionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="freeAuditWithdrawAmt != null" >
+        #{freeAuditWithdrawAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="freeUserChargeAmount != null" >
+        #{freeUserChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="minProductWithdraw != null" >
+        #{minProductWithdraw,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawIntegerMultiple != null" >
+        #{withdrawIntegerMultiple,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTimes != null" >
+        #{confirmTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="addressUrl != null" >
+        #{addressUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="supportMarket != null" >
+        #{supportMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="test != null" >
+        #{test,jdbcType=SMALLINT},
+      </if>
+      <if test="enableCharge != null" >
+        #{enableCharge,jdbcType=BIT},
+      </if>
+      <if test="enableWithdraw != null" >
+        #{enableWithdraw,jdbcType=BIT},
+      </if>
+      <if test="regEx != null" >
+        #{regEx,jdbcType=VARCHAR},
+      </if>
+      <if test="regExTag != null" >
+        #{regExTag,jdbcType=VARCHAR},
+      </if>
+      <if test="gas != null" >
+        #{gas,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null" >
+        #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNum != null" >
+        #{seqNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLegalMoney != null" >
+        #{isLegalMoney,jdbcType=BIT},
+      </if>
+      <if test="reconciliationAmount != null" >
+        #{reconciliationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="chineseName != null" >
+        #{chineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnLink != null" >
+        #{cnLink,jdbcType=VARCHAR},
+      </if>
+      <if test="enLink != null" >
+        #{enLink,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="forceStatus != null" >
+        #{forceStatus,jdbcType=BIT},
+      </if>
+      <if test="resetAddressStatus != null" >
+        #{resetAddressStatus,jdbcType=BIT},
+      </if>
+      <if test="sameAddress != null" >
+        #{sameAddress,jdbcType=BIT},
+      </if>
+      <if test="depositTipStatus != null" >
+        #{depositTipStatus,jdbcType=BIT},
+      </if>
+      <if test="blockUrl != null" >
+        #{blockUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicFeeStatus != null" >
+        #{dynamicFeeStatus,jdbcType=BIT},
+      </if>
+      <if test="feeReferenceAsset != null" >
+        #{feeReferenceAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="feeRate != null" >
+        #{feeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="feeDigit != null" >
+        #{feeDigit,jdbcType=INTEGER},
+      </if>
+      <if test="isTrade != null" >
+        #{isTrade,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.asset.OldAsset" >
+    update asset
+    <set >
+      <if test="assetCode != null" >
+        asset_code = #{assetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="assetName != null" >
+        asset_name = #{assetName,jdbcType=VARCHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionFee != null" >
+        transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+      </if>
+      <if test="commissionRate != null" >
+        commission_rate = #{commissionRate,jdbcType=DECIMAL},
+      </if>
+      <if test="freeAuditWithdrawAmt != null" >
+        free_audit_withdraw_amt = #{freeAuditWithdrawAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="freeUserChargeAmount != null" >
+        free_user_charge_amount = #{freeUserChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="minProductWithdraw != null" >
+        min_product_withdraw = #{minProductWithdraw,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawIntegerMultiple != null" >
+        withdraw_integer_multiple = #{withdrawIntegerMultiple,jdbcType=DECIMAL},
+      </if>
+      <if test="confirmTimes != null" >
+        confirm_times = #{confirmTimes,jdbcType=INTEGER},
+      </if>
+      <if test="chargeLockConfirmTimes != null">
+        charge_lock_confirm_times = #{chargeLockConfirmTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="addressUrl != null" >
+        address_url = #{addressUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="supportMarket != null" >
+        support_market = #{supportMarket,jdbcType=VARCHAR},
+      </if>
+      <if test="test != null" >
+        test = #{test,jdbcType=SMALLINT},
+      </if>
+      <if test="enableCharge != null" >
+        enable_charge = #{enableCharge,jdbcType=BIT},
+      </if>
+      <if test="enableWithdraw != null" >
+        enable_withdraw = #{enableWithdraw,jdbcType=BIT},
+      </if>
+      <if test="regEx != null" >
+        reg_ex = #{regEx,jdbcType=VARCHAR},
+      </if>
+      <if test="regExTag != null" >
+        reg_ex_tag = #{regExTag,jdbcType=VARCHAR},
+      </if>
+      <if test="gas != null" >
+        gas = #{gas,jdbcType=DECIMAL},
+      </if>
+      <if test="parentCode != null" >
+        parent_code = #{parentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="seqNum != null" >
+        seq_num = #{seqNum,jdbcType=INTEGER},
+      </if>
+      <if test="isLegalMoney != null" >
+        is_legal_money = #{isLegalMoney,jdbcType=BIT},
+      </if>
+      <if test="reconciliationAmount != null" >
+        reconciliation_amount = #{reconciliationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="chineseName != null" >
+        chinese_name = #{chineseName,jdbcType=VARCHAR},
+      </if>
+      <if test="cnLink != null" >
+        cn_link = #{cnLink,jdbcType=VARCHAR},
+      </if>
+      <if test="enLink != null" >
+        en_link = #{enLink,jdbcType=VARCHAR},
+      </if>
+      <if test="logoUrl != null" >
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="forceStatus != null" >
+        force_status = #{forceStatus,jdbcType=BIT},
+      </if>
+      <if test="resetAddressStatus != null" >
+        reset_address_status = #{resetAddressStatus,jdbcType=BIT},
+      </if>
+      <if test="sameAddress != null" >
+        same_address = #{sameAddress,jdbcType=BIT},
+      </if>
+      <if test="depositTipStatus != null" >
+        deposit_tip_status = #{depositTipStatus,jdbcType=BIT},
+      </if>
+      <if test="blockUrl != null" >
+        block_url = #{blockUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="dynamicFeeStatus != null" >
+        dynamic_fee_status = #{dynamicFeeStatus,jdbcType=BIT},
+      </if>
+      <if test="feeReferenceAsset != null" >
+        fee_reference_asset = #{feeReferenceAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="feeRate != null" >
+        fee_rate = #{feeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="feeDigit != null" >
+        fee_digit = #{feeDigit,jdbcType=INTEGER},
+      </if>
+      <if test="isTrade != null" >
+        is_trade = #{isTrade,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.asset.OldAsset" >
+    update asset
+    set asset_code = #{assetCode,jdbcType=VARCHAR},
+      asset_name = #{assetName,jdbcType=VARCHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+      commission_rate = #{commissionRate,jdbcType=DECIMAL},
+      free_audit_withdraw_amt = #{freeAuditWithdrawAmt,jdbcType=DECIMAL},
+      free_user_charge_amount = #{freeUserChargeAmount,jdbcType=DECIMAL},
+      min_product_withdraw = #{minProductWithdraw,jdbcType=DECIMAL},
+      withdraw_integer_multiple = #{withdrawIntegerMultiple,jdbcType=DECIMAL},
+      confirm_times = #{confirmTimes,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      url = #{url,jdbcType=VARCHAR},
+      address_url = #{addressUrl,jdbcType=VARCHAR},
+      support_market = #{supportMarket,jdbcType=VARCHAR},
+      test = #{test,jdbcType=SMALLINT},
+      enable_charge = #{enableCharge,jdbcType=BIT},
+      enable_withdraw = #{enableWithdraw,jdbcType=BIT},
+      reg_ex = #{regEx,jdbcType=VARCHAR},
+      reg_ex_tag = #{regExTag,jdbcType=VARCHAR},
+      gas = #{gas,jdbcType=DECIMAL},
+      parent_code = #{parentCode,jdbcType=VARCHAR},
+      seq_num = #{seqNum,jdbcType=INTEGER},
+      is_legal_money = #{isLegalMoney,jdbcType=BIT},
+      reconciliation_amount = #{reconciliationAmount,jdbcType=DECIMAL},
+      chinese_name = #{chineseName,jdbcType=VARCHAR},
+      cn_link = #{cnLink,jdbcType=VARCHAR},
+      en_link = #{enLink,jdbcType=VARCHAR},
+      logo_url = #{logoUrl,jdbcType=VARCHAR},
+      force_status = #{forceStatus,jdbcType=BIT},
+      reset_address_status = #{resetAddressStatus,jdbcType=BIT},
+      same_address = #{sameAddress,jdbcType=BIT},
+      deposit_tip_status = #{depositTipStatus,jdbcType=BIT},
+      block_url = #{blockUrl,jdbcType=VARCHAR},
+      dynamic_fee_status = #{dynamicFeeStatus,jdbcType=BIT},
+      fee_reference_asset = #{feeReferenceAsset,jdbcType=VARCHAR},
+      fee_rate = #{feeRate,jdbcType=DECIMAL},
+      fee_digit = #{feeDigit,jdbcType=INTEGER},
+      is_trade = #{isTrade,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="selectAssetByMap" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select
+    <include refid="Base_Column_List" />
+    from asset
+    <where>
+        <if test="assetCode!=null and assetCode!=''">
+             and asset_code=#{assetCode,jdbcType=VARCHAR}
+        </if>
+        <if test="assetName!=null and assetName!=''">
+             and asset_name=#{assetName,jdbcType=VARCHAR}
+        </if>
+        <if test="key!=null and key!=''">
+             and test!=#{key,jdbcType=VARCHAR}
+        </if>
+    </where>
+        ORDER BY seq_num asc
+    <if test="endPage>0">
+    LIMIT #{startPage},#{endPage}
+    </if>
+  </select>
+
+  <select id ="getAllAsset" resultType="java.util.Map">
+		select asset from user_asset GROUP BY asset
+  </select>
+
+  <select id="getAssetList" resultType="java.util.Map">
+        select asset_code as asset from asset
+        where test = 0
+  </select>
+  
+  <update id="updateWithdrawFee">
+    update asset
+    set transaction_fee = #{transactionFee,jdbcType=DECIMAL},
+    min_product_withdraw = #{minProductWithdraw,jdbcType=DECIMAL} 
+    where asset_code = #{assetCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

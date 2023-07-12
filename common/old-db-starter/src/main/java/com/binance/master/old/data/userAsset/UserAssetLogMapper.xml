@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.userAsset.UserAssetLogMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.userAsset.UserAssetLog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <id column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="tran_id" jdbcType="BIGINT" property="tranId" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="asset" jdbcType="VARCHAR" property="asset" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="delta" jdbcType="DECIMAL" property="delta" />
+    <result column="free" jdbcType="DECIMAL" property="free" />
+    <result column="locked" jdbcType="DECIMAL" property="locked" />
+    <result column="freeze" jdbcType="DECIMAL" property="freeze" />
+    <result column="withdrawing" jdbcType="DECIMAL" property="withdrawing" />
+    <result column="ipoing" jdbcType="DECIMAL" property="ipoing" />
+    <result column="ipoable" jdbcType="DECIMAL" property="ipoable" />
+    <result column="storage" jdbcType="DECIMAL" property="storage" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, time, tran_id, uid, asset, type, delta, free, locked, freeze, withdrawing, ipoing, 
+    ipoable, storage, info
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAssetLogKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_asset_log
+    where id = #{id,jdbcType=BIGINT}
+      and time = #{time,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAssetLogKey">
+    delete from user_asset_log
+    where id = #{id,jdbcType=BIGINT}
+      and time = #{time,jdbcType=TIMESTAMP}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.userAsset.UserAssetLog">
+    insert into user_asset_log (id, time, tran_id, 
+      uid, asset, type, delta, 
+      free, locked, freeze, 
+      withdrawing, ipoing, ipoable, 
+      storage, info)
+    values (#{id,jdbcType=BIGINT}, #{time,jdbcType=TIMESTAMP}, #{tranId,jdbcType=BIGINT}, 
+      #{uid,jdbcType=VARCHAR}, #{asset,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{delta,jdbcType=DECIMAL}, 
+      #{free,jdbcType=DECIMAL}, #{locked,jdbcType=DECIMAL}, #{freeze,jdbcType=DECIMAL}, 
+      #{withdrawing,jdbcType=DECIMAL}, #{ipoing,jdbcType=DECIMAL}, #{ipoable,jdbcType=DECIMAL}, 
+      #{storage,jdbcType=DECIMAL}, #{info,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.userAsset.UserAssetLog">
+    insert into user_asset_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="time != null">
+        time,
+      </if>
+      <if test="tranId != null">
+        tran_id,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="asset != null">
+        asset,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="delta != null">
+        delta,
+      </if>
+      <if test="free != null">
+        free,
+      </if>
+      <if test="locked != null">
+        locked,
+      </if>
+      <if test="freeze != null">
+        freeze,
+      </if>
+      <if test="withdrawing != null">
+        withdrawing,
+      </if>
+      <if test="ipoing != null">
+        ipoing,
+      </if>
+      <if test="ipoable != null">
+        ipoable,
+      </if>
+      <if test="storage != null">
+        storage,
+      </if>
+      <if test="info != null">
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="time != null">
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tranId != null">
+        #{tranId,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null">
+        #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="delta != null">
+        #{delta,jdbcType=DECIMAL},
+      </if>
+      <if test="free != null">
+        #{free,jdbcType=DECIMAL},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawing != null">
+        #{withdrawing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoing != null">
+        #{ipoing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoable != null">
+        #{ipoable,jdbcType=DECIMAL},
+      </if>
+      <if test="storage != null">
+        #{storage,jdbcType=DECIMAL},
+      </if>
+      <if test="info != null">
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.userAsset.UserAssetLog">
+    update user_asset_log
+    <set>
+      <if test="tranId != null">
+        tran_id = #{tranId,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="asset != null">
+        asset = #{asset,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="delta != null">
+        delta = #{delta,jdbcType=DECIMAL},
+      </if>
+      <if test="free != null">
+        free = #{free,jdbcType=DECIMAL},
+      </if>
+      <if test="locked != null">
+        locked = #{locked,jdbcType=DECIMAL},
+      </if>
+      <if test="freeze != null">
+        freeze = #{freeze,jdbcType=DECIMAL},
+      </if>
+      <if test="withdrawing != null">
+        withdrawing = #{withdrawing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoing != null">
+        ipoing = #{ipoing,jdbcType=DECIMAL},
+      </if>
+      <if test="ipoable != null">
+        ipoable = #{ipoable,jdbcType=DECIMAL},
+      </if>
+      <if test="storage != null">
+        storage = #{storage,jdbcType=DECIMAL},
+      </if>
+      <if test="info != null">
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+      and time = #{time,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.userAsset.UserAssetLog">
+    update user_asset_log
+    set tran_id = #{tranId,jdbcType=BIGINT},
+      uid = #{uid,jdbcType=VARCHAR},
+      asset = #{asset,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      delta = #{delta,jdbcType=DECIMAL},
+      free = #{free,jdbcType=DECIMAL},
+      locked = #{locked,jdbcType=DECIMAL},
+      freeze = #{freeze,jdbcType=DECIMAL},
+      withdrawing = #{withdrawing,jdbcType=DECIMAL},
+      ipoing = #{ipoing,jdbcType=DECIMAL},
+      ipoable = #{ipoable,jdbcType=DECIMAL},
+      storage = #{storage,jdbcType=DECIMAL},
+      info = #{info,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+      and time = #{time,jdbcType=TIMESTAMP}
+  </update>
+  
+  <select id="getAssetLogByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+	    select * from user_asset_log 
+	    <where>
+	      <if test="userId!=null and userId!=''">
+	          and uid=#{userId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="asset!=null and asset!=''">
+	          and asset=#{asset,jdbcType=VARCHAR}
+	      </if>
+	      <if test="tranId!=null and tranId!=''">
+	          and tran_id=#{tranId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="type!=null and type!=''">
+	          and type=#{type,jdbcType=VARCHAR}
+	      </if>
+	    </where>
+	     limit 1
+	</select>
+	
+	
+	<select id="findRelationWithdrawRecord" resultType="com.binance.master.old.models.userAsset.UserAssetLogWithdrawKey" >
+	    select uid as userId,asset,tran_id as tranId from user_asset_log ual
+	    where type =32 and time > #{startTime,jdbcType=VARCHAR} and ual.id is not NULL
+	   <!--  where 
+         <foreach collection="list" item="item" index="index"  separator="or"  >
+           (uid = #{item.userId} and asset = #{item.asset} and tran_id = #{item.tranId})
+         </foreach> -->
+	</select>
+	
+	<select id="getUalByTranId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_asset_log
+    where tran_id = #{tranId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getDeltaByTranId" resultMap="BaseResultMap">
+    select
+    SUM(delta) as delta,asset,tran_id
+    from user_asset_log
+    where tran_id in
+    <foreach collection="tranIdList" item="item" index="index"  open="(" separator="," close=")" >
+      #{item}
+    </foreach>
+    and time &gt;= #{startTime} and type = 2
+   GROUP BY asset,tran_id
+  </select>
+  <select id="getUalByTranIdAndTime" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_asset_log
+    where tran_id = #{tranId,jdbcType=VARCHAR} and time &gt;= #{startTime} and type = 2
+  </select>
+
+  <select id="getVerifyChargeAndWithdrawResult" resultType="com.binance.master.old.models.report.TotalVerifyDto" >
+    SELECT
+    asset, SUM(
+    CASE
+    WHEN delta > 0
+    THEN delta
+    ELSE 0
+    END
+    ) AS userAssetLogCharge, SUM(
+    CASE
+    WHEN delta &lt; 0
+    THEN 0- delta
+    ELSE 0
+    END
+    ) AS userAssetLogWithdraw
+    FROM
+    user_asset_log
+    WHERE TYPE IN (11, 31, 35, 36) AND TIME  &lt; #{endTime}
+    GROUP BY asset
+  </select>
+  <select id="getVerifyExchangeInOutFlowResult" resultType="com.binance.master.old.models.report.TotalVerifyDto" >
+    SELECT
+    asset, (inflow + outflow) AS exchangeInOutFlowTotal
+    FROM
+    exchange_in_out_flow
+  </select>
+  <select id="getVerifyExchangeIncomeSumResult" resultType="com.binance.master.old.models.report.TotalVerifyDto" >
+    SELECT
+    asset, SUM(exchange_income) AS exchangeIncomeSum
+    FROM
+    exchange_income_sum
+    GROUP BY asset
+  </select>
+
+</mapper>

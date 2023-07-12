@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.binance.master.old.data.asset.AssetWithdrawMapper" >
+    <select id="getWithdrawToday" resultType="java.lang.Long" parameterType="java.util.Map">
+        select count(DISTINCT user_id) FROM asset_withdraw
+        <where>
+            type ='1'
+            AND status ='6'
+            <if test="startTime!=null and startTime!=''">
+                and apply_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and apply_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="getVirtualWithdrawAmount" resultType="java.util.Map" parameterType="java.util.Map">
+        select asset,sum(amount) as sum FROM asset_withdraw
+        <where>
+            type='2'
+            AND status='6'
+            <if test="startTime!=null and startTime!=''">
+                and apply_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and apply_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        GROUP BY asset
+    </select>
+
+    <select id="assetWithdrawAmount" resultType="java.util.Map" parameterType="java.util.Map">
+        select asset , ifnull(sum(amount),0) as sumAmount from asset_withdraw
+        <where>
+            type = '1'
+            AND status = '6'
+            <if test="startTime!=null and startTime!=''">
+                and apply_time &gt;=#{startTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="endTime!=null and endTime!=''">
+                and apply_time &lt;= #{endTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        GROUP BY asset
+    </select>
+
+</mapper>

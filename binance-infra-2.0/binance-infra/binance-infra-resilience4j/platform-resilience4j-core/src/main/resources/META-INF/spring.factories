@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.binance.platform.resilience4j.Resilience4jApolloAutoConfiguration

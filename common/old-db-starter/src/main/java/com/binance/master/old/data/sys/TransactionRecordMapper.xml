@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.sys.TransactionRecordMapper">
+  <resultMap id="BaseResultMap" type="com.binance.master.old.models.sys.TransactionRecord">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, date, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from transaction_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.binance.master.old.models.sys.TransactionRecord" keyProperty="id" useGeneratedKeys="true">
+    insert into transaction_record (id, type, date, 
+      description)
+    values (#{id,jdbcType=BIGINT}, #{type,jdbcType=TINYINT}, #{date,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.binance.master.old.models.sys.TransactionRecord">
+    insert into transaction_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.sys.TransactionRecord">
+    update transaction_record
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="date != null">
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.sys.TransactionRecord">
+    update transaction_record
+    set type = #{type,jdbcType=TINYINT},
+      date = #{date,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectLastId" resultType="java.lang.Long">
+		select ifnull(LAST_INSERT_ID(),0)
+  </select>
+  <select id="selectByDateAndDescription" parameterType="com.binance.master.old.models.sys.TransactionRecord" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from transaction_record
+    where description = #{description,jdbcType=VARCHAR} and date = #{date,jdbcType=TIMESTAMP} limit 1
+  </select>
+  <select id="getCurrentTranId" resultType="java.lang.Long">
+		SELECT max(id)-1000 FROM transaction_record
+  </select>
+
+
+  <select id="selectByType" resultType="java.lang.Long" parameterType="com.binance.master.old.models.transactionnRecord.QueryType">
+		SELECT id FROM transaction_record where type = #{type} and id &gt;=#{beginId,jdbcType=BIGINT}
+		and id &lt; #{endId,jdbcType=BIGINT} and date &gt;=#{start} order by id
+  </select>
+  <select id="selectMinKey" resultMap="BaseResultMap">
+    select
+    min(id) as id , date
+    from transaction_record
+  </select>
+
+</mapper>

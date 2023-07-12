@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.binance.master.old.data.account.OldUserLogMapper">
+	<resultMap id="BaseResultMap"
+		type="com.binance.master.old.models.account.OldUserLog">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="login_time" jdbcType="TIMESTAMP" property="loginTime" />
+		<result column="login_result" jdbcType="VARCHAR" property="loginResult" />
+		<result column="ip_address" jdbcType="VARCHAR" property="ipAddress" />
+		<result column="ip_location" jdbcType="VARCHAR" property="ipLocation" />
+		<result column="res_info" jdbcType="VARCHAR" property="resInfo" />
+		<result column="client_type" jdbcType="VARCHAR" property="clientType" />
+		<result column="version_code" jdbcType="VARCHAR" property="versionCode" />
+		<result column="browser" jdbcType="VARCHAR" property="browser" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, login_time, login_result, ip_address,
+		ip_location, res_info,
+		client_type,
+		version_code, browser
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user_log
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		user_log
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.binance.master.old.models.account.OldUserLog">
+		insert into user_log (id,
+		user_id, login_time,
+		login_result, ip_address, ip_location,
+		res_info,
+		client_type, version_code,
+		browser)
+		values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=VARCHAR},
+		#{loginTime,jdbcType=TIMESTAMP},
+		#{loginResult,jdbcType=VARCHAR}, #{ipAddress,jdbcType=VARCHAR},
+		#{ipLocation,jdbcType=VARCHAR},
+		#{resInfo,jdbcType=VARCHAR},
+		#{clientType,jdbcType=VARCHAR},
+		#{versionCode,jdbcType=VARCHAR},
+		#{browser,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.binance.master.old.models.account.OldUserLog">
+		insert into user_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userId != null">
+				user_id,
+			</if>
+			<if test="loginTime != null">
+				login_time,
+			</if>
+			<if test="loginResult != null">
+				login_result,
+			</if>
+			<if test="ipAddress != null">
+				ip_address,
+			</if>
+			<if test="ipLocation != null">
+				ip_location,
+			</if>
+			<if test="resInfo != null">
+				res_info,
+			</if>
+			<if test="clientType != null">
+				client_type,
+			</if>
+			<if test="versionCode != null">
+				version_code,
+			</if>
+			<if test="browser != null">
+				browser,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				#{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginResult != null">
+				#{loginResult,jdbcType=VARCHAR},
+			</if>
+			<if test="ipAddress != null">
+				#{ipAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="ipLocation != null">
+				#{ipLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="resInfo != null">
+				#{resInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="clientType != null">
+				#{clientType,jdbcType=VARCHAR},
+			</if>
+			<if test="versionCode != null">
+				#{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				#{browser,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.binance.master.old.models.account.OldUserLog">
+		update user_log
+		<set>
+			<if test="userId != null">
+				user_id = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="loginTime != null">
+				login_time = #{loginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="loginResult != null">
+				login_result = #{loginResult,jdbcType=VARCHAR},
+			</if>
+			<if test="ipAddress != null">
+				ip_address = #{ipAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="ipLocation != null">
+				ip_location = #{ipLocation,jdbcType=VARCHAR},
+			</if>
+			<if test="resInfo != null">
+				res_info = #{resInfo,jdbcType=VARCHAR},
+			</if>
+			<if test="clientType != null">
+				client_type = #{clientType,jdbcType=VARCHAR},
+			</if>
+			<if test="versionCode != null">
+				version_code = #{versionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="browser != null">
+				browser = #{browser,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.binance.master.old.models.account.OldUserLog">
+		update user_log
+		set user_id = #{userId,jdbcType=VARCHAR},
+		login_time =
+		#{loginTime,jdbcType=TIMESTAMP},
+		login_result =
+		#{loginResult,jdbcType=VARCHAR},
+		ip_address =
+		#{ipAddress,jdbcType=VARCHAR},
+		ip_location =
+		#{ipLocation,jdbcType=VARCHAR},
+		res_info = #{resInfo,jdbcType=VARCHAR},
+		client_type = #{clientType,jdbcType=VARCHAR},
+		version_code =
+		#{versionCode,jdbcType=VARCHAR},
+		browser = #{browser,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+    <select id="selectByUserIds" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_log
+        where
+        id &lt; 100000000000000000
+        <if test="hours != null">
+            and login_time >= DATE_SUB(now(),INTERVAL #{hours,jdbcType=BIGINT} HOUR)
+        </if>
+        and user_id IN
+        <foreach collection="userIds" open="(" close=")" separator="," item="item">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
+    </select>
+
+	<select id="selectLast" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		ul.user_id, ul.login_time, ul.login_result, ul.ip_address,
+		ul.ip_location,ul.browser,
+		ul.res_info,ul.client_type,ul.version_code,od.department_name
+		from user_log ul
+		left join user u on u.user_id = ul.user_id
+		left join operation_department od on od.id = u.department_id
+		where ul.user_id = #{userId,jdbcType=VARCHAR}
+		ORDER BY ul.login_time desc
+		LIMIT 0,1
+	</select>
+</mapper>

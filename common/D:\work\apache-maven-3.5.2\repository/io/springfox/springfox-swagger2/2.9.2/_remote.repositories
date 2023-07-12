@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Mar 27 17:00:54 CST 2020
+springfox-swagger2-2.9.2.jar>nexus-aws=
+springfox-swagger2-2.9.2.pom>nexus-aws=

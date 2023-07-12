@@ -1,0 +1,18 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.binance.infra.avengers</groupId>
+		<artifactId>platform-mbx</artifactId>
+		<version>2.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>platform-starter-mbx</artifactId>
+	<name>${project.artifactId}</name>
+	<description>platform-starter-mbx</description>
+	<packaging>jar</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.binance.infra.avengers</groupId>
+			<artifactId>platform-mbx-core</artifactId>
+		</dependency>
+	</dependencies>
+</project>
